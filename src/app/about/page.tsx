@@ -1,3 +1,4 @@
+import AboutCard from "@/components/about-page/AboutCard";
 import HeroSection from "@/components/about-page/HeroSection";
 import PageCover from "@/components/shared/PageCover";
 import React from "react";
@@ -10,6 +11,9 @@ const AboutPage: React.FC = () => {
             </div>
             <div>
                 <HeroSection />
+            </div>
+            <div>
+                <AboutCard />
             </div>
         </div>
     );
