@@ -14,7 +14,7 @@ const TopBar = () => {
   const currencies = ["USD", "EUR", "GBP", "CAD"]
 
   return (
-    <div className="bg-white text-gray-600 py-4 px-4 border-b ">
+    <div className="hidden md:flex bg-white text-gray-600 py-4 px-4 border-b ">
       <div className="container mx-auto flex flex-wrap justify-between items-center">
         <div className="flex items-center gap-2">
           <MapPin className="h-4 w-4 text-red-500" />
