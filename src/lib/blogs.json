@@ -18,34 +18,34 @@
       "date": "March 12, 2021",
       "author": "admin",
       "description": "The consumer electronics industry is evolving at lightning speed, driven by advancements in technology and changing consumer demands. Some of the top trends include the rise of AI-powered devices, sustainable manufacturing practices, wearable health tech, augmented reality experiences, and smart home ecosystems. These innovations are not only transforming how we live but also redefining what’s possible. Stay ahead of the curve by exploring these groundbreaking trends and incorporating them into your lifestyle or business strategy.",
-      "image": "future_tech_trends.jpg"
+      "image": "https://i.ibb.co.com/mCvdfk1w/2.png"
     },
     {
       "title": "Why Arduino is Still Relevant in 2023",
       "date": "November 22, 2022",
       "author": "admin",
       "description": "Despite being around for over a decade, Arduino continues to dominate the DIY electronics space. Its simplicity, versatility, and strong community support make it a favorite among hobbyists, educators, and professionals alike. Whether you're prototyping a new gadget or teaching kids about programming, Arduino provides the tools you need to bring ideas to life. Dive deeper into its capabilities and see why this platform remains a cornerstone of modern electronics development.",
-      "image": "arduino_board.jpg"
+      "image": "https://i.ibb.co.com/CsST4nnK/5.png"
     },
     {
       "title": "How to Build Your First Smart Home Device",
       "date": "February 14, 2023",
       "author": "admin",
       "description": "Building your first smart home device might sound intimidating, but it doesn't have to be. With the right components and a bit of patience, anyone can create their own IoT-enabled gadget. Start with a simple project like a smart light switch or temperature sensor using platforms like Raspberry Pi or ESP8266. Follow step-by-step instructions and learn along the way. By the end of this tutorial, you'll have a fully functional smart device that adds convenience and efficiency to your home.",
-      "image": "smart_home_device.jpg"
+      "image": "https://i.ibb.co.com/qLjh60tf/6.png"
     },
     {
       "title": "Understanding PCB Design: A Beginner’s Perspective",
       "date": "May 30, 2023",
       "author": "admin",
       "description": "Printed Circuit Boards (PCBs) are the backbone of any electronic device. Understanding how to design one is essential for anyone interested in hardware development. This beginner-friendly article covers the basics of PCB design, including schematic creation, component placement, routing techniques, and manufacturing considerations. We'll also share useful software tools and resources to get you started. Unlock the potential of custom electronics by mastering the art of PCB design.",
-      "image": "pcb_design_process.jpg"
+      "image": "https://i.ibb.co.com/9mjSGzq4/9.png"
     },
     {
       "title": "The Role of Semiconductors in Modern Technology",
       "date": "September 10, 2023",
       "author": "admin",
       "description": "Semiconductors are the unsung heroes behind virtually all modern technologies. These materials form the foundation of transistors, diodes, and integrated circuits, enabling everything from computers to medical devices. In recent years, advancements in semiconductor technology have led to smaller, faster, and more energy-efficient chips. Learn about the history, applications, and future prospects of semiconductors, and gain a deeper appreciation for the science that powers our digital age.",
-      "image": "semiconductor_chip.jpg"
+      "image": "https://i.ibb.co.com/7dms0XMR/10.png"
     }
   ]
