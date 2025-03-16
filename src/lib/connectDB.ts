@@ -10,7 +10,7 @@ export const connectDB = async (): Promise<Db> => {
   try {
     const uri = process.env.MONGODB_URI;
 
-    if (!uri || !/^mongodb(\+srv)?:\/\//.test(uri)) {
+    if (!uri) {
       throw new Error(
         "Invalid or undefined MONGODB_URI environment variable"
       );
