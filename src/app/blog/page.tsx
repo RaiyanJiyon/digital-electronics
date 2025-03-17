@@ -1,6 +1,7 @@
 import PageCover from "@/components/shared/PageCover";
 import BlogCard from "@/components/blog-page/BlogCard";
 import SearchWidget from "@/components/blog-page/SearchWidget";
+import CategoriesList from "@/components/blog-page/CategoriesList";
 
 // Define the Blog type
 interface Blog {
@@ -36,8 +37,9 @@ const BlogPage = async () => {
           <BlogCard key={_id} blog={blog} />
         ))}
       </div>
-      <div className="">
+      <div className="space-y-6">
         <SearchWidget />
+        <CategoriesList />
       </div>
 
       </div>
