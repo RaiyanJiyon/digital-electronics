@@ -15,7 +15,7 @@ interface Blog {
 
 // Fetch blogs with proper typing
 const fetchBlogs = async (): Promise<Blog[]> => {
-  const res = await fetch("http://localhost:3000/blog/api");
+  const res = await fetch(`${process.env.BASE_URL}/blog/api`);
   if (!res.ok) {
     throw new Error("Failed to fetch blogs");
   }
@@ -34,7 +34,7 @@ const BlogPage = async () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 w-11/12 max-w-[1902px] mx-auto my-14">
         {blogs.map((blog, _id) => (
           <div key={_id} className="bg-white">
-            <Link href={"/"}>
+            <Link href={`${process.env.BASE_URL}/blog/${blog._id}`}>
               <Image
                 className="rounded-sm"
                 src={blog?.image}
