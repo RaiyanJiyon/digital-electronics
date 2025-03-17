@@ -2,6 +2,7 @@ import PageCover from "@/components/shared/PageCover";
 import BlogCard from "@/components/blog-page/BlogCard";
 import SearchWidget from "@/components/blog-page/SearchWidget";
 import CategoriesList from "@/components/blog-page/CategoriesList";
+import ArchiveSection from "@/components/blog-page/ArchiveSection";
 
 // Define the Blog type
 interface Blog {
@@ -40,6 +41,7 @@ const BlogPage = async () => {
       <div className="space-y-6">
         <SearchWidget />
         <CategoriesList />
+        <ArchiveSection />
       </div>
 
       </div>
