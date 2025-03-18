@@ -24,7 +24,7 @@ const TopBar = () => {
       <div className="max-w-[1920px] mx-auto flex flex-wrap justify-between items-center">
         <div className="flex items-center gap-2">
           <FaRegLightbulb className="h-5 w-5 text-red-500" />
-          <span className="text-lg">
+          <span className="text-sm">
             Get up to{" "}
             <span className="text-red-500 font-semibold">35% Off</span> cashback
             on First Order
@@ -33,7 +33,7 @@ const TopBar = () => {
         <div className="flex items-center gap-6">
           <div className="flex items-center gap-2">
             <FaTruck className="h-4 w-4 text-red-500" />
-            <Link href="/track-order" className="hover:text-red-500">
+            <Link href="/track-order" className="hover:text-red-500 text-sm">
               Track Your Order
             </Link>
           </div>
@@ -45,7 +45,7 @@ const TopBar = () => {
             <DropdownMenuContent>
               {languages.map((lang) => (
                 <DropdownMenuItem
-                  key={lang}
+                key={lang}
                   onClick={() => setSelectedLanguage(lang)}
                 >
                   {lang}

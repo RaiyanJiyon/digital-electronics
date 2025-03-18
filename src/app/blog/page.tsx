@@ -3,16 +3,9 @@ import BlogCard from "@/components/blog-page/BlogCard";
 import SearchWidget from "@/components/blog-page/SearchWidget";
 import CategoriesList from "@/components/blog-page/CategoriesList";
 import ArchiveSection from "@/components/blog-page/ArchiveSection";
+import RecentPosts from "@/components/blog-page/RecentPosts";
+import { Blog } from "@/lib/types";
 
-// Define the Blog type
-interface Blog {
-  _id: string;
-  title: string;
-  date: string;
-  author: string;
-  description: string;
-  image: string;
-}
 
 // Fetch blogs with proper typing
 const fetchBlogs = async (): Promise<Blog[]> => {
@@ -41,6 +34,7 @@ const BlogPage = async () => {
       <div className="space-y-6">
         <SearchWidget />
         <CategoriesList />
+        <RecentPosts blogs={blogs} />
         <ArchiveSection />
       </div>
 

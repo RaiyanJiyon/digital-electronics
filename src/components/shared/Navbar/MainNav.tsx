@@ -33,7 +33,7 @@ const MainNavigation = () => {
   };
 
   return (
-    <nav className="border-b border-gray-200 bg-white">
+    <nav className="border-b border-gray-300 bg-white py-2">
       <div className="max-w-[1920px] mx-auto flex items-center justify-between">
         {/* Mobile Menu Trigger */}
         <div className="flex items-center">

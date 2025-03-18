@@ -20,7 +20,7 @@ const CategoriesList: React.FC<CategoriesListProps> = ({
   ],
 }) => {
   return (
-    <div className="border border-gray-200 rounded-md overflow-hidden">
+    <div className="border border-gray-300 rounded-md overflow-hidden">
       <div className="bg-red-500 text-white text-sm font-bold py-3 px-4">CATEGORIES</div>
       <div className="p-4">
         <ul className="divide-y divide-gray-200 border border-gray-200 px-4">
@@ -28,7 +28,7 @@ const CategoriesList: React.FC<CategoriesListProps> = ({
             <li key={category.slug}>
               <Link
                 href={`/category/${category.slug}`}
-                className="block py-3 text-gray-800 hover:text-red-500 transition-colors"
+                className="block py-3 text-sm text-gray-800 hover:text-red-500 transition-colors"
               >
                 {category.name}
               </Link>
