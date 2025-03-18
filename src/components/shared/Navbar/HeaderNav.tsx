@@ -78,17 +78,16 @@ const HeaderNav = () => {
 
         {/* User Actions */}
         <div className="flex items-center gap-6 text-white">
-          <Link
-            href="/account"
-            className="flex items-center gap-2 hover:text-red-500"
+          <div
+            className="flex items-center gap-2"
           >
             <FaRegUser className="h-5 w-5" />
             <div className="hidden sm:block space-x-2">
-              <span className="text-sm whitespace-nowrap">LOGIN</span>
+              <Link href={'/login'} className="text-sm whitespace-nowrap hover:text-red-500 hover:font-medium">LOGIN</Link>
               <span className="text-sm whitespace-nowrap">/</span>
-              <span className="text-sm whitespace-nowrap">REGISTER</span>
+              <Link href={'/register'} className="text-sm whitespace-nowrap hover:text-red-500 hover:font-medium">REGISTER</Link>
             </div>
-          </Link>
+          </div>
 
           <Link
             href="/wishlist"
