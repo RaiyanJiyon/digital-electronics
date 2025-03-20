@@ -14,6 +14,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { toast } from "sonner";
 
 // Define the Zod schema for the form
 const formSchema = z
@@ -51,13 +52,60 @@ const RegisterPage = () => {
   });
 
   // Handle form submission
-  const onSubmit = (data: z.infer<typeof formSchema>) => {
-    console.log("Form Submitted:", data);
-  };
+  const onSubmit = async (data: z.infer<typeof formSchema>) => {
+    try {
+      console.log("Form Submitted:", data);
 
+      // Send the form data to the API endpoint
+      const response = await fetch("http://localhost:3000/register/api", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data), // Convert the form data to JSON
+      });
+
+      // Check if the response is successful
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Something went wrong.");
+      }
+
+      const responseData = await response.json();
+      console.log("Registration Successful:", responseData);
+
+      // Show a success toast message
+      toast("Account created successfully!", {
+        position: "top-center",
+        style: {
+          background: "#4CAF50",
+          color: "#FFFFFF",
+          borderRadius: "8px",
+          padding: "12px 20px",
+          boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+        },
+      });
+    } catch (error) {
+      console.error("Error during registration:", error.message);
+      // Show a error toast message
+      toast(`Registration failed: ${error.message}`, {
+        position: "top-center",
+        style: {
+          background: "#f3283c", // Background color (e.g., red)
+          color: "#FFFFFF", // Text color (e.g., white)
+          borderRadius: "8px",
+          padding: "12px 20px",
+          boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+        },
+      });
+    }
+  };
+  
   return (
     <div className="bg-[#F5F5F5] max-w-5xl mx-auto my-16 p-10 rounded-md">
-      <h2 className="text-xl font-bold mb-8 uppercase">Create New Customer Account</h2>
+      <h2 className="text-xl font-bold mb-8 uppercase">
+        Create New Customer Account
+      </h2>
 
       {/* Form Component */}
       <Form {...form}>

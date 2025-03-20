@@ -49,12 +49,14 @@ const LoginPage = () => {
     console.log("Form Submitted:", values);
 
     // Show a success toast message
-    toast("Signing in...", {
+    toast("Account created successfully!", {
       position: "top-center",
       style: {
-        background: "#f3283c", // Background color (e.g., red)
-        color: "#FFFFFF", // Text color (e.g., white)
-        border: "1px solid #D32F2F", // Optional border
+        background: "#4CAF50",
+        color: "#FFFFFF",
+        borderRadius: "8px",
+        padding: "12px 20px",
+        boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
       },
     });
 
@@ -76,10 +78,7 @@ const LoginPage = () => {
 
       {/* Login Form */}
       <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-4 mt-6"
-        >
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 mt-6">
           {/* Email Field */}
           <FormField
             control={form.control}
@@ -132,7 +131,10 @@ const LoginPage = () => {
           {/* Forgot Password Link and Submit Button */}
           <div className="flex items-center gap-6 md:gap-10 pt-4">
             <Button type="submit">Sign In</Button>
-            <Link href="/forgot-password" className="text-sm font-medium hover:underline">
+            <Link
+              href="/forgot-password"
+              className="text-sm font-medium hover:underline"
+            >
               Forgot Your Password?
             </Link>
           </div>
