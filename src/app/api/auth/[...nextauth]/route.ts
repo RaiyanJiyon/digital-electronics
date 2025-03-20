@@ -9,7 +9,8 @@ import { connectDB } from "@/lib/connectDB";
 // Define the structure of a user document in the database
 interface User {
   _id: string;
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
   password: string;
   image?: string; // Optional field
@@ -48,7 +49,7 @@ export const authOptions: AuthOptions = {
             throw new Error("Invalid password.");
           }
 
-          return { id: user._id.toString(), email: user.email, name: user.name };
+          return { id: user._id.toString(), email: user.email, firstName: user.firstName, lastName: user.lastName };
         } catch (error) {
           console.error("Authentication error:", error.message);
           return null;

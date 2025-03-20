@@ -119,3 +119,14 @@
     @apply bg-background text-foreground;
   }
 }
+
+
+.swiper-pagination-bullet {
+  background-color: transparent !important;
+  border: 1px solid white !important;
+  padding: 5px !important;
+}
+
+.swiper-pagination-bullet-active {
+  border: 1px solid red !important;
+}
