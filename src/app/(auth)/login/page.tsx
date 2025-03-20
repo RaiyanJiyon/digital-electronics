@@ -16,6 +16,8 @@ import { toast } from "sonner";
 import * as z from "zod";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { signIn } from "next-auth/react";
 
 // Form validation schema
 const formSchema = z.object({
@@ -36,6 +38,10 @@ type FormValues = z.infer<typeof formSchema>;
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false); // State for toggling password visibility
 
+  const searchParams = useSearchParams();
+  const path = searchParams.get("redirect");
+  const router = useRouter();
+
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -45,22 +51,60 @@ const LoginPage = () => {
   });
 
   async function onSubmit(values: FormValues) {
-    // Simulate form submission (e.g., API call)
-    console.log("Form Submitted:", values);
+    const { email, password } = values;
 
-    // Show a success toast message
-    toast("Account created successfully!", {
-      position: "top-center",
-      style: {
-        background: "#4CAF50",
-        color: "#FFFFFF",
-        borderRadius: "8px",
-        padding: "12px 20px",
-        boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-      },
-    });
+    try {
+      // Attempt to sign in the user
+      const response = await signIn("credentials", {
+        email,
+        password,
+        redirect: false, // Prevent automatic redirection
+        callbackUrl: path ? path : "/"
+      });
 
-    // TODO: Add actual API call logic here
+      if (response?.error) {
+        // Show an error toast message
+        toast("Invalid email or password.", {
+          position: "top-center",
+          style: {
+            background: "#FF5252", // Red background for errors
+            color: "#FFFFFF", // White text
+            borderRadius: "8px",
+            padding: "12px 20px",
+            boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+          },
+        });
+      } else {
+        // Show a success toast message
+        toast("Login successful!", {
+          position: "top-center",
+          style: {
+            background: "#4CAF50", // Green background for success
+            color: "#FFFFFF", // White text
+            borderRadius: "8px",
+            padding: "12px 20px",
+            boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+          },
+        });
+
+        // Redirect the user to the desired page
+        router.push('/');
+      }
+    } catch (error) {
+      // Handle unexpected errors
+      console.error("Error during login:", error);
+
+      toast("An unexpected error occurred. Please try again.", {
+        position: "top-center",
+        style: {
+          background: "#FF5252", // Red background for errors
+          color: "#FFFFFF", // White text
+          borderRadius: "8px",
+          padding: "12px 20px",
+          boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+        },
+      });
+    }
   }
 
   return (

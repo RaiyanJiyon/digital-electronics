@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 // Define the Zod schema for the form
 const formSchema = z
@@ -51,6 +52,8 @@ const RegisterPage = () => {
     },
   });
 
+  const router = useRouter();
+
   // Handle form submission
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
     try {
@@ -75,7 +78,7 @@ const RegisterPage = () => {
       console.log("Registration Successful:", responseData);
 
       // Show a success toast message
-      toast("Account created successfully!", {
+      toast("Account created successfully! Please login", {
         position: "top-center",
         style: {
           background: "#4CAF50",
@@ -85,6 +88,7 @@ const RegisterPage = () => {
           boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
         },
       });
+      router.push('/login')
     } catch (error) {
       console.error("Error during registration:", error.message);
       // Show a error toast message

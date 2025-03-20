@@ -15,9 +15,12 @@ import { Button } from "@/components/ui/button";
 import { FaRegHeart, FaRegUser } from "react-icons/fa";
 import { FiShoppingCart } from "react-icons/fi";
 import { IoSearch } from "react-icons/io5";
+import { useSession, signOut } from "next-auth/react";
 
 const HeaderNav = () => {
   const [selectedCategory, setSelectedCategory] = useState("All Categories");
+  const { data: session, status } = useSession();
+
   const categories = [
     "All Categories",
     "Smartphones",
@@ -54,7 +57,7 @@ const HeaderNav = () => {
             <DropdownMenuTrigger asChild>
               <Button
                 variant="outline"
-                className="rounded-none border-transparent border-l-1 border-l-gray-300 border-r-0 bg-white hover:bg-gray-50 text-gray-700 font-normal"
+                className="rounded-none border-transparent bg-white hover:bg-gray-50 text-gray-700 font-normal"
               >
                 {selectedCategory} <ChevronDown className="h-4 w-4 ml-2" />
               </Button>
@@ -78,17 +81,50 @@ const HeaderNav = () => {
 
         {/* User Actions */}
         <div className="flex items-center gap-6 text-white">
-          <div
-            className="flex items-center gap-2"
-          >
+          {/* Login/Logout/Register */}
+          <div className="flex items-center gap-2">
             <FaRegUser className="h-5 w-5" />
             <div className="hidden sm:block space-x-2">
-              <Link href={'/login'} className="text-sm whitespace-nowrap hover:text-red-500 hover:font-medium">LOGIN</Link>
-              <span className="text-sm whitespace-nowrap">/</span>
-              <Link href={'/register'} className="text-sm whitespace-nowrap hover:text-red-500 hover:font-medium">REGISTER</Link>
+              { status === 'loading' ? (
+                <span className="text-sm whitespace-nowrap">Loading...</span>
+              ) :
+              session?.user ? (
+                <>
+                  <Link
+                    href="/profile"
+                    className="text-sm whitespace-nowrap hover:text-red-500 hover:font-medium"
+                  >
+                    Profile
+                  </Link>
+                  <span className="text-sm whitespace-nowrap">/</span>
+                  <button
+                    onClick={() => signOut()}
+                    className="text-sm whitespace-nowrap hover:text-red-500 hover:font-medium"
+                  >
+                    Logout
+                  </button>
+                </>
+              ) : (
+                <>
+                  <Link
+                    href="/login"
+                    className="text-sm whitespace-nowrap hover:text-red-500 hover:font-medium"
+                  >
+                    LOGIN
+                  </Link>
+                  <span className="text-sm whitespace-nowrap">/</span>
+                  <Link
+                    href="/register"
+                    className="text-sm whitespace-nowrap hover:text-red-500 hover:font-medium"
+                  >
+                    REGISTER
+                  </Link>
+                </>
+              )}
             </div>
           </div>
 
+          {/* Wishlist */}
           <Link
             href="/wishlist"
             className="hidden xl:flex items-center gap-2 hover:text-red-500 relative"
@@ -104,6 +140,7 @@ const HeaderNav = () => {
             </div>
           </Link>
 
+          {/* Cart */}
           <Link
             href="/cart"
             className="flex items-center gap-2 hover:text-red-500"
