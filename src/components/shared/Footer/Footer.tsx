@@ -12,8 +12,8 @@ const Footer = () => {
   return (
     <footer className="bg-[#1a1a1a] text-white">
       {/* Main Footer */}
-      <div className="w-11/12 mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+      <div className="w-11/12 max-w-[1920px] mx-auto px-4 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-8">
           <FooterInfo />
           <FooterCustomerService />
           <FooterStoreLocation />
@@ -24,7 +24,7 @@ const Footer = () => {
 
       {/* Trust Badges */}
       <div className="border-t border-gray-500 py-6">
-        <div className="container mx-auto px-4 flex justify-center">
+        <div className="w-11/12 mx-auto px-4 flex justify-center">
           <div className="flex flex-wrap justify-center gap-4">
             <Image
               src="/assets/images/footer-images/item-1.png"
@@ -56,7 +56,7 @@ const Footer = () => {
 
       {/* Bottom Navigation */}
       <div className="py-4">
-        <div className="container mx-auto px-4">
+        <div className="w-11/12 mx-auto px-4">
           <div className="flex flex-wrap justify-center gap-4 text-sm mb-6">
             <Link href="#" className="text-gray-400 hover:text-white">
               ABOUT US
