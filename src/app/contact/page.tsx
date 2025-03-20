@@ -1,4 +1,5 @@
 import ContactForm from "@/components/contact-page/ContactForm";
+import GoogleMap from "@/components/contact-page/GoogleMap";
 import Locations from "@/components/contact-page/Locations";
 import PageCover from "@/components/shared/PageCover";
 import React from "react";
@@ -14,6 +15,9 @@ const ContactPage: React.FC = () => {
             </div>
             <div className="mb-10">
                 <Locations />
+            </div>
+            <div className="mb-10">
+                <GoogleMap />
             </div>
         </div>
     );
