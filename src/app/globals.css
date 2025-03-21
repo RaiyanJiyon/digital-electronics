@@ -130,3 +130,28 @@
 .swiper-pagination-bullet-active {
   border: 1px solid red !important;
 }
+
+
+@keyframes dots-loading {
+  0%,
+  80%,
+  100% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+}
+
+.animate-dots-loading > div {
+  animation: dots-loading 1.4s infinite ease-in-out;
+}
+
+/* Offset the animation for each dot */
+.animate-dots-loading > div:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.animate-dots-loading > div:nth-child(3) {
+  animation-delay: 0.4s;
+}

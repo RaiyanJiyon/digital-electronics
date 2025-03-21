@@ -1,33 +1,22 @@
 {
-    "product_name": "Lenovo Flex 15.6 Inch Laptop",
-    "category": "Smartphones",
-    "price": 435.00,
-    "availability": "In stock",
-    "rating": 3,
-    "SKU": "P7856395",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas.",
-    "quantity": 10,
-    "tabs": {
-      "Details": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...",
-      "More Information": {
-        "Color": "White",
-        "Size": "25 cm",
-        "Manufacturer": "Hipster",
-        "Product Types": "Laptop"
-      },
-      "Reviews": [
-        {
-          "total_reviews": 1,
-          "review_content": "User reviews are displayed here."
-        }
-      ],
-      "Custom Tabs": "Additional product-related information."
-    },
-    "images": [
-      "Main image of the product",
-      "Thumbnail 1",
-      "Thumbnail 2",
-      "Thumbnail 3"
-    ]
-  }
-  
+  "product_name": "Lenovo Flex 15.6 Inch Laptop",
+  "category": "Laptops",
+  "price": 435.00,
+  "availability": "In stock",
+  "rating": 4,
+  "description": "A versatile 2-in-1 laptop with a 15.6-inch touchscreen, ideal for work, creativity, and entertainment.",
+  "quantity": 10,
+  "Details": "The Lenovo Flex 15.6 Inch Laptop is a powerful and flexible 2-in-1 device designed for multitasking and productivity. It features a 15.6-inch Full HD touchscreen display with narrow bezels, providing an immersive viewing experience. Powered by the 10th Generation Intel Core i7 processor, it ensures smooth performance for demanding tasks. The laptop comes with 16GB DDR4 RAM and a 512GB SSD, offering ample storage and fast data access. Its 360-degree hinge allows you to use it in multiple modes, including laptop, tablet, tent, and stand. The device also includes a fingerprint reader for secure login, WiFi 6 for faster connectivity, and a long-lasting battery for all-day use. With its sleek design and lightweight build, the Lenovo Flex 15 is perfect for professionals, students, and creatives on the go.",
+  "Color": "Platinum Grey",
+  "Size": "15.6 inches",
+  "Manufacturer": "Lenovo",
+  "Product Types": "Laptop",
+  "images": [
+    "https://7gadgets.com/2013/11/25/lenovo-ideapad-flex-15-15-6-inch-touchscreen-laptop/90350",
+    "https://www.bhphotovideo.com/c/product/1526116-REG/lenovo_81xh0000us_ideapad_flex_i7_10510u_8gb.html",
+    "https://ave-electronics.com/laptops-notebooks/windows-10-laptops/lenovo-flex-15iil05-15-6-4k-uhd-touch-i7-1065g7-16gb-1tb-ssd-mx330-w10h-2in1-r.html"
+  ],
+  "email": "raiyan@example.com",
+  "phone_number": "+880123456789",
+  "address": "123 Dhaka Street, Dhaka, Bangladesh"
+}
