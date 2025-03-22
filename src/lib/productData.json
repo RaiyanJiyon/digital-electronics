@@ -1,22 +1,117 @@
-{
-  "product_name": "Lenovo Flex 15.6 Inch Laptop",
-  "category": "Laptops",
-  "price": 435.00,
-  "availability": "In stock",
-  "rating": 4,
-  "description": "A versatile 2-in-1 laptop with a 15.6-inch touchscreen, ideal for work, creativity, and entertainment.",
-  "quantity": 10,
-  "details": "The Lenovo Flex 15.6 Inch Laptop is a powerful and flexible 2-in-1 device designed for multitasking and productivity. It features a 15.6-inch Full HD touchscreen display with narrow bezels, providing an immersive viewing experience. Powered by the 10th Generation Intel Core i7 processor, it ensures smooth performance for demanding tasks. The laptop comes with 16GB DDR4 RAM and a 512GB SSD, offering ample storage and fast data access. Its 360-degree hinge allows you to use it in multiple modes, including laptop, tablet, tent, and stand. The device also includes a fingerprint reader for secure login, WiFi 6 for faster connectivity, and a long-lasting battery for all-day use. With its sleek design and lightweight build, the Lenovo Flex 15 is perfect for professionals, students, and creatives on the go.",
-  "color": "Platinum Grey",
-  "size": "15.6 inches",
-  "manufacturer": "Lenovo",
-  "product_types": "Laptop",
-  "images": [
-    "https://7gadgets.com/2013/11/25/lenovo-ideapad-flex-15-15-6-inch-touchscreen-laptop/90350",
-    "https://www.bhphotovideo.com/c/product/1526116-REG/lenovo_81xh0000us_ideapad_flex_i7_10510u_8gb.html",
-    "https://ave-electronics.com/laptops-notebooks/windows-10-laptops/lenovo-flex-15iil05-15-6-4k-uhd-touch-i7-1065g7-16gb-1tb-ssd-mx330-w10h-2in1-r.html"
-  ],
-  "email": "raiyan@example.com",
-  "phone_number": "+880123456789",
-  "address": "123 Dhaka Street, Dhaka, Bangladesh"
-}
+[
+  {
+    "product_name": "Dell Inspiron 14 2-in-1 Laptop",
+    "category": "Laptops",
+    "price": 520,
+    "availability": "In stock",
+    "rating": 4.5,
+    "description": "A compact and powerful 14-inch convertible laptop with a touch-enabled display, perfect for multitasking and entertainment.",
+    "quantity": 15,
+    "details": "This Dell Inspiron comes with an Intel Core i5 processor, 8GB RAM, and a 256GB SSD. Its 360-degree hinge allows four usage modes, including tent, stand, laptop, and tablet. It also features a Full HD IPS touchscreen, long battery life, and fast charging.",
+    "color": "Black",
+    "size": "14 inches",
+    "manufacturer": "Dell",
+    "product_types": "Laptop",
+    "images": [
+      "https://i.ibb.co.com/YFJzh80f/Dell-Inspiron-14-2-in-1-Laptop-1.jpg",
+      "https://i.ibb.co.com/LdHVjFd3/Dell-Inspiron-14-2-in-1-Laptop-2.jpg",
+      "https://i.ibb.co.com/8D4P0pJr/Dell-Inspiron-14-2-in-1-Laptop-3.jpg",
+      "https://i.ibb.co.com/8DXB7jNx/Dell-Inspiron-14-2-in-1-Laptop-4.jpg"
+    ],
+    "email": "info@dellstore.com",
+    "phone_number": "+8801987654321",
+    "address": "45 Laptop Avenue, Dhaka, Bangladesh"
+  },
+  {
+    "product_name": "HP Pavilion Gaming Laptop",
+    "category": "Gaming Laptops",
+    "price": 750,
+    "availability": "Limited stock",
+    "rating": 4.8,
+    "description": "A high-performance gaming laptop with advanced graphics and cooling for a seamless gaming experience.",
+    "quantity": 8,
+    "details": "Equipped with an AMD Ryzen 5 processor, 16GB DDR4 RAM, and a 512GB SSD. The NVIDIA GTX 1650 graphics card ensures smooth gameplay. Features a 15.6-inch FHD display, RGB keyboard, and enhanced thermal cooling.",
+    "color": "Shadow Black",
+    "size": "15.6 inches",
+    "manufacturer": "HP",
+    "product_types": "Gaming Laptop",
+    "images": [
+      "https://i.ibb.co.com/fGtGt7cM/HP-Pavilion-Gaming-Laptop-1.jpg",
+      "https://i.ibb.co.com/xtSJ3K7X/HP-Pavilion-Gaming-Laptop-2.jpg",
+      "https://i.ibb.co.com/TDhscQ8r/HP-Pavilion-Gaming-Laptop-3.jpg",
+      "https://i.ibb.co.com/QFXhjK3h/HP-Pavilion-Gaming-Laptop-4.jpg"
+    ],
+    "email": "support@hpstore.com",
+    "phone_number": "+8801765432109",
+    "address": "78 Gaming Street, Dhaka, Bangladesh"
+  },
+  {
+    "product_name": "Apple MacBook Air M2",
+    "category": "Laptops",
+    "price": 1200,
+    "availability": "Pre-order",
+    "rating": 5,
+    "description": "A sleek and ultra-light laptop powered by Apple’s M2 chip for unmatched performance and efficiency.",
+    "quantity": 5,
+    "details": "Features a 13.3-inch Retina display, 8GB Unified Memory, and a 256GB SSD. The fanless design ensures silent operation, while the M2 chip delivers blazing-fast speed and power efficiency. Includes macOS Monterey and Touch ID for security.",
+    "color": "Silver",
+    "size": "13.3 inches",
+    "manufacturer": "Apple",
+    "product_types": "Laptop",
+    "images": [
+      "https://i.ibb.co.com/B2cmVC5T/Apple-Mac-Book-Air-M2-1.png",
+      "https://i.ibb.co.com/M5NNtygs/Apple-Mac-Book-Air-M2-2.png",
+      "https://i.ibb.co.com/cKmFHwf9/Apple-Mac-Book-Air-M2-3.png",
+      "https://i.ibb.co.com/0RQ86rdD/Apple-Mac-Book-Air-M2-4.png"
+    ],
+    "email": "sales@applestore.com",
+    "phone_number": "+8801239876543",
+    "address": "100 Apple Road, Dhaka, Bangladesh"
+  },
+  {
+    "product_name": "Asus ROG Zephyrus G14",
+    "category": "Gaming Laptops",
+    "price": 1350,
+    "availability": "In stock",
+    "rating": 4.9,
+    "description": "A compact gaming laptop with cutting-edge technology for esports and content creation.",
+    "quantity": 7,
+    "details": "Powered by AMD Ryzen 9 and NVIDIA GeForce RTX 3060, this laptop delivers incredible gaming and multitasking performance. Features a 14-inch QHD display with 120Hz refresh rate, 16GB RAM, and 1TB SSD. Includes an AniMe Matrix LED customizable back panel.",
+    "color": "Moonlight White",
+    "size": "14 inches",
+    "manufacturer": "Asus",
+    "product_types": "Gaming Laptop",
+    "images": [
+      "https://i.ibb.co.com/bxv66CQ/Asus-ROG-Zephyrus-G14-1.jpg",
+      "https://i.ibb.co.com/dw2Wt1HR/Asus-ROG-Zephyrus-G14-2.jpg",
+      "https://i.ibb.co.com/HDhvPNLN/Asus-ROG-Zephyrus-G14-3.jpg",
+      "https://i.ibb.co.com/sprZ83T9/Asus-ROG-Zephyrus-G14-4.jpg"
+    ],
+    "email": "contact@asusstore.com",
+    "phone_number": "+8801987891234",
+    "address": "56 Gamer Zone, Dhaka, Bangladesh"
+  },
+  {
+    "product_name": "Acer Swift 3 Ultra Thin",
+    "category": "Laptops",
+    "price": 680,
+    "availability": "In stock",
+    "rating": 4.4,
+    "description": "A slim and lightweight laptop designed for everyday productivity and entertainment.",
+    "quantity": 12,
+    "details": "Features a 14-inch FHD display, AMD Ryzen 7 processor, 8GB RAM, and 512GB SSD. Weighing only 1.2kg, it’s perfect for portability. Includes WiFi 6, backlit keyboard, and a fingerprint reader for enhanced security.",
+    "color": "Steel Grey",
+    "size": "14 inches",
+    "manufacturer": "Acer",
+    "product_types": "Laptop",
+    "images": [
+      "https://i.ibb.co.com/fYDpsC0t/Acer-Swift-3-Ultra-Thin-1.jpg",
+      "https://i.ibb.co.com/PZ6D9b4q/Acer-Swift-3-Ultra-Thin-2.jpg",
+      "https://i.ibb.co.com/zTzn8KPJ/Acer-Swift-3-Ultra-Thin-3.jpg",
+      "https://i.ibb.co.com/Y78Btxdn/Acer-Swift-3-Ultra-Thin-4.jpg"
+    ],
+    "email": "info@acerstore.com",
+    "phone_number": "+8801236547890",
+    "address": "89 Tech Zone, Dhaka, Bangladesh"
+  }
+]

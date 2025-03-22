@@ -1,5 +1,6 @@
 import { connectDB } from "@/lib/connectDB";
 import { Product } from "@/lib/types";
+import { ObjectId } from "mongodb";
 import { NextResponse } from "next/server";
 
 function isValidUrl(url: string): boolean {
