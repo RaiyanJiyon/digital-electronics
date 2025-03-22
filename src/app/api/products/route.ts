@@ -1,6 +1,5 @@
 import { connectDB } from "@/lib/connectDB";
 import { Product } from "@/lib/types";
-import { ObjectId } from "mongodb";
 import { NextResponse } from "next/server";
 
 function isValidUrl(url: string): boolean {
@@ -127,41 +126,41 @@ export const POST = async (request: Request): Promise<NextResponse> => {
 
 // Define the GET API
 export const GET = async (request: Request) => {
-    try {
-        // Parse query parameters for pagination (optional)
-        const { searchParams } = new URL(request.url);
-        const page = parseInt(searchParams.get("page") || "1", 10);
-        const limit = parseInt(searchParams.get("limit") || "10", 10);
+  try {
+    // Parse query parameters for pagination (optional)
+    const { searchParams } = new URL(request.url);
+    const page = parseInt(searchParams.get("page") || "1", 10);
+    const limit = parseInt(searchParams.get("limit") || "10", 10);
 
-        // Connect to the database
-        const db = await connectDB();
-        const productsCollection = db.collection("products");
+    // Connect to the database
+    const db = await connectDB();
+    const productsCollection = db.collection("products");
 
-        // Calculate skip value for pagination
-        const skip = (page - 1) * limit;
+    // Calculate skip value for pagination
+    const skip = (page - 1) * limit;
 
-        // Fetch products with pagination
-        const result: Product[] = await productsCollection
-            .find()
-            .skip(skip)
-            .limit(limit)
-            .toArray();
+    // Fetch products with pagination
+    const result: Product[] = await productsCollection
+      .find()
+      .skip(skip)
+      .limit(limit)
+      .toArray();
 
-        // Get total count of products
-        const total = await productsCollection.countDocuments();
+    // Get total count of products
+    const total = await productsCollection.countDocuments();
 
-        // Return success response
-        return NextResponse.json(
-            { success: true, data: result, total, page, limit },
-            { status: 200 }
-        );
-    } catch (error) {
-        console.error("Error fetching products:", error);
+    // Return success response
+    return NextResponse.json(
+      { success: true, data: result, total, page, limit },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.error("Error fetching products:", error);
 
-        // Return error response
-        return NextResponse.json(
-            { success: false, message: "An error occurred while fetching products" },
-            { status: 500 }
-        );
-    }
+    // Return error response
+    return NextResponse.json(
+      { success: false, message: "An error occurred while fetching products" },
+      { status: 500 }
+    );
+  }
 };
