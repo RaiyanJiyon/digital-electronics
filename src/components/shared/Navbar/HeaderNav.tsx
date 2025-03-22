@@ -86,11 +86,12 @@ const HeaderNav = () => {
             <FaRegUser className="h-5 w-5" />
             <div className="hidden sm:block space-x-2">
               { status === 'loading' ? (
-                <div className="flex space-x-2 animate-dots-loading">
-                <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-              </div>
+               <div className='flex items-center space-x-2 '>
+               <span className='sr-only'>Loading...</span>
+                <div className='h-2 w-2 bg-red-500 rounded-full animate-bounce [animation-delay:-0.3s]'></div>
+              <div className='h-2 w-2 bg-red-500 rounded-full animate-bounce [animation-delay:-0.15s]'></div>
+              <div className='h-2 w-2 bg-red-500 rounded-full animate-bounce'></div>
+            </div>
               ) :
               session?.user ? (
                 <>

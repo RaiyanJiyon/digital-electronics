@@ -18,7 +18,7 @@ const MobileNav = () => {
             </button>
           </SheetTrigger>
           <SheetContent side="left" className="p-0">
-            <DialogTitle>Navigation Menu</DialogTitle>
+            <DialogTitle></DialogTitle>
             <MobileNavTabs
               onClose={() =>
                 document
