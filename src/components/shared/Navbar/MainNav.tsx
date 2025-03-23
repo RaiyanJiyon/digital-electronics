@@ -4,6 +4,7 @@ import Link from "next/link";
 import { FaHome } from "react-icons/fa";
 import { IoMdMenu } from "react-icons/io";
 import { usePathname } from "next/navigation";
+import { ModeToggle } from "../mode-toggle";
 
 const MainNavigation = () => {
   const pathname = usePathname();
@@ -37,10 +38,11 @@ const MainNavigation = () => {
       <div className="max-w-[1920px] mx-auto flex items-center justify-between">
         {/* Mobile Menu Trigger */}
         <div className="flex items-center">
-          <button className="flex items-center gap-2 py-4 px-4">
-            <IoMdMenu className="h-5 w-5 hover:text-red-500" />
+          <div className="flex items-center gap-2 py-4 px-4">
+            <ModeToggle />
+            {/* <IoMdMenu className="h-5 w-5 hover:text-red-500" /> */}
             <span className="font-medium">Shop By Categories</span>
-          </button>
+          </div>
         </div>
 
         {/* Main Navigation Links */}

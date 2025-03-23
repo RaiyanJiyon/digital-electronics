@@ -60,11 +60,13 @@ const TabSection: React.FC<TabSectionProps> = ({ product }) => {
 
       {/* Tab Content */}
       <div className="py-4 md:py-6">
-        {activeTab === "details" && (
-          <div className="space-y-4">
-            <p className="text-sm md:text-base text-gray-700 leading-relaxed">{product.details}</p>
-          </div>
-        )}
+      {activeTab === "details" && (
+  <div className="space-y-4">
+    <p className="text-sm md:text-base text-gray-700 leading-relaxed word-break break-words overflow-hidden max-h-48 overflow-y-auto">
+      {product.details}
+    </p>
+  </div>
+)}
 
         {activeTab === "moreInfo" && (
           <div className="space-y-6">

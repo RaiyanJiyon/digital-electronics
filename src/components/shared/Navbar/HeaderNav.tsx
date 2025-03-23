@@ -85,21 +85,20 @@ const HeaderNav = () => {
           <div className="flex items-center gap-2">
             <FaRegUser className="h-5 w-5" />
             <div className="hidden sm:block space-x-2">
-              { status === 'loading' ? (
-               <div className='flex items-center space-x-2 '>
-               <span className='sr-only'>Loading...</span>
-                <div className='h-2 w-2 bg-red-500 rounded-full animate-bounce [animation-delay:-0.3s]'></div>
-              <div className='h-2 w-2 bg-red-500 rounded-full animate-bounce [animation-delay:-0.15s]'></div>
-              <div className='h-2 w-2 bg-red-500 rounded-full animate-bounce'></div>
-            </div>
-              ) :
-              session?.user ? (
+              {status === "loading" ? (
+                <div className="flex items-center space-x-2 ">
+                  <span className="sr-only">Loading...</span>
+                  <div className="h-2 w-2 bg-red-500 rounded-full animate-bounce [animation-delay:-0.3s]"></div>
+                  <div className="h-2 w-2 bg-red-500 rounded-full animate-bounce [animation-delay:-0.15s]"></div>
+                  <div className="h-2 w-2 bg-red-500 rounded-full animate-bounce"></div>
+                </div>
+              ) : session?.user ? (
                 <>
                   <Link
                     href="/profile"
                     className="text-sm whitespace-nowrap hover:text-red-500 hover:font-medium"
                   >
-                    Profile
+                    Dashboard
                   </Link>
                   <span className="text-sm whitespace-nowrap">/</span>
                   <button

@@ -7,8 +7,18 @@ import FooterCustomerService from "./FooterCustomerService";
 import FooterStoreLocation from "./FooterStoreLocation";
 import FooterContact from "./FooterContact";
 import FooterNewsletter from "./FooterNewsletter";
+import { usePathname } from "next/navigation";
 
 const Footer = () => {
+  const pathname = usePathname();
+  // Hide Navbar for dashboard pages
+  if (
+    pathname.startsWith("/dashboard") ||
+    pathname.startsWith("/admin") ||
+    pathname.startsWith("/buyer")
+  ) {
+    return null;
+  }
   return (
     <footer className="bg-[#1a1a1a] text-white">
       {/* Main Footer */}
