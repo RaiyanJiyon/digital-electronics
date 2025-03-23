@@ -2,6 +2,8 @@ import { Product } from "@/lib/types";
 import Link from "next/link";
 import ImageSlider from "@/components/shared/products/ImageSlider";
 import TabSection from "@/components/shared/products/TabSection";
+import CompareProducts from "@/components/shared/products/CompareProducts";
+import BestsellersWidget from "@/components/shared/products/BestSellersWidget";
 
 const fetchProductDetails = async (id: string) => {
   try {
@@ -57,10 +59,16 @@ const ProductDetailsPage = async ({ params }: { params: { id: string } }) => {
   }
 
   return (
-    <div className="w-11/12 max-w-[1920px] mx-auto px-4 py-8">
-      <ImageSlider product={product} />
-      {/* Tabs Section */}
-      <TabSection product={product} />
+    <div className="flex flex-col-reverse lg:flex-row justify-between gap-16 lg:gap-14 w-11/12 lg:w-[96%] max-w-[1920px] mx-auto my-14">
+      <div className="lg:w-[20%] space-y-10">
+        <BestsellersWidget />
+        <CompareProducts />
+      </div>
+      <div className="lg:w-[80%]">
+        <ImageSlider product={product} />
+        {/* Tabs Section */}
+        <TabSection product={product} />
+      </div>
     </div>
   );
 };
