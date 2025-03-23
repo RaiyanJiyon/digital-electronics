@@ -8,6 +8,7 @@ export interface Blog {
 }
 
 export interface Product {
+  _id?: string
   product_name: string;
   category: string;
   price: number;

@@ -1,7 +1,8 @@
-"use client"
+"use client";
 
-import { BarChart2, Eye, Heart, ShoppingCart } from 'lucide-react';
+import { BarChart2, Eye, Heart, ShoppingCart } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link"; // Import Link for navigation
 import { useState } from "react";
 
 interface Product {
@@ -78,7 +79,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
     cart: "Add To Cart",
     wishlist: "Add To Wishlist",
     compare: "Compare",
-    quickview: "Quick View"
+    quickview: "Quick View",
   };
 
   return (
@@ -88,19 +89,21 @@ const ProductCard: React.FC<ProductCardProps> = ({
       onMouseLeave={handleMouseLeave}
     >
       <div className="relative">
-        {/* Product Image */}
-        <div className="relative h-48 mb-4">
-          <Image
-            src={product.images[0] || "/placeholder.svg"} // Use the first image URL
-            alt={product.product_name}
-            fill
-            className="object-contain"
-          />
-        </div>
+        {/* Product Image with Link */}
+        <Link href={`http://localhost:3000/shop/${product._id}`} passHref>
+          <div className="relative h-64 mb-4 cursor-pointer">
+            <Image
+              src={product.images[0] || "/placeholder.svg"} // Use the first image URL
+              alt={product.product_name}
+              fill
+              className="object-contain"
+            />
+          </div>
+        </Link>
 
         {/* Action Icons - Only visible on hover */}
         {isHovered && (
-          <div className="absolute left-0 top-0 flex flex-col gap-2">
+          <div className="absolute left-0 top-10 flex flex-col gap-2">
             {/* Cart Button */}
             <div
               className={`flex items-center overflow-hidden ${
@@ -114,17 +117,17 @@ const ProductCard: React.FC<ProductCardProps> = ({
               style={{
                 width: activeIcon === "cart" ? "auto" : "36px",
                 height: "36px",
-                transition: "all 0.3s ease-in-out"
+                transition: "all 0.3s ease-in-out",
               }}
             >
               <div className="flex items-center p-2 whitespace-nowrap">
                 <ShoppingCart className="h-5 w-5 flex-shrink-0" />
-                <div 
+                <div
                   className="ml-2 overflow-hidden transition-all duration-300 ease-in-out"
                   style={{
                     maxWidth: activeIcon === "cart" ? "150px" : "0",
                     opacity: activeIcon === "cart" ? 1 : 0,
-                    transition: "max-width 0.3s ease-in-out, opacity 0.2s ease-in-out"
+                    transition: "max-width 0.3s ease-in-out, opacity 0.2s ease-in-out",
                   }}
                 >
                   {buttonLabels.cart}
@@ -145,17 +148,17 @@ const ProductCard: React.FC<ProductCardProps> = ({
               style={{
                 width: activeIcon === "wishlist" ? "auto" : "36px",
                 height: "36px",
-                transition: "all 0.3s ease-in-out"
+                transition: "all 0.3s ease-in-out",
               }}
             >
               <div className="flex items-center p-2 whitespace-nowrap">
                 <Heart className="h-5 w-5 flex-shrink-0" />
-                <div 
+                <div
                   className="ml-2 overflow-hidden transition-all duration-300 ease-in-out"
                   style={{
                     maxWidth: activeIcon === "wishlist" ? "150px" : "0",
                     opacity: activeIcon === "wishlist" ? 1 : 0,
-                    transition: "max-width 0.3s ease-in-out, opacity 0.2s ease-in-out"
+                    transition: "max-width 0.3s ease-in-out, opacity 0.2s ease-in-out",
                   }}
                 >
                   {buttonLabels.wishlist}
@@ -176,17 +179,17 @@ const ProductCard: React.FC<ProductCardProps> = ({
               style={{
                 width: activeIcon === "compare" ? "auto" : "36px",
                 height: "36px",
-                transition: "all 0.3s ease-in-out"
+                transition: "all 0.3s ease-in-out",
               }}
             >
               <div className="flex items-center p-2 whitespace-nowrap">
                 <BarChart2 className="h-5 w-5 flex-shrink-0" />
-                <div 
+                <div
                   className="ml-2 overflow-hidden transition-all duration-300 ease-in-out"
                   style={{
                     maxWidth: activeIcon === "compare" ? "150px" : "0",
                     opacity: activeIcon === "compare" ? 1 : 0,
-                    transition: "max-width 0.3s ease-in-out, opacity 0.2s ease-in-out"
+                    transition: "max-width 0.3s ease-in-out, opacity 0.2s ease-in-out",
                   }}
                 >
                   {buttonLabels.compare}
@@ -207,17 +210,17 @@ const ProductCard: React.FC<ProductCardProps> = ({
               style={{
                 width: activeIcon === "quickview" ? "auto" : "36px",
                 height: "36px",
-                transition: "all 0.3s ease-in-out"
+                transition: "all 0.3s ease-in-out",
               }}
             >
               <div className="flex items-center p-2 whitespace-nowrap">
                 <Eye className="h-5 w-5 flex-shrink-0" />
-                <div 
+                <div
                   className="ml-2 overflow-hidden transition-all duration-300 ease-in-out"
                   style={{
                     maxWidth: activeIcon === "quickview" ? "150px" : "0",
                     opacity: activeIcon === "quickview" ? 1 : 0,
-                    transition: "max-width 0.3s ease-in-out, opacity 0.2s ease-in-out"
+                    transition: "max-width 0.3s ease-in-out, opacity 0.2s ease-in-out",
                   }}
                 >
                   {buttonLabels.quickview}
