@@ -1,9 +1,10 @@
 "use client";
 
 import type React from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
+import ProductCard from "../shared/ProductCard";
 
 interface CategoryTabsProps {
   title?: string;
@@ -17,7 +18,7 @@ const CategoryTabs: React.FC<CategoryTabsProps> = ({
   title = "New Arrivals",
   categories = [
     "SMARTPHONES",
-    "COMPUTER & LAPTOP",
+    "LAPTOP",
     "COMPUTER",
     "SMART TELEVISIONS",
     "DIGITAL CAMERAS",
@@ -28,6 +29,7 @@ const CategoryTabs: React.FC<CategoryTabsProps> = ({
 }) => {
   const [active, setActive] = useState(activeCategory || categories[0]);
   const [isOpen, setIsOpen] = useState(false);
+  const [products, setProducts] = useState([]);
 
   const handleCategoryChange = (category: string) => {
     setActive(category);
@@ -36,6 +38,27 @@ const CategoryTabs: React.FC<CategoryTabsProps> = ({
       onCategoryChange(category);
     }
   };
+
+  const fetchProducts = async () => {
+    try {
+      const res = await fetch(
+        `http://localhost:3000/api/products?page=1&limit=6`
+      );
+      if (!res.ok) {
+        return null;
+      }
+      const data = await res.json();
+      setProducts(data.data);
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  console.log(products);
 
   return (
     <div className={cn("w-full", className)}>
@@ -98,6 +121,18 @@ const CategoryTabs: React.FC<CategoryTabsProps> = ({
 
       {/* Horizontal line (visible on all screens) */}
       <div className="w-full h-px bg-gray-200 mt-4"></div>
+
+      {/* Render Filtered Products */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 mt-6">
+        {products
+          .filter(
+            (product) =>
+              product.category?.toLowerCase() === active.toLowerCase()
+          )
+          .map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+      </div>
     </div>
   );
 };
