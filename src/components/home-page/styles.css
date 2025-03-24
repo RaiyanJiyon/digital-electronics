@@ -1,0 +1,16 @@
+/* Style for pagination bullets */
+.swiper-pagination-bullet {
+    background-color: black !important;
+    padding: 5px !important;
+    border-radius: 50%; /* Optional: Make bullets circular */
+  }
+  
+  /* Active pagination bullet */
+  .swiper-pagination-bullet-active {
+    background-color: red !important;
+  }
+  
+  /* Pagination container */
+  .swiper-pagination {
+    margin-top: 20px !important; /* Add margin-top here */
+  }

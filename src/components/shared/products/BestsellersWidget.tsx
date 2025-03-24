@@ -112,7 +112,7 @@ const products = [
   },
 ];
 
-const BestsellersWidget: React.FC<BestsellersWidgetProps> = () => {
+const BestSellersWidget: React.FC<BestsellersWidgetProps> = () => {
   return (
     <div className="border border-gray-200 rounded-md overflow-hidden">
       {/* Header */}
@@ -159,4 +159,4 @@ const BestsellersWidget: React.FC<BestsellersWidgetProps> = () => {
   );
 };
 
-export default BestsellersWidget;
+export default BestSellersWidget;
