@@ -20,6 +20,7 @@ import {
 
 import { toast } from "sonner";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/registry/new-york-v4/ui/select";
+import { useSession } from "next-auth/react";
 
 // Form validation schema
 const productSchema = z.object({
@@ -205,6 +206,8 @@ export default function AddProductPage() {
 
   // Availability options
   const availabilityOptions = ["In stock", "Out of stock", "Pre-order", "Discontinued"];
+
+  const { data: session, status } = useSession();
 
   return (
     <div className="container mx-auto px-4 py-8">

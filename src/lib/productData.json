@@ -20,7 +20,8 @@
     ],
     "email": "info@dellstore.com",
     "phone_number": "+8801987654321",
-    "address": "45 Laptop Avenue, Dhaka, Bangladesh"
+    "address": "45 Laptop Avenue, Dhaka, Bangladesh",
+    "status": "accept"
   },
   {
     "product_name": "HP Pavilion Gaming Laptop",
@@ -43,7 +44,8 @@
     ],
     "email": "support@hpstore.com",
     "phone_number": "+8801765432109",
-    "address": "78 Gaming Street, Dhaka, Bangladesh"
+    "address": "78 Gaming Street, Dhaka, Bangladesh",
+    "status": "accept"
   },
   {
     "product_name": "Apple MacBook Air M2",
@@ -66,7 +68,8 @@
     ],
     "email": "sales@applestore.com",
     "phone_number": "+8801239876543",
-    "address": "100 Apple Road, Dhaka, Bangladesh"
+    "address": "100 Apple Road, Dhaka, Bangladesh",
+    "status": "accept"
   },
   {
     "product_name": "Asus ROG Zephyrus G14",
@@ -89,7 +92,8 @@
     ],
     "email": "contact@asusstore.com",
     "phone_number": "+8801987891234",
-    "address": "56 Gamer Zone, Dhaka, Bangladesh"
+    "address": "56 Gamer Zone, Dhaka, Bangladesh",
+    "status": "accept"
   },
   {
     "product_name": "Acer Swift 3 Ultra Thin",
@@ -112,8 +116,102 @@
     ],
     "email": "info@acerstore.com",
     "phone_number": "+8801236547890",
-    "address": "89 Tech Zone, Dhaka, Bangladesh"
+    "address": "89 Tech Zone, Dhaka, Bangladesh",
+    "status": "accept"
+  },
+  {
+    "product_name": "Lenovo ThinkPad X1 Carbon Gen 10",
+    "category": "Laptops",
+    "price": 1100,
+    "availability": "In stock",
+    "rating": 4.7,
+    "description": "The Lenovo ThinkPad X1 Carbon Gen 10 is a premium business laptop designed for professionals who demand performance and reliability. With its Intel Core i7 processor, 16GB RAM, and 512GB SSD, it ensures seamless multitasking and productivity.",
+    "quantity": 10,
+    "details": "This ThinkPad features an Intel Core i7 processor, 16GB RAM, and a 512GB SSD for exceptional speed and storage. The 14-inch WQHD display delivers sharp visuals, while the spill-resistant keyboard and fingerprint reader enhance usability and security. It also supports Thunderbolt 4 and WiFi 6 for connectivity.",
+    "color": "Carbon Black",
+    "size": "14 inches",
+    "manufacturer": "Lenovo",
+    "product_types": "Business Laptop",
+    "images": [
+      "https://i.ibb.co.com/spb0QS4s/Lenovo-Think-Pad-X1-Carbon-Gen-10-1.jpg",
+      "https://i.ibb.co.com/xtRwBFBL/Lenovo-Think-Pad-X1-Carbon-Gen-10-2.jpg",
+      "https://i.ibb.co.com/v60mCdtB/Lenovo-Think-Pad-X1-Carbon-Gen-10-3.jpg",
+      "https://i.ibb.co.com/xttZrYrM/Lenovo-Think-Pad-X1-Carbon-Gen-10-4.jpg"
+    ],
+    "email": "support@lenovostore.com",
+    "phone_number": "+8801987654321",
+    "address": "23 Corporate Lane, Dhaka, Bangladesh",
+    "status": "accept"
+  },
+  {
+    "product_name": "MSI Stealth 17 Studio A12UX",
+    "category": "Gaming Laptops",
+    "price": 1600,
+    "availability": "Limited stock",
+    "rating": 4.8,
+    "description": "The MSI Stealth 17 Studio A12UX is a powerhouse gaming laptop built for gamers and creators alike. Equipped with an Intel Core i9 processor, NVIDIA GeForce RTX 4070, and a stunning 17-inch QHD+ display, it offers unparalleled performance.",
+    "quantity": 6,
+    "details": "This gaming beast is powered by an Intel Core i9 processor, 32GB DDR5 RAM, and a 1TB NVMe SSD. The NVIDIA GeForce RTX 4070 GPU ensures smooth gameplay and content creation. The 17-inch QHD+ display with a 165Hz refresh rate provides immersive visuals, while the per-key RGB keyboard adds flair.",
+    "color": "Titan Gray",
+    "size": "17 inches",
+    "manufacturer": "MSI",
+    "product_types": "Gaming Laptop",
+    "images": [
+      "https://i.ibb.co.com/99BxYVGZ/MSI-Stealth-17-Studio-A12-UX-1.png",
+      "https://i.ibb.co.com/dJjJp3Ms/MSI-Stealth-17-Studio-A12-UX-2.png",
+      "https://i.ibb.co.com/MyFPgYPM/MSI-Stealth-17-Studio-A12-UX-3.png",
+      "https://i.ibb.co.com/dwMh6LX9/MSI-Stealth-17-Studio-A12-UX-4.png"
+    ],
+    "email": "sales@msistore.com",
+    "phone_number": "+8801765432109",
+    "address": "45 Gaming Hub, Dhaka, Bangladesh",
+    "status": "accept"
+  },
+  {
+    "product_name": "Microsoft Surface Laptop 5",
+    "category": "Laptops",
+    "price": 950,
+    "availability": "Pre-order",
+    "rating": 4.6,
+    "description": "The Microsoft Surface Laptop 5 combines elegance and performance with its sleek design and powerful hardware. Featuring an Intel Core i5 processor, 8GB RAM, and a 256GB SSD, it’s perfect for students and professionals.",
+    "quantity": 8,
+    "details": "The Surface Laptop 5 boasts an Intel Core i5 processor, 8GB RAM, and a 256GB SSD for efficient multitasking. Its 13.5-inch PixelSense touchscreen display delivers vibrant colors, while the Alcantara keyboard ensures comfort. With up to 17 hours of battery life, it’s ideal for all-day use.",
+    "color": "Platinum",
+    "size": "13.5 inches",
+    "manufacturer": "Microsoft",
+    "product_types": "Laptop",
+    "images": [
+      "https://i.ibb.co.com/5WT2yyrp/Microsoft-Surface-Laptop-5-1.jpg",
+      "https://i.ibb.co.com/yrq8W6n/Microsoft-Surface-Laptop-5-2.jpg",
+      "https://i.ibb.co.com/FkGyb54t/Microsoft-Surface-Laptop-5-3.jpg"
+    ],
+    "email": "info@microsoftstore.com",
+    "phone_number": "+8801239876543",
+    "address": "78 Tech Avenue, Dhaka, Bangladesh",
+    "status": "accept"
+  },
+  {
+    "product_name": "Razer Blade 15 Advanced Model",
+    "category": "Gaming Laptops",
+    "price": 1800,
+    "availability": "In stock",
+    "rating": 4.9,
+    "description": "The Razer Blade 15 Advanced Model is a top-tier gaming laptop designed for enthusiasts who demand cutting-edge technology. With its Intel Core i7 processor, NVIDIA GeForce RTX 4080, and a 15.6-inch 4K OLED display, it redefines gaming excellence.",
+    "quantity": 5,
+    "details": "This Razer Blade features an Intel Core i7 processor, 32GB DDR5 RAM, and a 1TB NVMe SSD. The NVIDIA GeForce RTX 4080 ensures top-tier gaming performance, while the 15.6-inch 4K OLED display offers stunning visuals. The CNC aluminum chassis and customizable Chroma RGB keyboard make it a premium choice.",
+    "color": "Mercury White",
+    "size": "15.6 inches",
+    "manufacturer": "Razer",
+    "product_types": "Gaming Laptop",
+    "images": [
+      "https://i.ibb.co.com/vx1ygvc4/Razer-Blade-15-Advanced-Model-1.jpg",
+      "https://i.ibb.co.com/RG95txZd/Razer-Blade-15-Advanced-Model-2.jpg",
+      "https://i.ibb.co.com/svGPmDTG/Razer-Blade-15-Advanced-Model-3.jpg",
+      "https://i.ibb.co.com/G4cPSy3b/Razer-Blade-15-Advanced-Model-4jpg.jpg"
+    ],
+    "email": "contact@razorstore.com",
+    "phone_number": "+8801987891234",
+    "address": "100 Gamer Boulevard, Dhaka, Bangladesh",
+    "status": "accept"
   }
 ]
-
-
