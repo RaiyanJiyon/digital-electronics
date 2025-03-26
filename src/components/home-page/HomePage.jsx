@@ -49,6 +49,20 @@ const HomePage = () => {
                 <div className="w-full lg:w-[80%] space-y-14">
                     <CategoryTabs />
                     <PopularCategories />
+                    <div className="flex flex-col md:flex-row justify-between gap-6">
+                        <Image 
+                        src={"/assets/images/item-1.jpg"}
+                        alt="item 1"
+                        width={640}
+                        height={228}
+                        />
+                        <Image 
+                        src={"/assets/images/item-2.jpg"}
+                        alt="item 1"
+                        width={640}
+                        height={228}
+                        />
+                    </div>
                 </div>
             </div>
         </div>
