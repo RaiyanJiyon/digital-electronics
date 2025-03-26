@@ -14,8 +14,8 @@ interface CategoryTabsProps {
   className?: string;
 }
 
-const CategoryTabs: React.FC<CategoryTabsProps> = ({
-  title = "New Arrivals",
+const FeatureProducts: React.FC<CategoryTabsProps> = ({
+  title = "Feature Products",
   categories = [
     "SMARTPHONES",
     "LAPTOP",
@@ -57,6 +57,7 @@ const CategoryTabs: React.FC<CategoryTabsProps> = ({
   useEffect(() => {
     fetchProducts();
   }, []);
+
 
   return (
     <div className={cn("w-full", className)}>
@@ -140,4 +141,4 @@ const CategoryTabs: React.FC<CategoryTabsProps> = ({
   );
 };
 
-export default CategoryTabs;
+export default FeatureProducts;

@@ -7,6 +7,7 @@ import TestimonialSlider from "./testimonial-slider";
 import LatestBlogs from "./latest-blogs";
 import CategoryTabs from "./category-tabs";
 import PopularCategories from "./popular-categories";
+import FeatureProducts from "./feature-products";
 
 
 const HomePage = () => {
@@ -62,6 +63,9 @@ const HomePage = () => {
                         width={640}
                         height={228}
                         />
+                    </div>
+                    <div className="mb-16 lg:mb-0">
+                    <FeatureProducts />
                     </div>
                 </div>
             </div>
