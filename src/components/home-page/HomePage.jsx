@@ -6,6 +6,8 @@ import ServiceHighlights from "./service-highlights";
 import TestimonialSlider from "./testimonial-slider";
 import LatestBlogs from "./latest-blogs";
 import CategoryTabs from "./category-tabs";
+import PopularCategories from "./popular-categories";
+
 
 const HomePage = () => {
     return (
@@ -44,8 +46,9 @@ const HomePage = () => {
                         <LatestBlogs />
                     </div>
                 </div>
-                <div className="w-full lg:w-[80%]">
+                <div className="w-full lg:w-[80%] space-y-14">
                     <CategoryTabs />
+                    <PopularCategories />
                 </div>
             </div>
         </div>

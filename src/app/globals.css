@@ -130,3 +130,11 @@
 .swiper-pagination-bullet-active {
   border: 1px solid red !important;
 }
+
+.swiper-button-prev {
+  color: red !important;
+} 
+
+.swiper-button-next {
+  color: red !important;
+} 

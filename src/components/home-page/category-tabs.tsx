@@ -121,17 +121,24 @@ const CategoryTabs: React.FC<CategoryTabsProps> = ({
 
       {/* Horizontal line (visible on all screens) */}
       <div className="w-full h-px bg-gray-200 mt-4"></div>
-
       {/* Render Filtered Products */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 mt-6">
-        {products
-          .filter(
-            (product) =>
-              product.category?.toLowerCase() === active.toLowerCase()
-          )
-          .map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
+        {products.filter(
+          (product) => product.category?.toLowerCase() === active.toLowerCase()
+        ).length > 0 ? (
+          products
+            .filter(
+              (product) =>
+                product.category?.toLowerCase() === active.toLowerCase()
+            )
+            .map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))
+        ) : (
+          <div className="text-center text-gray-500 col-span-full">
+            No products available for this category.
+          </div>
+        )}
       </div>
     </div>
   );
