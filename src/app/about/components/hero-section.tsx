@@ -1,5 +1,5 @@
-import Image from "next/image"
-import Link from "next/link"
+import Image from "next/image";
+import Link from "next/link";
 
 const HeroSection = () => {
   return (
@@ -16,13 +16,19 @@ const HeroSection = () => {
           </h1>
 
           <p className="text-gray-600 max-w-lg">
-            Explore our vast collection of the latest tech gadgets that will elevate your lifestyle.
-            From cutting-edge smartphones to smart home devices, find everything you need in one place.
+            Explore our vast collection of the latest tech gadgets that will
+            elevate your lifestyle. From cutting-edge smartphones to smart home
+            devices, find everything you need in one place.
           </p>
 
-          <Link href="#" className="inline-flex items-center gap-4 text-gray-700 hover:text-gray-900 group">
+          <Link
+            href="#"
+            className="inline-flex items-center gap-4 text-gray-700 hover:text-gray-900 group"
+          >
             <div className="bg-black w-28 h-0.5"></div>
-            <button className="border-b-2 border-transparent hover:text-red-500">Learn More</button>
+            <button className="border-b-2 border-transparent hover:text-red-500">
+              Learn More
+            </button>
           </Link>
         </div>
 
@@ -42,7 +48,7 @@ const HeroSection = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default HeroSection
+export default HeroSection;
