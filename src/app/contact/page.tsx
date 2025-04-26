@@ -1,6 +1,8 @@
-import ContactForm from "@/components/contact-page/ContactForm";
-import GoogleMap from "@/components/contact-page/GoogleMap";
-import Locations from "@/components/contact-page/Locations";
+"use client";
+
+import ContactForm from "@/app/contact/components/contact-form";
+import GoogleMap from "@/app/contact/components/google-map";
+import Locations from "@/app/contact/components/location";
 import PageCover from "@/components/shared/PageCover";
 import React from "react";
 
