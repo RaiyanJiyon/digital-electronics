@@ -1,5 +1,5 @@
 import PageCover from "@/components/shared/PageCover";
-import ProductCard from "@/components/shared/ProductCard";
+import ProductCard from "@/components/shared/product-card";
 import { Product } from "@/lib/types";
 
 const fetchProducts = async (): Promise<Product[]> => {

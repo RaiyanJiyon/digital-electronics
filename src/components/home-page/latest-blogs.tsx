@@ -5,8 +5,18 @@ import Image from "next/image";
 import Link from "next/link";
 import { Calendar, User } from "lucide-react";
 
-// Sample blog data
-const blogs = [
+// Define the Blog interface
+interface Blog {
+  _id: string;
+  title: string;
+  date: string; 
+  author: string; 
+  description: string;
+  image: string;
+}
+
+// Sample blog data conforming to the Blog interface
+const blogs: Blog[] = [
   {
     _id: "67d6e4fe29a825b76cff4b91",
     title: "Join Millions of Others in the World of Digital Electronics",
@@ -58,15 +68,12 @@ const LatestBlogs: React.FC = () => {
         >
           {/* Map each blog post to a slide */}
           {blogs.map((blog) => (
-            <div
-              key={blog._id}
-              className="w-full p-4 flex-shrink-0"
-            >
+            <div key={blog._id} className="w-full p-4 flex-shrink-0">
               {/* Blog Image */}
               <Link href={`/blog/${blog._id}`}>
                 <div className="relative w-full h-48 mb-3 overflow-hidden rounded-md">
                   <Image
-                    src={blog.image || "/placeholder.svg?height=192&width=384"}
+                    src={blog.image || "/placeholder.svg?height=192&width=384"} // Fallback image if blog.image is missing
                     alt={blog.title}
                     fill
                     className="object-cover hover:scale-105 transition-transform duration-300"
@@ -84,11 +91,11 @@ const LatestBlogs: React.FC = () => {
               {/* Blog Meta */}
               <div className="flex items-center text-sm text-gray-500 mb-2 space-x-4">
                 <div className="flex items-center">
-                  <Calendar className="h-4 w-4 mr-1" />
+                  <Calendar className="h-4 w-4 mr-1" /> {/* Calendar icon */}
                   <span>{blog.date}</span>
                 </div>
                 <div className="flex items-center">
-                  <User className="h-4 w-4 mr-1" />
+                  <User className="h-4 w-4 mr-1" /> {/* User icon */}
                   <span className="text-red-500">{blog.author}</span>
                 </div>
               </div>

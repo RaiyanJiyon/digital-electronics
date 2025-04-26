@@ -33,6 +33,7 @@ export const POST = async (request: Request): Promise<NextResponse> => {
       email,
       phone_number,
       address,
+      status = "Pending"
     } = body;
 
     // Validate required fields
@@ -104,6 +105,7 @@ export const POST = async (request: Request): Promise<NextResponse> => {
       email,
       phone_number,
       address,
+      status
     };
 
     const result = await productsCollection.insertOne(newProduct);
@@ -129,21 +131,15 @@ export const GET = async (request: Request) => {
   try {
     // Parse query parameters for pagination (optional)
     const { searchParams } = new URL(request.url);
-    const page = parseInt(searchParams.get("page") || "1", 10);
-    const limit = parseInt(searchParams.get("limit") || "10", 10);
+
 
     // Connect to the database
     const db = await connectDB();
     const productsCollection = db.collection("products");
 
-    // Calculate skip value for pagination
-    const skip = (page - 1) * limit;
-
     // Fetch products with pagination
     const result: Product[] = await productsCollection
       .find()
-      .skip(skip)
-      .limit(limit)
       .toArray();
 
     // Get total count of products
@@ -151,7 +147,7 @@ export const GET = async (request: Request) => {
 
     // Return success response
     return NextResponse.json(
-      { success: true, data: result, total, page, limit },
+      { success: true, data: result, total },
       { status: 200 }
     );
   } catch (error) {

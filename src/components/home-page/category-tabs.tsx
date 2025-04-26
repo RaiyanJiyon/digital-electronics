@@ -4,8 +4,10 @@ import type React from "react";
 import { useEffect, useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
-import ProductCard from "../shared/ProductCard";
+import ProductCard from "../shared/product-card";
+import { Product } from "@/lib/types";
 
+// Props for the CategoryTabs component
 interface CategoryTabsProps {
   title?: string;
   categories: string[];
@@ -15,45 +17,47 @@ interface CategoryTabsProps {
 }
 
 const CategoryTabs: React.FC<CategoryTabsProps> = ({
-  title = "New Arrivals",
+  title = "New Arrivals", // Default title
   categories = [
     "SMARTPHONES",
     "LAPTOP",
     "COMPUTER",
     "SMART TELEVISIONS",
     "DIGITAL CAMERAS",
-  ],
+  ], // Default categories
   activeCategory,
   onCategoryChange,
   className,
 }) => {
-  const [active, setActive] = useState(activeCategory || categories[0]);
-  const [isOpen, setIsOpen] = useState(false);
-  const [products, setProducts] = useState([]);
+  const [active, setActive] = useState(activeCategory || categories[0]); // Active tab/category
+  const [isOpen, setIsOpen] = useState(false); // Dropdown visibility state
+  const [products, setProducts] = useState<Product[]>([]); // Products fetched from the API
 
+  // Handle category change
   const handleCategoryChange = (category: string) => {
     setActive(category);
-    setIsOpen(false);
+    setIsOpen(false); // Close dropdown after selection
     if (onCategoryChange) {
-      onCategoryChange(category);
+      onCategoryChange(category); // Trigger parent callback if provided
     }
   };
 
+  // Fetch products from the API
   const fetchProducts = async () => {
     try {
-      const res = await fetch(
-        `http://localhost:3000/api/products?page=1&limit=6`
-      );
+      const res = await fetch(`/api/products`);
       if (!res.ok) {
-        return null;
+        console.error("Failed to fetch products");
+        return;
       }
       const data = await res.json();
-      setProducts(data.data);
+      setProducts(data.data); // Store fetched products in state
     } catch (error) {
-      console.error(error.message);
+      console.error("Error fetching products:", error);
     }
   };
 
+  // Fetch products on component mount
   useEffect(() => {
     fetchProducts();
   }, []);
@@ -82,6 +86,7 @@ const CategoryTabs: React.FC<CategoryTabsProps> = ({
             />
           </button>
 
+          {/* Dropdown Menu */}
           {isOpen && (
             <div className="absolute z-10 mt-1 w-full bg-white border border-gray-300 rounded-md shadow-lg">
               {categories.map((category) => (
@@ -127,8 +132,9 @@ const CategoryTabs: React.FC<CategoryTabsProps> = ({
               (product) =>
                 product.category?.toLowerCase() === active.toLowerCase()
             )
+            .slice(0, 6) // Limit to 6 products per category
             .map((product) => (
-              <ProductCard key={product.id} product={product} />
+              <ProductCard key={product._id} product={product} />
             ))
         ) : (
           <div className="text-center text-gray-500 col-span-full mt-10 mb-3">

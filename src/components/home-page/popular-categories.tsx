@@ -46,7 +46,7 @@ const PopularCategories = () => {
     <div>
       <div className="flex justify-center items-center mb-10">
         <h1 className="text-2xl font-bold">Popular Categories</h1>
-        <div className="flex-grow border-b-2 border-gray-300 ml-4"></div>
+        <div className="flex-grow border-b-2 border-gray-300 ml-4 mt-1"></div>
       </div>
       <Swiper
         navigation={true}

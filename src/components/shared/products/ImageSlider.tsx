@@ -177,26 +177,6 @@ const ImageSlider: React.FC<ImageSliderProps> = ({ product, onAddToCart, onAddTo
             <IoIosGitCompare className="w-4 h-4 sm:w-5 sm:h-5 text-gray-500 hover:text-white" />
           </button>
         </div>
-
-        {/* Additional Product Info - Mobile Friendly */}
-        <div className="mt-4 space-y-2 text-xs sm:text-sm">
-          <div className="grid grid-cols-2 gap-2">
-            <div className="font-semibold">Category:</div>
-            <div>{product.category}</div>
-          </div>
-          <div className="grid grid-cols-2 gap-2">
-            <div className="font-semibold">Color:</div>
-            <div>{product.color}</div>
-          </div>
-          <div className="grid grid-cols-2 gap-2">
-            <div className="font-semibold">Size:</div>
-            <div>{product.size}</div>
-          </div>
-          <div className="grid grid-cols-2 gap-2">
-            <div className="font-semibold">Manufacturer:</div>
-            <div>{product.manufacturer}</div>
-          </div>
-        </div>
       </div>
     </div>
   )

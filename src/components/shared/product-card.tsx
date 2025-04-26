@@ -1,17 +1,11 @@
 "use client";
 
+import { Product } from "@/lib/types";
 import { BarChart2, Eye, Heart, ShoppingCart } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link"; // Import Link for navigation
 import { useState } from "react";
-
-interface Product {
-  _id: string;
-  product_name: string;
-  price: number;
-  images: string[];
-  rating: number;
-}
+import { toast } from "sonner";
 
 interface ProductCardProps {
   product: Product; // Accept a single product object
@@ -24,48 +18,82 @@ interface ProductCardProps {
 const ProductCard: React.FC<ProductCardProps> = ({
   product,
   onAddToCart,
-  onAddToWishlist,
   onCompare,
   onQuickView,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [activeIcon, setActiveIcon] = useState<string | null>(null);
 
+  // Handle Mouse Enter on Card
   const handleMouseEnter = () => {
-    setIsHovered(true);
+    setIsHovered(true); // Show action icons on hover
   };
 
+  // Handle Mouse Leave on Card
   const handleMouseLeave = () => {
-    setIsHovered(false);
-    setActiveIcon(null);
+    setIsHovered(false); // Hide action icons when not hovered
+    setActiveIcon(null); // Reset active icon state
   };
 
+  // Handle Mouse Enter on Action Icons
   const handleIconMouseEnter = (icon: string, e: React.MouseEvent) => {
-    // Stop propagation to prevent parent handlers from firing
-    e.stopPropagation();
-    setActiveIcon(icon);
+    e.stopPropagation(); // Prevent parent handlers from firing
+    setActiveIcon(icon); // Set the active icon
   };
 
+  // Handle Mouse Leave on Action Icons
   const handleIconMouseLeave = (e: React.MouseEvent) => {
-    // Stop propagation to prevent parent handlers from firing
-    e.stopPropagation();
-    setActiveIcon(null);
+    e.stopPropagation(); // Prevent parent handlers from firing
+    setActiveIcon(null); // Reset active icon state
   };
 
-  const handleIconClick = (callback?: (id: string) => void, e: React.MouseEvent) => {
-    e.stopPropagation();
+  // Handle Icon Click (Fixed Parameter Order)
+  const handleIconClick = (
+    e: React.MouseEvent, // Required parameter
+    callback?: (id: string) => void // Optional parameter
+  ) => {
+    e.stopPropagation(); // Prevent parent handlers from firing
     if (callback) {
-      callback(product._id);
+      callback(product._id); // Invoke the callback with the product ID
     }
   };
 
+  // Handle Add to Wishlist
+  const handleAddToWishlist = async () => {
+    try {
+      const response = await fetch(`/api/products/wishlist/${product._id}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ productId: product._id }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        toast.success("Product added to wishlist!"); // Show success notification
+      } else {
+        toast.error(data.message || "Failed to add product to wishlist."); // Show error notification
+      }
+    } catch (error) {
+      console.error("Error adding to wishlist:", error);
+      toast.error(
+        "An error occurred while adding the product to the wishlist."
+      );
+    }
+  };
+
+  // Render Star Ratings
   const renderStars = (rating: number) => {
     const stars = [];
     for (let i = 1; i <= 5; i++) {
       stars.push(
         <span
           key={i}
-          className={`text-xl ${i <= rating ? "text-yellow-400" : "text-gray-300"}`}
+          className={`text-xl ${
+            i <= rating ? "text-yellow-400" : "text-gray-300"
+          }`}
         >
           ★
         </span>
@@ -74,7 +102,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
     return stars;
   };
 
-  // Button labels
+  // Button Labels for Action Icons
   const buttonLabels = {
     cart: "Add To Cart",
     wishlist: "Add To Wishlist",
@@ -113,7 +141,9 @@ const ProductCard: React.FC<ProductCardProps> = ({
               }`}
               onMouseEnter={(e) => handleIconMouseEnter("cart", e)}
               onMouseLeave={handleIconMouseLeave}
-              onClick={(e) => handleIconClick(onAddToCart, e)}
+              onClick={(e) =>
+                handleIconClick(e, onAddToCart) // Pass event first, then callback
+              }
               style={{
                 width: activeIcon === "cart" ? "auto" : "36px",
                 height: "36px",
@@ -127,7 +157,8 @@ const ProductCard: React.FC<ProductCardProps> = ({
                   style={{
                     maxWidth: activeIcon === "cart" ? "150px" : "0",
                     opacity: activeIcon === "cart" ? 1 : 0,
-                    transition: "max-width 0.3s ease-in-out, opacity 0.2s ease-in-out",
+                    transition:
+                      "max-width 0.3s ease-in-out, opacity 0.2s ease-in-out",
                   }}
                 >
                   {buttonLabels.cart}
@@ -144,7 +175,10 @@ const ProductCard: React.FC<ProductCardProps> = ({
               }`}
               onMouseEnter={(e) => handleIconMouseEnter("wishlist", e)}
               onMouseLeave={handleIconMouseLeave}
-              onClick={(e) => handleIconClick(onAddToWishlist, e)}
+              onClick={(e) => {
+                e.stopPropagation();
+                handleAddToWishlist(); // Call the wishlist handler
+              }}
               style={{
                 width: activeIcon === "wishlist" ? "auto" : "36px",
                 height: "36px",
@@ -158,7 +192,8 @@ const ProductCard: React.FC<ProductCardProps> = ({
                   style={{
                     maxWidth: activeIcon === "wishlist" ? "150px" : "0",
                     opacity: activeIcon === "wishlist" ? 1 : 0,
-                    transition: "max-width 0.3s ease-in-out, opacity 0.2s ease-in-out",
+                    transition:
+                      "max-width 0.3s ease-in-out, opacity 0.2s ease-in-out",
                   }}
                 >
                   {buttonLabels.wishlist}
@@ -175,7 +210,9 @@ const ProductCard: React.FC<ProductCardProps> = ({
               }`}
               onMouseEnter={(e) => handleIconMouseEnter("compare", e)}
               onMouseLeave={handleIconMouseLeave}
-              onClick={(e) => handleIconClick(onCompare, e)}
+              onClick={(e) =>
+                handleIconClick(e, onCompare) // Pass event first, then callback
+              }
               style={{
                 width: activeIcon === "compare" ? "auto" : "36px",
                 height: "36px",
@@ -189,7 +226,8 @@ const ProductCard: React.FC<ProductCardProps> = ({
                   style={{
                     maxWidth: activeIcon === "compare" ? "150px" : "0",
                     opacity: activeIcon === "compare" ? 1 : 0,
-                    transition: "max-width 0.3s ease-in-out, opacity 0.2s ease-in-out",
+                    transition:
+                      "max-width 0.3s ease-in-out, opacity 0.2s ease-in-out",
                   }}
                 >
                   {buttonLabels.compare}
@@ -206,7 +244,9 @@ const ProductCard: React.FC<ProductCardProps> = ({
               }`}
               onMouseEnter={(e) => handleIconMouseEnter("quickview", e)}
               onMouseLeave={handleIconMouseLeave}
-              onClick={(e) => handleIconClick(onQuickView, e)}
+              onClick={(e) =>
+                handleIconClick(e, onQuickView) // Pass event first, then callback
+              }
               style={{
                 width: activeIcon === "quickview" ? "auto" : "36px",
                 height: "36px",
@@ -220,7 +260,8 @@ const ProductCard: React.FC<ProductCardProps> = ({
                   style={{
                     maxWidth: activeIcon === "quickview" ? "150px" : "0",
                     opacity: activeIcon === "quickview" ? 1 : 0,
-                    transition: "max-width 0.3s ease-in-out, opacity 0.2s ease-in-out",
+                    transition:
+                      "max-width 0.3s ease-in-out, opacity 0.2s ease-in-out",
                   }}
                 >
                   {buttonLabels.quickview}

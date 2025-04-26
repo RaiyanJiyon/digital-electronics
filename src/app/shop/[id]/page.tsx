@@ -3,7 +3,7 @@ import Link from "next/link";
 import ImageSlider from "@/components/shared/products/ImageSlider";
 import TabSection from "@/components/shared/products/TabSection";
 import CompareProducts from "@/components/shared/products/CompareProducts";
-import BestSellersWidget from "@/components/shared/products/BestSellersWidget";
+import BestSellersWidget from "@/components/shared/products/best-sellers-widget";
 
 const fetchProductDetails = async (id: string) => {
   try {

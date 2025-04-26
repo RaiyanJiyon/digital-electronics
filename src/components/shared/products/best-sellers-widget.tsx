@@ -3,12 +3,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { Product } from "@/lib/types";
 
+// Define the props for the BestSellersWidget component
 interface BestsellersWidgetProps {
   products: Product[];
   title?: string;
   className?: string;
 }
 
+// Mock product data (unchanged)
 const products = [
   {
     product_name: "Dell Inspiron 14 2-in-1 Laptop",
@@ -34,6 +36,7 @@ const products = [
     email: "info@dellstore.com",
     phone_number: "+8801987654321",
     address: "45 Laptop Avenue, Dhaka, Bangladesh",
+    status: "approve",
   },
   {
     product_name: "HP Pavilion Gaming Laptop",
@@ -59,6 +62,7 @@ const products = [
     email: "support@hpstore.com",
     phone_number: "+8801765432109",
     address: "78 Gaming Street, Dhaka, Bangladesh",
+    status: "approve",
   },
   {
     product_name: "Apple MacBook Air M2",
@@ -84,6 +88,7 @@ const products = [
     email: "sales@applestore.com",
     phone_number: "+8801239876543",
     address: "100 Apple Road, Dhaka, Bangladesh",
+    status: "approve",
   },
   {
     product_name: "Asus ROG Zephyrus G14",
@@ -109,9 +114,42 @@ const products = [
     email: "contact@asusstore.com",
     phone_number: "+8801987891234",
     address: "56 Gamer Zone, Dhaka, Bangladesh",
+    status: "approve",
   },
 ];
 
+// Reusable component for rendering a single product
+const ProductItem: React.FC<{ product: Product }> = ({ product }) => (
+  <div className="p-4 flex items-center gap-4">
+    {/* Product Image */}
+    <Link href={``} className="flex-shrink-0">
+      <div className="relative w-20 h-20 border border-gray-200 rounded-md overflow-hidden">
+        <Image
+          src={product.images[0] || "/placeholder.svg"}
+          alt={product.product_name}
+          fill
+          className="object-contain"
+        />
+      </div>
+    </Link>
+
+    {/* Product Info */}
+    <div className="flex-1">
+      <div className="hover:text-red-500">
+        <h3 className="font-medium text-gray-800 line-clamp-2">
+          {product.product_name}
+        </h3>
+      </div>
+      <div className="mt-1 flex items-center gap-2">
+        <span className="text-red-500 font-semibold">
+          ${product.price.toFixed(2)}
+        </span>
+      </div>
+    </div>
+  </div>
+);
+
+// Main BestSellersWidget Component
 const BestSellersWidget: React.FC<BestsellersWidgetProps> = () => {
   return (
     <div className="border border-gray-200 rounded-md overflow-hidden">
@@ -123,36 +161,7 @@ const BestSellersWidget: React.FC<BestsellersWidgetProps> = () => {
       {/* Products List */}
       <div className="divide-y divide-gray-200">
         {products.map((product, index) => (
-          <div key={index} className="p-4 flex items-center gap-4">
-            {/* Product Image */}
-            <Link href={``} className="flex-shrink-0">
-              <div className="relative w-20 h-20 border border-gray-200 rounded-md overflow-hidden">
-                <Image
-                  src={product.images[0] || "/placeholder.svg"}
-                  alt={product.product_name}
-                  fill
-                  className="object-contain"
-                />
-              </div>
-            </Link>
-
-            {/* Product Info */}
-            <div className="flex-1">
-              <Link
-                href={`/products/${product._id || index}`}
-                className="hover:text-red-500"
-              >
-                <h3 className="font-medium text-gray-800 line-clamp-2">
-                  {product.product_name}
-                </h3>
-              </Link>
-              <div className="mt-1 flex items-center gap-2">
-                <span className="text-red-500 font-semibold">
-                  ${product.price.toFixed(2)}
-                </span>
-              </div>
-            </div>
-          </div>
+          <ProductItem key={index} product={product} />
         ))}
       </div>
     </div>
