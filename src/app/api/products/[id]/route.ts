@@ -6,10 +6,10 @@ import { NextResponse } from "next/server";
 // Define the GET API
 export const GET = async (
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) => {
   try {
-    const { id } = params; // Extract the product ID from the URL parameters
+    const { id } = await params; // Extract the product ID from the URL parameters
 
     // Validate the ObjectId
     if (!ObjectId.isValid(id)) {

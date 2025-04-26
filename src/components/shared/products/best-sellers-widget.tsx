@@ -5,7 +5,6 @@ import { Product } from "@/lib/types";
 
 // Define the props for the BestSellersWidget component
 interface BestsellersWidgetProps {
-  products: Product[];
   title?: string;
   className?: string;
 }
@@ -13,6 +12,7 @@ interface BestsellersWidgetProps {
 // Mock product data (unchanged)
 const products = [
   {
+    _id: "1",
     product_name: "Dell Inspiron 14 2-in-1 Laptop",
     category: "Laptops",
     price: 520,
@@ -39,6 +39,7 @@ const products = [
     status: "approve",
   },
   {
+    _id: "2",
     product_name: "HP Pavilion Gaming Laptop",
     category: "Gaming Laptops",
     price: 750,
@@ -65,6 +66,7 @@ const products = [
     status: "approve",
   },
   {
+    _id: "3",
     product_name: "Apple MacBook Air M2",
     category: "Laptops",
     price: 1200,
@@ -91,6 +93,7 @@ const products = [
     status: "approve",
   },
   {
+    _id: "4",
     product_name: "Asus ROG Zephyrus G14",
     category: "Gaming Laptops",
     price: 1350,
@@ -160,8 +163,8 @@ const BestSellersWidget: React.FC<BestsellersWidgetProps> = () => {
 
       {/* Products List */}
       <div className="divide-y divide-gray-200">
-        {products.map((product, index) => (
-          <ProductItem key={index} product={product} />
+        {products.map((product) => (
+          <ProductItem key={product._id} product={product} />
         ))}
       </div>
     </div>
