@@ -90,7 +90,7 @@ const HomePage = () => {
                     </div>
 
                     {/* Featured Products */}
-                    <div className="mb-16 lg:mb-0">
+                    <div className="mb-16">
                         <FeatureProducts />
                     </div>
                 </div>
