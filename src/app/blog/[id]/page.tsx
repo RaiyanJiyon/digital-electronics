@@ -1,17 +1,7 @@
-// app/blog/[id]/page.tsx
-
 import { notFound } from "next/navigation";
 import Image from "next/image";
+import { Blog } from "@/lib/types";
 
-// Define the Blog type
-interface Blog {
-  _id: string;
-  title: string;
-  date: string;
-  author: string;
-  description: string;
-  image: string;
-}
 
 // Fetch blog details by ID
 const fetchBlogDetails = async (id: string): Promise<Blog | null> => {

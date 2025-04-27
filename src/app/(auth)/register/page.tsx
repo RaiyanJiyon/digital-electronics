@@ -1,208 +1,23 @@
-"use client";
+import type { Metadata } from "next"
+import RegisterForm from "./components/register-form"
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
+export const metadata: Metadata = {
+  title: "Register | Digital E-Commerce",
+  description: "Create a new account to start shopping with us",
+}
 
-import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { toast } from "sonner";
-import { useRouter } from "next/navigation";
-
-// Define the Zod schema for the form
-const formSchema = z
-  .object({
-    firstName: z.string().min(1, {
-      message: "This is a required field.",
-    }),
-    lastName: z.string().min(1, {
-      message: "This is a required field.",
-    }),
-    email: z.string().email({
-      message: "Please enter a valid email address.",
-    }),
-    password: z.string().min(6, {
-      message: "Password must be at least 6 characters long.",
-    }),
-    confirmPassword: z.string(),
-  })
-  .refine((data) => data.password === data.confirmPassword, {
-    message: "Passwords do not match.",
-    path: ["confirmPassword"],
-  });
-
-const RegisterPage = () => {
-  // Initialize the form using react-hook-form
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      firstName: "",
-      lastName: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
-    },
-  });
-
-  const router = useRouter();
-
-  // Handle form submission
-  const onSubmit = async (data: z.infer<typeof formSchema>) => {
-    try {
-      console.log("Form Submitted:", data);
-
-      // Send the form data to the API endpoint
-      const response = await fetch("http://localhost:3000/register/api", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data), // Convert the form data to JSON
-      });
-
-      // Check if the response is successful
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || "Something went wrong.");
-      }
-
-      const responseData = await response.json();
-      console.log("Registration Successful:", responseData);
-
-      // Show a success toast message
-      toast("Account created successfully! Please login", {
-        position: "top-center",
-        style: {
-          background: "#4CAF50",
-          color: "#FFFFFF",
-          borderRadius: "8px",
-          padding: "12px 20px",
-          boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-        },
-      });
-      router.push('/login')
-    } catch (error) {
-      console.error("Error during registration:", error.message);
-      // Show a error toast message
-      toast(`Registration failed: ${error.message}`, {
-        position: "top-center",
-        style: {
-          background: "#f3283c", // Background color (e.g., red)
-          color: "#FFFFFF", // Text color (e.g., white)
-          borderRadius: "8px",
-          padding: "12px 20px",
-          boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-        },
-      });
-    }
-  };
-  
+export default function RegisterPage() {
   return (
-    <div className="bg-[#F5F5F5] max-w-5xl mx-auto my-16 p-10 rounded-md">
-      <h2 className="text-xl font-bold mb-8 uppercase">
-        Create New Customer Account
-      </h2>
-
-      {/* Form Component */}
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-          {/* First Name Field */}
-          <FormField
-            control={form.control}
-            name="firstName"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>First Name*</FormLabel>
-                <FormControl>
-                  <Input placeholder="Enter your first name" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          {/* Last Name Field */}
-          <FormField
-            control={form.control}
-            name="lastName"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Last Name*</FormLabel>
-                <FormControl>
-                  <Input placeholder="Enter your last name" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          {/* Email Field */}
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Email*</FormLabel>
-                <FormControl>
-                  <Input placeholder="Enter your email" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          {/* Password Field */}
-          <FormField
-            control={form.control}
-            name="password"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Password*</FormLabel>
-                <FormControl>
-                  <Input
-                    type="password"
-                    placeholder="Enter your password"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          {/* Confirm Password Field */}
-          <FormField
-            control={form.control}
-            name="confirmPassword"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Confirm Password*</FormLabel>
-                <FormControl>
-                  <Input
-                    type="password"
-                    placeholder="Confirm your password"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          {/* Submit Button */}
-          <Button type="submit">Create an Account</Button>
-        </form>
-      </Form>
+    <div className="container mx-auto py-10">
+      <div className="mx-auto max-w-md space-y-6">
+        <div className="space-y-2 text-center">
+          <h1 className="text-3xl font-bold">Create an Account</h1>
+          <p className="text-muted-foreground">
+            Sign up to get access to exclusive deals and personalized recommendations
+          </p>
+        </div>
+        <RegisterForm />
+      </div>
     </div>
-  );
-};
-
-export default RegisterPage;
+  )
+}

@@ -6,18 +6,22 @@ import ArchiveSection from "@/app/blog/components/archive-section";
 import RecentPosts from "@/app/blog/components/recent-posts";
 import { Blog } from "@/lib/types";
 
-
-// Fetch blogs with proper typing
+// Fetch blogs data from the API
 const fetchBlogs = async (): Promise<Blog[]> => {
-  const res = await fetch(`${process.env.BASE_URL}/blog/api`);
-  if (!res.ok) {
-    throw new Error("Failed to fetch blogs");
+  const response = await fetch(`${process.env.BASE_URL}/blog/api`, {
+    cache: "no-store", // Disable caching for fresh data
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch blogs data");
   }
-  const { data: blogs }: { data: Blog[] } = await res.json();
-  return blogs;
+
+  const { data }: { data: Blog[] } = await response.json();
+  return data;
 };
 
 const BlogPage = async () => {
+  // Fetch blogs data during server render
   const blogs = await fetchBlogs();
 
   return (
@@ -28,8 +32,8 @@ const BlogPage = async () => {
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 w-11/12 max-w-[1902px] mx-auto my-14">
         {/* Blog Cards Section */}
         <div className="grid col-span-1 lg:col-span-3 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-          {blogs.map((blog, _id) => (
-            <BlogCard key={_id} blog={blog} />
+          {blogs.map((blog) => (
+            <BlogCard key={blog._id} blog={blog} />
           ))}
         </div>
         {/* Sidebar Section */}

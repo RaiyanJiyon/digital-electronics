@@ -10,7 +10,7 @@ interface BlogCardTypes {
 const BlogCard: React.FC<BlogCardTypes> = ({ blog }) => {
   return (
     <div className="bg-white">
-      <Link href={`${process.env.BASE_URL}/blog/${blog._id}`}>
+      <Link href={`/blog/${blog._id}`}>
         <Image
           className="rounded-sm"
           src={blog?.image}

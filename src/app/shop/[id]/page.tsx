@@ -2,9 +2,9 @@
 
 import { Product } from "@/lib/types";
 import Link from "next/link";
-import ImageSlider from "@/components/shared/products/ImageSlider";
-import TabSection from "@/components/shared/products/TabSection";
-import CompareProducts from "@/components/shared/products/CompareProducts";
+import ImageSlider from "@/components/shared/products/image-slider";
+import TabSection from "@/components/shared/products/tab-section";
+import CompareProducts from "@/components/shared/products/compare-products";
 import BestSellersWidget from "@/components/shared/products/best-sellers-widget";
 import { use, useEffect, useState } from "react";
 
