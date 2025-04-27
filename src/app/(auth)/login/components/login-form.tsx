@@ -211,7 +211,7 @@ export default function LoginForm() {
               )}
             />
             <Link
-              href="/forgot-password"
+              href="/reset-password"
               className="text-sm text-red-600 hover:underline"
             >
               Forgot password?
