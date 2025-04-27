@@ -1,9 +1,9 @@
 import PageCover from "@/components/shared/PageCover";
-import BlogCard from "@/components/blog-page/BlogCard";
-import SearchWidget from "@/components/blog-page/SearchWidget";
-import CategoriesList from "@/components/blog-page/CategoriesList";
-import ArchiveSection from "@/components/blog-page/ArchiveSection";
-import RecentPosts from "@/components/blog-page/RecentPosts";
+import BlogCard from "@/app/blog/components/blog-card";
+import SearchWidget from "@/app/blog/components/search-widget";
+import CategoriesList from "@/app/blog/components/categories-list";
+import ArchiveSection from "@/app/blog/components/archive-section";
+import RecentPosts from "@/app/blog/components/recent-posts";
 import { Blog } from "@/lib/types";
 
 

@@ -4,7 +4,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import Image from "next/image";
 import Link from "next/link";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import MobileNavTabs from "./MobileNavTabs";
+import MobileNavTabs from "./mobile-nav-tabs";
 import { DialogTitle } from "@radix-ui/react-dialog";
 
 const MobileNav = () => {

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { FaHome } from "react-icons/fa";
 import { IoMdMenu } from "react-icons/io";
 import { usePathname } from "next/navigation";
-import { ModeToggle } from "../mode-toggle";
+import { ModeToggle } from "../../shared/mode-toggle";
 
 const MainNavigation = () => {
   const pathname = usePathname();

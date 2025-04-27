@@ -2,12 +2,12 @@
 import type React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import FooterInfo from "./FooterInfo";
-import FooterCustomerService from "./FooterCustomerService";
-import FooterStoreLocation from "./FooterStoreLocation";
-import FooterContact from "./FooterContact";
-import FooterNewsletter from "./FooterNewsletter";
 import { usePathname } from "next/navigation";
+import FooterInfo from "./footer-info";
+import FooterCustomerService from "./footer-customer-service";
+import FooterStoreLocation from "./footer-store-location";
+import FooterContact from "./footer-contact";
+import FooterNewsletter from "./footer-newsletter";
 
 const Footer = () => {
   const pathname = usePathname();

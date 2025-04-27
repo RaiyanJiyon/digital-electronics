@@ -1,9 +1,9 @@
 "use client"
-import TopBar from "./TopBar";
-import HeaderNav from "./HeaderNav";
-import SearchBar from "./SearchBar";
-import MainNav from "./MainNav";
-import MobileNav from "./MobileNav";
+import TopBar from "./top-bar";
+import HeaderNav from "./header-nav";
+import SearchBar from "./search-bar";
+import MainNav from "./main-nav";
+import MobileNav from "./mobile-nav";
 import { usePathname } from "next/navigation";
 
 const Navbar = () => {
