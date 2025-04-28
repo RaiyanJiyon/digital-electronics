@@ -1,5 +1,3 @@
-"use client";
-
 import ContactForm from "@/app/contact/components/contact-form";
 import GoogleMap from "@/app/contact/components/google-map";
 import Locations from "@/app/contact/components/location";
