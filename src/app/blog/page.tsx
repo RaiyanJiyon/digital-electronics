@@ -8,7 +8,7 @@ import { Blog } from "../types/types";
 
 // Fetch blogs data from the API
 const fetchBlogs = async (): Promise<Blog[]> => {
-  const response = await fetch(`${process.env.BASE_URL}/api/blogs`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/blogs`, {
     cache: "no-store", // Disable caching for fresh data
   });
 
