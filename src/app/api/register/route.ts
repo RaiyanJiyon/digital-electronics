@@ -1,22 +1,14 @@
-import { connectDB } from "@/lib/connectDB";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcrypt";
+import { connectToDB } from "@/lib/connectDB";
+import { User } from "@/models/user.model";
 
-// Define the expected structure of the request payload
-interface UserPayload {
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
-  role: string
-}
-
-export const POST = async (request: Request) => {
+export const POST = async (request: NextRequest) => {
   try {
     // Parse the incoming JSON payload
-    const newUser: UserPayload = await request.json();
+    const newUser = await request.json();
 
-    // Validate the payload
+    // Validate the payload (optional, as Mongoose handles validation)
     if (!newUser.email || !newUser.password) {
       return new NextResponse(
         JSON.stringify({ message: "Email and password are required." }),
@@ -25,13 +17,10 @@ export const POST = async (request: Request) => {
     }
 
     // Connect to the database
-    const db = await connectDB();
-    const usersCollection = db.collection("users");
+    await connectToDB();
 
     // Check if the user already exists
-    const existingUser = await usersCollection.findOne({
-      email: newUser.email,
-    });
+    const existingUser = await User.findOne({ email: newUser.email });
     if (existingUser) {
       return new NextResponse(
         JSON.stringify({ message: "User already exists." }),
@@ -42,26 +31,26 @@ export const POST = async (request: Request) => {
     // Hash the password
     const hashedPassword = bcrypt.hashSync(newUser.password, 12);
 
-    // Insert the new user into the database
-    const response = await usersCollection.insertOne({
+    // Create and save the new user
+    const createdUser = await User.create({
       firstName: newUser.firstName,
       lastName: newUser.lastName,
       email: newUser.email,
       password: hashedPassword,
-      role: "buyer"
+      role: "user", // Use one of the allowed roles ("user", "admin", "expert")
     });
 
     // Return a success response
     return new NextResponse(
       JSON.stringify({
         message: "User registered successfully.",
-        userId: response.insertedId,
+        userId: createdUser._id,
       }),
       { status: 201 }
     );
   } catch (error) {
     // Log the error for debugging purposes
-    console.error("Error during user registration:", error.message);
+    console.error("Error during user registration:", error);
 
     // Return a generic error response
     return new NextResponse(

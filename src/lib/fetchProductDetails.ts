@@ -1,4 +1,4 @@
-import { Product } from "./types";
+import { Product } from "@/app/types/types";
 
 export const fetchProductDetails = async (id: string) => {
     const res = await fetch(`${process.env.BASE_URL}/api/products/${id}`, {

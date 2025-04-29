@@ -1,4 +1,4 @@
-import { Blog } from "@/lib/types";
+import { Blog } from "@/app/types/types";
 import Link from "next/link";
 
 interface BlogsProps {

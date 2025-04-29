@@ -1,5 +1,5 @@
 "use client"
-import type { Product } from "@/lib/types"
+
 import { Heart, ShoppingCart, Minus, Plus } from "lucide-react"
 import Image from "next/image"
 import type React from "react"
@@ -7,6 +7,7 @@ import { useState } from "react"
 import { FaStar } from "react-icons/fa"
 import { IoIosGitCompare, IoMdCheckmark } from "react-icons/io"
 import { FaRegStar, FaRegStarHalfStroke } from "react-icons/fa6"
+import { Product } from "@/app/types/types"
 
 interface ImageSliderProps {
   product: Product

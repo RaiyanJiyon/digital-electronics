@@ -1,103 +1,95 @@
-import { connectDB } from "@/lib/connectDB";
-import { ObjectId } from "mongodb";
-import { NextResponse } from "next/server";
+import { connectToDB } from "@/lib/connectDB";
+import { Product } from "@/models/product.model";
+import { NextRequest, NextResponse } from "next/server";
 
-
-// Define the GET API
-export const GET = async (
-  request: Request,
+export async function GET(
+  request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
-) => {
+) {
   try {
-    const { id } = await params; // Extract the product ID from the URL parameters
+    // Connect to the database
+    await connectToDB();
 
-    // Validate the ObjectId
-    if (!ObjectId.isValid(id)) {
+    // Extract the `id` parameter from the URL
+    const { id } = await params;
+
+    // Validate the `id`
+    if (!id) {
       return NextResponse.json(
-        { message: "Invalid product ID" },
+        { error: "Product ID is required" },
         { status: 400 }
       );
     }
 
-    // Connect to the database
-    const db = await connectDB();
-    const productsCollection = db.collection("products");
+    // Fetch the product by ID
+    const product = await Product.findById(id);
 
-    // Find the product with the specified ID
-    const result = await productsCollection.findOne({
-      _id: new ObjectId(id),
-    });
-
-    // Check if the product was found
-    if (!result) {
-      return NextResponse.json(
-        { message: "Product not found" },
-        { status: 404 }
-      );
+    // If no product is found, return a 404 response
+    if (!product) {
+      return NextResponse.json({ error: "Product not found" }, { status: 404 });
     }
 
-    // Return success response with the product data
-    return NextResponse.json(
-      { success: true, data: result },
-      { status: 200 }
-    );
+    // Return the product data
+    return NextResponse.json(product);
   } catch (error) {
+    // Log the error for debugging
     console.error("Error fetching product:", error);
 
-    // Return error response
+    // Return a generic error message with a 500 status code
     return NextResponse.json(
-      { success: false, message: "An error occurred while fetching the product" },
+      { error: "Failed to fetch product" },
       { status: 500 }
     );
   }
-};
+}
 
-// Define the DELETE API
-export const DELETE = async (
-  request: Request,
-  { params }: { params: { id: string } }
-) => {
+export async function DELETE(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
   try {
-    console.log(params);
-    const { id } = params; // Extract the product ID from the URL parameters
+    // Connect to the database
+    await connectToDB();
 
-    // Validate the ObjectId
-    if (!ObjectId.isValid(id)) {
+    // Extract the `id` parameter from the URL
+    const { id } = await params;
+
+    // Validate the `id`
+    if (!id) {
       return NextResponse.json(
-        { message: "Invalid product ID" },
+        { success: false, message: "Product ID is required" },
         { status: 400 }
       );
     }
 
-    // Connect to the database
-    const db = await connectDB();
-    const productsCollection = db.collection("products");
+    // Delete the product by ID
+    const deletedProduct = await Product.findByIdAndDelete(id);
 
-    // Delete the product with the specified ID
-    const result = await productsCollection.deleteOne({
-      _id: new ObjectId(id),
-    });
-
-    // Check if the product was found and deleted
-    if (result.deletedCount === 0) {
+    // If no product is found, return a 404 response
+    if (!deletedProduct) {
       return NextResponse.json(
-        { message: "Product not found" },
+        { success: false, message: "Product not found" },
         { status: 404 }
       );
     }
 
-    // Return success response
+    // Return a success response
     return NextResponse.json(
-      { message: "Product deleted successfully" },
+      { success: true, message: "Product deleted successfully" },
       { status: 200 }
     );
   } catch (error) {
+    // Log the error for debugging
     console.error("Error deleting product:", error);
 
-    // Return error response
+    // Return a generic error message with a 500 status code
     return NextResponse.json(
-      { message: "An error occurred while deleting the product" },
+      {
+        success: false,
+        message: "Failed to delete product",
+        error: error instanceof Error ? error.message : "Unknown error",
+      },
       { status: 500 }
     );
   }
-};
+}

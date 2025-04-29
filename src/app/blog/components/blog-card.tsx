@@ -1,4 +1,4 @@
-import { Blog } from "@/lib/types";
+import { Blog } from "@/app/types/types";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";

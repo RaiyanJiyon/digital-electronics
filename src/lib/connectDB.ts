@@ -1,36 +1,26 @@
-import { MongoClient, ServerApiVersion, Db } from "mongodb";
+// lib/mongoose/connect.ts
+import mongoose from "mongoose";
 
-let db: Db | null = null; // Explicitly define the type
+const MONGODB_URI = process.env.MONGODB_URI || "";
 
-export const connectDB = async (): Promise<Db> => {
-  if (db) {
-    return db;
-  }
+if (!MONGODB_URI) {
+  throw new Error("Please define the MONGODB_URI environment variable");
+}
+
+let isConnected = false;
+
+export const connectToDB = async () => {
+  if (isConnected) return;
 
   try {
-    const uri = process.env.MONGODB_URI;
-
-    if (!uri) {
-      throw new Error(
-        "Invalid or undefined MONGODB_URI environment variable"
-      );
-    }
-
-    // Create a MongoClient with a MongoClientOptions object to set the Stable API version
-    const client = new MongoClient(uri, {
-      serverApi: {
-        version: ServerApiVersion.v1,
-        deprecationErrors: true,
-      },
+    await mongoose.connect(MONGODB_URI, {
+      dbName: "digital-electronics",
+      bufferCommands: false,
     });
-
-    await client.connect();
-    db = client.db('digital-electronics');
-    console.log("Connected to db");
-    return db;
-  } catch (error) {
-    // Log any connection errors
-    console.error('Failed to connect to MongoDB:', error);
-    throw error;
+    isConnected = true;
+    console.log("MongoDB connected");
+  } catch (err) {
+    console.error("MongoDB connection error:", err);
+    throw err;
   }
 };

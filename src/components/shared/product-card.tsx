@@ -1,11 +1,10 @@
 "use client";
 
-import { Product } from "@/lib/types";
+import { Product } from "@/app/types/types";
 import { BarChart2, Eye, Heart, ShoppingCart } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link"; // Import Link for navigation
 import { useState } from "react";
-import { toast } from "sonner";
 
 interface ProductCardProps {
   product: Product; // Accept a single product object
@@ -58,31 +57,6 @@ const ProductCard: React.FC<ProductCardProps> = ({
     }
   };
 
-  // Handle Add to Wishlist
-  const handleAddToWishlist = async () => {
-    try {
-      const response = await fetch(`/api/products/wishlist/${product._id}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ productId: product._id }),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        toast.success("Product added to wishlist!"); // Show success notification
-      } else {
-        toast.error(data.message || "Failed to add product to wishlist."); // Show error notification
-      }
-    } catch (error) {
-      console.error("Error adding to wishlist:", error);
-      toast.error(
-        "An error occurred while adding the product to the wishlist."
-      );
-    }
-  };
 
   // Render Star Ratings
   const renderStars = (rating: number) => {
@@ -118,7 +92,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
     >
       <div className="relative">
         {/* Product Image with Link */}
-        <Link href={`http://localhost:3000/shop/${product._id}`} passHref>
+        <Link href={`/shop/${product._id}`} passHref>
           <div className="relative h-64 mb-4 cursor-pointer">
             <Image
               src={product.images[0] || "/placeholder.svg"} // Use the first image URL
@@ -177,7 +151,6 @@ const ProductCard: React.FC<ProductCardProps> = ({
               onMouseLeave={handleIconMouseLeave}
               onClick={(e) => {
                 e.stopPropagation();
-                handleAddToWishlist(); // Call the wishlist handler
               }}
               style={{
                 width: activeIcon === "wishlist" ? "auto" : "36px",

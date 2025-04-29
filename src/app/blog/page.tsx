@@ -4,11 +4,11 @@ import SearchWidget from "@/app/blog/components/search-widget";
 import CategoriesList from "@/app/blog/components/categories-list";
 import ArchiveSection from "@/app/blog/components/archive-section";
 import RecentPosts from "@/app/blog/components/recent-posts";
-import { Blog } from "@/lib/types";
+import { Blog } from "../types/types";
 
 // Fetch blogs data from the API
 const fetchBlogs = async (): Promise<Blog[]> => {
-  const response = await fetch(`${process.env.BASE_URL}/blog/api`, {
+  const response = await fetch(`${process.env.BASE_URL}/api/blogs`, {
     cache: "no-store", // Disable caching for fresh data
   });
 

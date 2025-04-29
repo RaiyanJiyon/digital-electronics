@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import ProductCard from "../shared/product-card";
-import { Product } from "@/lib/types";
+import { Product } from "@/app/types/types";
 
 // Props for the CategoryTabs component
 interface CategoryTabsProps {

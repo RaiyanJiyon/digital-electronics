@@ -2,7 +2,7 @@
 
 import PageCover from "@/components/shared/PageCover";
 import ProductCard from "@/components/shared/product-card";
-import { Product } from "@/lib/types";
+import { Product } from "../types/types";
 import { useEffect, useState } from "react";
 
 const ShopPage = () => {
@@ -13,7 +13,7 @@ const ShopPage = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch("/api/products?page=1&limit=10");
+        const response = await fetch("/api/products");
 
         if (!response.ok) {
           throw new Error("Failed to fetch products data");

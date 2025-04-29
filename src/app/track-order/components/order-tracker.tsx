@@ -29,6 +29,7 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
+import { Order, OrderItem, TimelineStep } from "@/app/types/types";
 
 // Mock data for demonstration
 const mockOrders = {
@@ -267,7 +268,7 @@ type TrackOrderValues = z.infer<typeof trackOrderSchema>;
 
 export default function OrderTracker() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [order, setOrder] = useState<any>(null);
+  const [order, setOrder] = useState<Order | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   const form = useForm<TrackOrderValues>({
@@ -464,7 +465,7 @@ export default function OrderTracker() {
             </CardHeader>
             <CardContent>
               <div className="space-y-6">
-                {order.timeline.map((step: any, index: number) => (
+                {order.timeline.map((step: TimelineStep, index: number) => (
                   <div key={index} className="flex">
                     <div className="mr-4 flex flex-col items-center">
                       <div
@@ -530,7 +531,7 @@ export default function OrderTracker() {
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
-                    {order.items.map((item: any) => (
+                    {order.items.map((item: OrderItem) => (
                       <div
                         key={item.id}
                         className="flex items-center space-x-4"

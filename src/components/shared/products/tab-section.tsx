@@ -1,6 +1,6 @@
 "use client"
 
-import type { Product } from "@/lib/types"
+import { Product } from "@/app/types/types"
 import type React from "react"
 import { useState } from "react"
 
@@ -131,7 +131,7 @@ const TabSection: React.FC<TabSectionProps> = ({ product }) => {
           <div className="space-y-4">
             <p className="text-sm md:text-base text-gray-700">
               This tab can be customized to show additional product information, videos, manuals, or any other content
-              you'd like to include.
+              you&apos;d like to include.
             </p>
           </div>
         )}

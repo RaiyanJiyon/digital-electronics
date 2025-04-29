@@ -1,12 +1,12 @@
 "use client";
 
-import { Product } from "@/lib/types";
 import Link from "next/link";
 import ImageSlider from "@/components/shared/products/image-slider";
 import TabSection from "@/components/shared/products/tab-section";
 import CompareProducts from "@/components/shared/products/compare-products";
 import BestSellersWidget from "@/components/shared/products/best-sellers-widget";
 import { use, useEffect, useState } from "react";
+import { Product } from "@/app/types/types";
 
 const ProductDetailsPage = ({
   params,
@@ -24,14 +24,15 @@ const ProductDetailsPage = ({
     const fetchProductDetails = async () => {
       try {
         setLoading(true);
-        const response = await fetch(`/api/products//${id}`);
+        const response = await fetch(`/api/products/${id}`);
 
         if (!response.ok) {
           throw new Error("Failed to fetch product data");
         }
 
         const data = await response.json();
-        setProduct(data.data);
+        
+        setProduct(data);
       } catch (error) {
         setError(
           error instanceof Error ? error.message : "An unknown error occurred"
@@ -47,7 +48,7 @@ const ProductDetailsPage = ({
       setLoading(false);
     }
   }, [id]);
-
+  
   if (!id) {
     return (
       <div className="w-11/12 max-w-[1920px] mx-auto px-4 py-16 text-center">

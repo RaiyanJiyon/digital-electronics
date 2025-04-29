@@ -1,6 +1,6 @@
-import { Product as ProductType } from "@/app/types/types";
+import { Blog as BlogType } from "@/app/types/types";
 import { connectToDB } from "@/lib/connectDB";
-import { Product } from "@/models/product.model";
+import { Blog } from "@/models/blog.model";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
@@ -17,13 +17,13 @@ export async function POST(request: NextRequest) {
 
   try {
     // Parse the incoming JSON payload
-    const body: ProductType = await request.json();
+    const body: BlogType = await request.json();
 
-    // Create a new product using Mongoose (no manual validation needed)
-    const newProduct = await Product.create(body);
+    // Create a new blog using Mongoose (no manual validation needed)
+    const newBlog = await Blog.create(body);
 
     // Return a success response
-    return NextResponse.json({ success: true, data: newProduct }, { status: 201 });
+    return NextResponse.json({ success: true, data: newBlog }, { status: 201 });
   } catch (err) {
     // Handle Mongoose validation errors
     const error = err as Error;
@@ -39,7 +39,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Log the error and return a failure response
-    console.error("Error inserting product:", { error });
+    console.error("Error inserting blog:", { error });
     return NextResponse.json(
       {
         success: false,
@@ -51,30 +51,29 @@ export async function POST(request: NextRequest) {
   }
 }
 
-
 export async function GET() {
   try {
     // Connect to the database
     await connectToDB();
 
-    // Fetch all products, sorted by createdAt in descending order (newest first)
-    const products = await Product.find().sort({ createdAt: -1 });
+    // Fetch all blogs, sorted by createdAt in descending order (newest first)
+    const blogs = await Blog.find().sort({ createdAt: -1 });
 
     // Return a success response
     return NextResponse.json(
-      { success: true, data: products },
+      { success: true, data: blogs },
       { status: 200 }
     );
   } catch (err) {
     // Handle errors
     const error = err as Error;
-    console.error("Error fetching products:", error);
+    console.error("Error fetching blogs:", error);
 
     // Return a failure response with a meaningful error message
     return NextResponse.json(
       {
         success: false,
-        message: "Failed to fetch products",
+        message: "Failed to fetch blogs",
         error: error instanceof Error ? error.message : "Unknown error",
       },
       { status: 500 }

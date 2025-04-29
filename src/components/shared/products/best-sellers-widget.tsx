@@ -1,7 +1,7 @@
 import type React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Product } from "@/lib/types";
+import { Product } from "@/app/types/types";
 
 // Define the props for the BestSellersWidget component
 interface BestsellersWidgetProps {
