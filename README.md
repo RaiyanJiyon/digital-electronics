@@ -46,8 +46,8 @@ The **Digital Electronics Hub** is a full-stack e-commerce application designed 
 ---
 
 ### 4. Wishlist
-- Add/remove items to/from the wishlist.❌
-- Persistent wishlist storage.❌
+- Add/remove items to/from the wishlist.✅
+- Persistent wishlist storage.✅
 
 ---
 

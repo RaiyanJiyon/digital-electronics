@@ -1,0 +1,207 @@
+"use client";
+
+import { BarChart2, Eye, Heart, ShoppingCart } from "lucide-react";
+import { useSession } from "next-auth/react";
+import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
+import { toast } from "sonner";
+import { Product } from "@/app/types/types";
+
+// Define the props the component accepts
+interface ProductCardProps {
+  product: Product;
+  onAddToCart?: (id: string) => void;
+  onAddToWishlist?: (id: string) => void;
+  onCompare?: (id: string) => void;
+  onQuickView?: (id: string) => void;
+}
+
+// Action button labels
+const ACTION_LABELS = {
+  cart: "Add To Cart",
+  wishlist: "Add To Wishlist",
+  compare: "Compare",
+  quickview: "Quick View",
+};
+
+const ProductCard = ({
+  product,
+  onAddToCart,
+  onCompare,
+  onQuickView,
+}: ProductCardProps) => {
+  const [isHovered, setIsHovered] = useState(false);
+  const [activeAction, setActiveAction] = useState<string | null>(null);
+  const { data: session } = useSession();
+
+  // Handle hover states for the card
+  const handleCardHover = (isHovering: boolean) => {
+    setIsHovered(isHovering);
+    if (!isHovering) setActiveAction(null);
+  };
+
+  // Handle action button hover
+  const handleActionHover = (action: string, e: React.MouseEvent) => {
+    e.stopPropagation();
+    setActiveAction(action);
+  };
+
+  // Handle button clicks
+  const handleActionClick = (e: React.MouseEvent, callback?: (id: string) => void) => {
+    e.stopPropagation();
+    callback?.(product._id);
+  };
+
+  // Add product to wishlist
+  const handleAddToWishlist = async () => {
+    if (!session?.user) {
+      toast.error("Please login to add to wishlist");
+      return;
+    }
+
+    try {
+      const response = await fetch("/api/wishlist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          productId: product._id,
+          productName: product.productName,
+          productImage: product.images[0],
+          userId: session.user.id,
+        }),
+      });
+
+      if (!response.ok) throw new Error("Failed to add to wishlist");
+      
+      toast.success("Added to wishlist!");
+    } catch (error) {
+      console.error("Wishlist error:", error);
+      toast.error("Failed to add to wishlist");
+    }
+  };
+
+  // Render star rating
+  const renderStars = (rating: number) => {
+    return Array(5).fill(0).map((_, i) => (
+      <span
+        key={i}
+        className={`text-xl ${i < rating ? "text-yellow-400" : "text-gray-300"}`}
+      >
+        ★
+      </span>
+    ));
+  };
+
+  // Action button component
+  const ActionButton = ({
+    icon: Icon,
+    action,
+    onClick,
+  }: {
+    icon: React.ComponentType<{ className?: string }>;
+    action: string;
+    onClick: (e: React.MouseEvent) => void;
+  }) => {
+    const isActive = activeAction === action;
+    
+    return (
+      <div
+        className={`flex items-center overflow-hidden rounded-md transition-all duration-300 ${
+          isActive ? "bg-red-500 text-white" : "bg-white border border-gray-200"
+        }`}
+        style={{
+          width: isActive ? "auto" : "36px",
+          height: "36px",
+        }}
+        onMouseEnter={(e) => handleActionHover(action, e)}
+        onMouseLeave={(e) => {
+          e.stopPropagation();
+          setActiveAction(null);
+        }}
+        onClick={onClick}
+      >
+        <div className="flex items-center p-2 whitespace-nowrap">
+          <Icon className="h-5 w-5 flex-shrink-0" />
+          <div
+            className="ml-2 overflow-hidden transition-all duration-300 ease-in-out"
+            style={{
+              maxWidth: isActive ? "150px" : "0",
+              opacity: isActive ? 1 : 0,
+            }}
+          >
+            {ACTION_LABELS[action as keyof typeof ACTION_LABELS]}
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <div
+      className="relative border border-gray-200 rounded-md p-4 transition-all duration-300 hover:shadow-md"
+      onMouseEnter={() => handleCardHover(true)}
+      onMouseLeave={() => handleCardHover(false)}
+    >
+      {/* Product Image */}
+      <div className="relative">
+        <Link href={`/shop/${product._id}`}>
+          <div className="relative h-64 mb-4 cursor-pointer">
+            <Image
+              src={product.images[0] || "/placeholder.svg"}
+              alt={product.productName}
+              fill
+              className="object-contain"
+              sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
+            />
+          </div>
+        </Link>
+
+        {/* Action Buttons - shown on hover */}
+        {isHovered && (
+          <div className="absolute left-0 top-10 flex flex-col gap-2">
+            <ActionButton
+              icon={ShoppingCart}
+              action="cart"
+              onClick={(e) => handleActionClick(e, onAddToCart)}
+            />
+            
+            <ActionButton
+              icon={Heart}
+              action="wishlist"
+              onClick={handleAddToWishlist}
+            />
+            
+            <ActionButton
+              icon={BarChart2}
+              action="compare"
+              onClick={(e) => handleActionClick(e, onCompare)}
+            />
+            
+            <ActionButton
+              icon={Eye}
+              action="quickview"
+              onClick={(e) => handleActionClick(e, onQuickView)}
+            />
+          </div>
+        )}
+      </div>
+
+      {/* Product Information */}
+      <div>
+        <h3 className="text-gray-800 font-medium mb-4 truncate">
+          {product.productName}
+        </h3>
+        <div className="border-t border-gray-300 pt-2 mt-2"></div>
+        <div className="flex justify-between items-center">
+          <span className="text-red-500 font-semibold">
+            ${product.price.toFixed(2)}
+          </span>
+          <div className="flex">{renderStars(product.rating)}</div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ProductCard;
