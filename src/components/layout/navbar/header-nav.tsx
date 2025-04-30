@@ -157,7 +157,7 @@ const HeaderNav = () => {
             </div>
             <div className="hidden sm:block">
               <span className="text-sm whitespace-nowrap">
-                MY CART- <span className="text-red-500 font-bold">$0.00</span>
+                MY CART
               </span>
             </div>
           </Link>

@@ -3,7 +3,7 @@
 import { Heart, ShoppingCart, Minus, Plus } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
-import { FaStar, FaRegStar } from "react-icons/fa";
+import { FaStar, FaRegStar, FaStarHalfAlt } from "react-icons/fa";
 import { IoIosGitCompare, IoMdCheckmark } from "react-icons/io";
 import { Product } from "@/app/types/types";
 import {
@@ -24,7 +24,6 @@ interface ImageSliderProps {
 
 const ImageSlider = ({
   product,
-  onAddToCart,
   onAddToCompare,
 }: ImageSliderProps) => {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
@@ -60,9 +59,14 @@ const ImageSlider = ({
     }
 
     // Half star
-    // if (hasHalfStar) {
-    //   stars.push(<FaRegStarHalfStroke key="half" className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400" />);
-    // }
+    if (hasHalfStar) {
+      stars.push(
+        <FaStarHalfAlt
+          key="half"
+          className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400"
+        />
+      );
+    }
 
     // Empty stars
     const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
@@ -108,6 +112,52 @@ const ImageSlider = ({
       console.error("Wishlist error:", error);
       // Show error message
       toast.success("Product failed to add in wishlist");
+    }
+  };
+
+  const handleAddToCart = async (
+    productId: string,
+    quantity: number,
+    productName: string,
+    productImage: string,
+    price: number
+  ) => {
+    if (!session?.user) {
+      toast.error("Please login to add items to cart");
+      return;
+    }
+  
+    try {
+      const response = await fetch("/api/carts", {
+        method: "POST",
+        headers: { 
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          productId,
+          quantity,
+          productName,
+          productImage,
+          productPrice: price,
+          userId: session.user.id,
+        }),
+      });
+  
+      const data = await response.json();
+  
+      if (!response.ok) {
+        throw new Error(data.message || "Failed to add to cart");
+      }
+  
+      toast.success(`${productName} added to cart`);
+      console.log("Cart item:", data);
+    } catch (error) {
+      console.error("Add to cart error:", error);
+      toast.error(
+        error instanceof Error 
+          ? error.message 
+          : "Failed to add item to cart"
+      );
     }
   };
 
@@ -201,7 +251,7 @@ const ImageSlider = ({
           </div>
 
           <button
-            onClick={() => onAddToCart?.(product, quantity)}
+            onClick={() => handleAddToCart(product._id, quantity, product.productName, product.images[0], product.price)}
             className="flex items-center gap-2 px-6 py-2 bg-red-500 text-white font-medium rounded-md hover:bg-red-600"
           >
             <ShoppingCart className="w-5 h-5" />

@@ -37,6 +37,17 @@ export interface Wishlist {
   updatedAt: string;
 }
 
+export interface Cart {
+  _id: string;
+  productId: string;
+  productName: string;
+  productImage: string;
+  productPrice: number;
+  quantity: number;
+  userId: string;
+}
+
+
 export interface Blog {
   _id: string;
   title: string;

@@ -8,10 +8,6 @@ export async function POST(request: NextRequest) {
 
     const { productId, productName, productImage, userId } =
       await request.json();
-    console.log(productId);
-    console.log(productName);
-    console.log(productImage);
-    console.log(userId);
 
     // Check if the cart item already exists
     const existingItem = await Wishlist.findOne({ productId, userId });

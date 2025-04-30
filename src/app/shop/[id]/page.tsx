@@ -7,6 +7,7 @@ import CompareProducts from "@/components/shared/products/compare-products";
 import BestSellersWidget from "@/components/shared/products/best-sellers-widget";
 import { use, useEffect, useState } from "react";
 import { Product } from "@/app/types/types";
+import Loading from "@/app/loading";
 
 const ProductDetailsPage = ({
   params,
@@ -65,11 +66,7 @@ const ProductDetailsPage = ({
   }
 
   if (loading) {
-    return (
-      <div className="w-11/12 max-w-[1920px] mx-auto px-4 py-16 text-center">
-        Loading...
-      </div>
-    );
+    return <Loading />
   }
 
   if (error) {
