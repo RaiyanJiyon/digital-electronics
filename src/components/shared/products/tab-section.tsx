@@ -87,7 +87,7 @@ const TabSection: React.FC<TabSectionProps> = ({ product }) => {
                       Product Type:
                     </span>
                     <span className="text-gray-700">
-                      {product.product_types}
+                      {product.productTypes}
                     </span>
                   </div>
                   <div className="grid grid-cols-2 gap-2">
@@ -123,7 +123,7 @@ const TabSection: React.FC<TabSectionProps> = ({ product }) => {
                   <div className="grid grid-cols-2 gap-2">
                     <span className="font-semibold text-gray-800">Phone:</span>
                     <span className="text-gray-700">
-                      {product.phone_number}
+                      {product.phoneNumber}
                     </span>
                   </div>
                   <div className="grid grid-cols-2 gap-2">

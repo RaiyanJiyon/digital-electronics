@@ -7,8 +7,8 @@ export interface User {
 }
 
 export interface Product {
-  _id: string
-  product_name: string;
+  _id: string;
+  productName: string;
   category: string;
   price: number;
   availability: string;
@@ -19,12 +19,12 @@ export interface Product {
   color: string;
   size: string;
   manufacturer: string;
-  product_types: string;
+  productTypes: string;
   images: string[];
   email: string;
-  phone_number: string;
+  phoneNumber: string;
   address: string;
-  status: string
+  status: string;
 }
 
 export interface Blog {

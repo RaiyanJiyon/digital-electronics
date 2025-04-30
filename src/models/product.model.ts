@@ -2,7 +2,7 @@ import mongoose, { Document, Schema } from "mongoose";
 
 // Define the Product interface extending Mongoose Document
 export interface IProduct extends Document {
-  product_name: string;
+  productName: string;
   category: string;
   price: number;
   availability: string;
@@ -13,10 +13,10 @@ export interface IProduct extends Document {
   color: string;
   size: string;
   manufacturer: string;
-  product_types: string;
+  productTypes: string;
   images: string[];
   email: string;
-  phone_number: string;
+  phoneNumber: string;
   address: string;
   status: string;
 }
@@ -24,7 +24,7 @@ export interface IProduct extends Document {
 // Create the schema
 const productSchema = new Schema<IProduct>(
   {
-    product_name: { type: String, required: true },
+    productName: { type: String, required: true },
     category: { type: String, required: true },
     price: { type: Number, required: true },
     availability: { type: String, required: true },
@@ -35,10 +35,10 @@ const productSchema = new Schema<IProduct>(
     color: { type: String, required: true },
     size: { type: String, required: true },
     manufacturer: { type: String, required: true },
-    product_types: { type: String, required: true },
+    productTypes: { type: String, required: true },
     images: { type: [String], required: true }, // Array of image URLs
     email: { type: String, required: true },
-    phone_number: { type: String, required: true },
+    phoneNumber: { type: String, required: true },
     address: { type: String, required: true },
     status: { type: String, required: true },
   },

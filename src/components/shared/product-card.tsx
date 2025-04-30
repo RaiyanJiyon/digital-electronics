@@ -96,7 +96,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
           <div className="relative h-64 mb-4 cursor-pointer">
             <Image
               src={product.images[0] || "/placeholder.svg"} // Use the first image URL
-              alt={product.product_name}
+              alt={product.productName}
               fill
               className="object-contain"
             />
@@ -248,7 +248,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
       {/* Product Info */}
       <div>
         <h3 className="text-gray-800 font-medium mb-4 truncate">
-          {product.product_name}
+          {product.productName}
         </h3>
         <div className="border-t border-gray-300 pt-2 mt-2"></div>
         <div className="flex justify-between items-center">

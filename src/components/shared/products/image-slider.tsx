@@ -101,7 +101,7 @@ const ImageSlider: React.FC<ImageSliderProps> = ({
           <div className="relative w-full aspect-square">
             <Image
               src={product.images[activeImageIndex] || "/placeholder.svg"}
-              alt={product.product_name}
+              alt={product.productName}
               fill
               className="object-contain"
             />
@@ -123,7 +123,7 @@ const ImageSlider: React.FC<ImageSliderProps> = ({
               <div className="relative aspect-square">
                 <Image
                   src={image || "/placeholder.svg"}
-                  alt={`${product.product_name} - view ${index + 1}`}
+                  alt={`${product.productName} - view ${index + 1}`}
                   fill
                   className="object-contain"
                 />
@@ -136,7 +136,7 @@ const ImageSlider: React.FC<ImageSliderProps> = ({
       {/* Right Column - Product Info */}
       <div className="space-y-6 sm:space-y-4">
         <h1 className="text-lg sm:text-xl md:text-2xl font-bold">
-          {product.product_name}
+          {product.productName}
         </h1>
 
         <div className="text-lg sm:text-xl font-semibold text-red-500">
