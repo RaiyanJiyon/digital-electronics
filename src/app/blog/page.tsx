@@ -1,4 +1,4 @@
-import PageCover from "@/components/shared/PageCover";
+import PageCover from "@/components/shared/page-cover";
 import BlogCard from "@/app/blog/components/blog-card";
 import SearchWidget from "@/app/blog/components/search-widget";
 import CategoriesList from "@/app/blog/components/categories-list";

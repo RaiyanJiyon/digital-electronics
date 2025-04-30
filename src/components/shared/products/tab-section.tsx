@@ -1,22 +1,22 @@
-"use client"
+"use client";
 
-import { Product } from "@/app/types/types"
-import type React from "react"
-import { useState } from "react"
+import { Product } from "@/app/types/types";
+import type React from "react";
+import { useState } from "react";
 
 interface TabSectionProps {
-  product: Product
+  product: Product;
 }
 
 const TabSection: React.FC<TabSectionProps> = ({ product }) => {
-  const [activeTab, setActiveTab] = useState("details")
+  const [activeTab, setActiveTab] = useState("details");
 
   const tabs = [
     { id: "details", label: "Details" },
     { id: "moreInfo", label: "More Information" },
     { id: "reviews", label: "Reviews (1)" },
     { id: "custom", label: "Custom Tabs" },
-  ]
+  ];
 
   return (
     <div className="mt-8 md:mt-12">
@@ -60,27 +60,35 @@ const TabSection: React.FC<TabSectionProps> = ({ product }) => {
 
       {/* Tab Content */}
       <div className="py-4 md:py-6">
-      {activeTab === "details" && (
-  <div className="space-y-4">
-    <p className="text-sm md:text-base text-gray-700 leading-relaxed word-break break-words overflow-hidden max-h-48 overflow-y-auto">
-      {product.details}
-    </p>
-  </div>
-)}
+        {activeTab === "details" && (
+          <div className="space-y-4">
+            <p className="text-sm md:text-base text-gray-700 leading-relaxed word-break break-words overflow-hidden max-h-48 overflow-y-auto">
+              {product.details}
+            </p>
+          </div>
+        )}
 
         {activeTab === "moreInfo" && (
           <div className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-4">
-                <h3 className="font-semibold text-base md:text-lg">Specifications:</h3>
+                <h3 className="font-semibold text-base md:text-lg">
+                  Specifications:
+                </h3>
                 <div className="space-y-2 text-sm md:text-base">
                   <div className="grid grid-cols-2 gap-2">
-                    <span className="font-semibold text-gray-800">Category:</span>
+                    <span className="font-semibold text-gray-800">
+                      Category:
+                    </span>
                     <span className="text-gray-700">{product.category}</span>
                   </div>
                   <div className="grid grid-cols-2 gap-2">
-                    <span className="font-semibold text-gray-800">Product Type:</span>
-                    <span className="text-gray-700">{product.product_types}</span>
+                    <span className="font-semibold text-gray-800">
+                      Product Type:
+                    </span>
+                    <span className="text-gray-700">
+                      {product.product_types}
+                    </span>
                   </div>
                   <div className="grid grid-cols-2 gap-2">
                     <span className="font-semibold text-gray-800">Size:</span>
@@ -91,25 +99,37 @@ const TabSection: React.FC<TabSectionProps> = ({ product }) => {
                     <span className="text-gray-700">{product.color}</span>
                   </div>
                   <div className="grid grid-cols-2 gap-2">
-                    <span className="font-semibold text-gray-800">Manufacturer:</span>
-                    <span className="text-gray-700">{product.manufacturer}</span>
+                    <span className="font-semibold text-gray-800">
+                      Manufacturer:
+                    </span>
+                    <span className="text-gray-700">
+                      {product.manufacturer}
+                    </span>
                   </div>
                 </div>
               </div>
 
               <div className="space-y-4">
-                <h3 className="font-semibold text-base md:text-lg">Contact Information:</h3>
+                <h3 className="font-semibold text-base md:text-lg">
+                  Contact Information:
+                </h3>
                 <div className="space-y-2 text-sm md:text-base">
                   <div className="grid grid-cols-2 gap-2">
                     <span className="font-semibold text-gray-800">Email:</span>
-                    <span className="text-gray-700 break-all">{product.email}</span>
+                    <span className="text-gray-700 break-all">
+                      {product.email}
+                    </span>
                   </div>
                   <div className="grid grid-cols-2 gap-2">
                     <span className="font-semibold text-gray-800">Phone:</span>
-                    <span className="text-gray-700">{product.phone_number}</span>
+                    <span className="text-gray-700">
+                      {product.phone_number}
+                    </span>
                   </div>
                   <div className="grid grid-cols-2 gap-2">
-                    <span className="font-semibold text-gray-800">Address:</span>
+                    <span className="font-semibold text-gray-800">
+                      Address:
+                    </span>
                     <span className="text-gray-700">{product.address}</span>
                   </div>
                 </div>
@@ -121,8 +141,12 @@ const TabSection: React.FC<TabSectionProps> = ({ product }) => {
         {activeTab === "reviews" && (
           <div className="space-y-4">
             <div className="bg-gray-50 p-4 rounded-md text-sm md:text-base">
-              <p className="text-gray-700">No reviews yet. Be the first to review this product!</p>
-              <button className="mt-2 text-red-500 font-medium hover:underline">Write a Review</button>
+              <p className="text-gray-700">
+                No reviews yet. Be the first to review this product!
+              </p>
+              <button className="mt-2 text-red-500 font-medium hover:underline">
+                Write a Review
+              </button>
             </div>
           </div>
         )}
@@ -130,15 +154,14 @@ const TabSection: React.FC<TabSectionProps> = ({ product }) => {
         {activeTab === "custom" && (
           <div className="space-y-4">
             <p className="text-sm md:text-base text-gray-700">
-              This tab can be customized to show additional product information, videos, manuals, or any other content
-              you&apos;d like to include.
+              This tab can be customized to show additional product information,
+              videos, manuals, or any other content you&apos;d like to include.
             </p>
           </div>
         )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default TabSection
-
+export default TabSection;

@@ -4,7 +4,7 @@ import AboutCard from "@/app/about/components/about-card";
 import FeaturesSection from "@/app/about/components/features-section";
 import HeroSection from "@/app/about/components/hero-section";
 import Testimonials from "@/app/about/components/testimonials";
-import PageCover from "@/components/shared/PageCover";
+import PageCover from "@/components/shared/page-cover";
 import React from "react";
 
 const AboutPage: React.FC = () => {

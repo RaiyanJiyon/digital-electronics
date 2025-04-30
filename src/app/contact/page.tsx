@@ -1,7 +1,7 @@
 import ContactForm from "@/app/contact/components/contact-form";
 import GoogleMap from "@/app/contact/components/google-map";
 import Locations from "@/app/contact/components/location";
-import PageCover from "@/components/shared/PageCover";
+import PageCover from "@/components/shared/page-cover";
 import React from "react";
 
 const ContactPage: React.FC = () => {

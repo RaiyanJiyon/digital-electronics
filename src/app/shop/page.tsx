@@ -1,6 +1,6 @@
 "use client";
 
-import PageCover from "@/components/shared/PageCover";
+import PageCover from "@/components/shared/page-cover";
 import ProductCard from "@/components/shared/product-card";
 import { Product } from "../types/types";
 import { useEffect, useState } from "react";
