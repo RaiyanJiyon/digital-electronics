@@ -41,7 +41,7 @@ export default function CheckoutSuccessPage() {
                   View My Orders
                 </Button>
               </Link>
-              <Link href="/products">
+              <Link href="/shop">
                 <Button className="w-full bg-red-600 hover:bg-red-700">
                   Continue Shopping
                 </Button>
