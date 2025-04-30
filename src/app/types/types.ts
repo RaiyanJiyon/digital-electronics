@@ -27,6 +27,16 @@ export interface Product {
   status: string;
 }
 
+export interface Wishlist {
+  _id: string;
+  productId: string;
+  productName: string;
+  productImage: string;
+  userId: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export interface Blog {
   _id: string;
   title: string;
