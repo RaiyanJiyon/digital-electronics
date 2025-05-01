@@ -51,24 +51,102 @@ export async function POST(request: NextRequest) {
   }
 }
 
+// Define a type for the query filters
+interface ProductQueryFilters {
+  price?: {
+    $gte?: number;
+    $lte?: number;
+  };
+  rating?: {
+    $gte?: number;
+  };
+  availability?: string;
+  manufacturer?: string;
+}
 
-export async function GET() {
+export async function GET(request: Request) {
   try {
-    // Connect to the database
-    await connectToDB();
+    // Get URL parameters
+    const { searchParams } = new URL(request.url)
+    const page = Number.parseInt(searchParams.get("page") || "1")
+    const limit = Number.parseInt(searchParams.get("limit") || "12")
+    const minPrice = searchParams.get("minPrice")
+    const maxPrice = searchParams.get("maxPrice")
+    const rating = searchParams.get("rating")
+    const availability = searchParams.get("availability")
+    const manufacturer = searchParams.get("manufacturer")
+    const sortBy = searchParams.get("sortBy") || "newest"
 
-    // Fetch all products, sorted by createdAt in descending order (newest first)
-    const products = await Product.find().sort({ createdAt: -1 });
+    // Calculate skip value for pagination
+    const skip = (page - 1) * limit
+
+    // Build query object
+    const query: ProductQueryFilters = {}
+
+    // Add filters to query if they exist
+    if (minPrice && maxPrice) {
+      query.price = { $gte: Number.parseInt(minPrice), $lte: Number.parseInt(maxPrice) }
+    } else if (minPrice) {
+      query.price = { $gte: Number.parseInt(minPrice) }
+    } else if (maxPrice) {
+      query.price = { $lte: Number.parseInt(maxPrice) }
+    }
+
+    if (rating) {
+      query.rating = { $gte: Number.parseFloat(rating) }
+    }
+
+    if (availability) {
+      query.availability = availability
+    }
+
+    if (manufacturer) {
+      query.manufacturer = manufacturer
+    }
+
+    // Determine sort order
+    let sort = {}
+    switch (sortBy) {
+      case "price_low":
+        sort = { price: 1 }
+        break
+      case "price_high":
+        sort = { price: -1 }
+        break
+      case "rating":
+        sort = { rating: -1 }
+        break
+      case "newest":
+      default:
+        sort = { createdAt: -1 }
+        break
+    }
+
+    // Connect to the database
+    await connectToDB()
+
+    // Count total products matching the query
+    const total = await Product.countDocuments(query)
+
+    // Fetch products with pagination, filtering, and sorting
+    const products = await Product.find(query).sort(sort).skip(skip).limit(limit)
 
     // Return a success response
     return NextResponse.json(
-      { success: true, data: products },
-      { status: 200 }
-    );
+      {
+        success: true,
+        data: products,
+        total,
+        page,
+        limit,
+        hasMore: skip + products.length < total,
+      },
+      { status: 200 },
+    )
   } catch (err) {
     // Handle errors
-    const error = err as Error;
-    console.error("Error fetching products:", error);
+    const error = err as Error
+    console.error("Error fetching products:", error)
 
     // Return a failure response with a meaningful error message
     return NextResponse.json(
@@ -77,7 +155,7 @@ export async function GET() {
         message: "Failed to fetch products",
         error: error instanceof Error ? error.message : "Unknown error",
       },
-      { status: 500 }
-    );
+      { status: 500 },
+    )
   }
 }

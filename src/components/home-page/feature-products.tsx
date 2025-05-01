@@ -21,7 +21,7 @@ const FeatureProducts: React.FC<CategoryTabsProps> = ({
   categories = [
     "SMARTPHONES",
     "LAPTOP",
-    "COMPUTER",
+    "COMPUTERS",
     "SMART TELEVISIONS",
     "DIGITAL CAMERAS",
   ], // Default categories
