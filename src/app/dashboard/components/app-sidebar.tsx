@@ -46,7 +46,7 @@ const data = {
     },
     {
       title: "Products",
-      url: "/admin/products",
+      url: "/dashboard/admin/products",
       icon: Boxes,
     },
     {
