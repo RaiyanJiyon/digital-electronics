@@ -1,31 +1,24 @@
 "use client"
 
-import * as React from "react"
+import type * as React from "react"
 import {
-  AudioWaveform,
-  BookOpen,
-  Bot,
-  Command,
-  Frame,
+  Users,
+  Boxes,
+  Package,
+  BarChart,
+  FileText,
   GalleryVerticalEnd,
-  Map,
-  PieChart,
-  Settings2,
-  SquareTerminal,
+  LayoutDashboard,
+  Megaphone,
+  Star,
+  AlertCircle,
 } from "lucide-react"
 
 import { TeamSwitcher } from "./team-switcher"
 import { NavMain } from "./nav-main"
-import { NavProjects } from "./nav-projects"
 import { NavUser } from "./nav-user"
 
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarFooter,
-  SidebarHeader,
-  SidebarRail,
-} from "@/components/ui/sidebar"
+import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarRail } from "@/components/ui/sidebar"
 
 // This is sample data.
 const data = {
@@ -36,123 +29,177 @@ const data = {
   },
   teams: [
     {
-      name: "Acme Inc",
+      name: "Digital Electronics",
       logo: GalleryVerticalEnd,
-      plan: "Enterprise",
-    },
-    {
-      name: "Acme Corp.",
-      logo: AudioWaveform,
-      plan: "Startup",
-    },
-    {
-      name: "Evil Corp.",
-      logo: Command,
-      plan: "Free",
+      plan: "E-Commerce",
     },
   ],
   navMain: [
     {
-      title: "Playground",
-      url: "#",
-      icon: SquareTerminal,
-      isActive: true,
+      title: "Dashboard",
+      url: "/dashboard/admin",
+      icon: LayoutDashboard,
+      items: [],
+    },
+    {
+      title: "User Management",
+      url: "/admin/users",
+      icon: Users,
       items: [
         {
-          title: "History",
-          url: "#",
+          title: "Customers",
+          url: "/admin/users/customers",
         },
         {
-          title: "Starred",
-          url: "#",
+          title: "Administrators",
+          url: "/admin/users/administrators",
         },
         {
-          title: "Settings",
-          url: "#",
+          title: "Roles & Permissions",
+          url: "/admin/users/roles",
         },
       ],
     },
     {
-      title: "Models",
-      url: "#",
-      icon: Bot,
+      title: "Products",
+      url: "/admin/products",
+      icon: Boxes,
       items: [
         {
-          title: "Genesis",
-          url: "#",
+          title: "All Products",
+          url: "/admin/products",
         },
         {
-          title: "Explorer",
-          url: "#",
+          title: "Categories",
+          url: "/admin/products/categories",
         },
         {
-          title: "Quantum",
-          url: "#",
+          title: "Inventory",
+          url: "/admin/products/inventory",
+        },
+        {
+          title: "Attributes",
+          url: "/admin/products/attributes",
         },
       ],
     },
     {
-      title: "Documentation",
-      url: "#",
-      icon: BookOpen,
+      title: "Orders",
+      url: "/admin/orders",
+      icon: Package,
       items: [
         {
-          title: "Introduction",
-          url: "#",
+          title: "All Orders",
+          url: "/admin/orders",
         },
         {
-          title: "Get Started",
-          url: "#",
+          title: "Abandoned Carts",
+          url: "/admin/orders/abandoned",
         },
         {
-          title: "Tutorials",
-          url: "#",
-        },
-        {
-          title: "Changelog",
-          url: "#",
+          title: "Refunds",
+          url: "/admin/orders/refunds",
         },
       ],
     },
     {
-      title: "Settings",
-      url: "#",
-      icon: Settings2,
+      title: "Sales & Marketing",
+      url: "/admin/marketing",
+      icon: Megaphone,
       items: [
         {
-          title: "General",
-          url: "#",
+          title: "Promotions",
+          url: "/admin/marketing/promotions",
         },
         {
-          title: "Team",
-          url: "#",
+          title: "Discounts",
+          url: "/admin/marketing/discounts",
         },
         {
-          title: "Billing",
-          url: "#",
+          title: "Coupons",
+          url: "/admin/marketing/coupons",
         },
         {
-          title: "Limits",
-          url: "#",
+          title: "Email Campaigns",
+          url: "/admin/marketing/email",
         },
       ],
     },
-  ],
-  projects: [
     {
-      name: "Design Engineering",
-      url: "#",
-      icon: Frame,
+      title: "Content",
+      url: "/admin/content",
+      icon: FileText,
+      items: [
+        {
+          title: "Blog Posts",
+          url: "/admin/content/blogs",
+        },
+        {
+          title: "Pages",
+          url: "/admin/content/pages",
+        },
+        {
+          title: "Media Library",
+          url: "/admin/content/media",
+        },
+      ],
     },
     {
-      name: "Sales & Marketing",
-      url: "#",
-      icon: PieChart,
+      title: "Analytics",
+      url: "/admin/analytics",
+      icon: BarChart,
+      items: [
+        {
+          title: "Sales Reports",
+          url: "/admin/analytics/sales",
+        },
+        {
+          title: "Customer Insights",
+          url: "/admin/analytics/customers",
+        },
+        {
+          title: "Inventory Reports",
+          url: "/admin/analytics/inventory",
+        },
+        {
+          title: "Traffic & Conversion",
+          url: "/admin/analytics/traffic",
+        },
+      ],
     },
     {
-      name: "Travel",
-      url: "#",
-      icon: Map,
+      title: "Reviews & Comments",
+      url: "/admin/reviews",
+      icon: Star,
+      items: [
+        {
+          title: "Product Reviews",
+          url: "/admin/reviews/products",
+        },
+        {
+          title: "Blog Comments",
+          url: "/admin/reviews/comments",
+        },
+      ],
+    },
+    {
+      title: "System",
+      url: "/admin/system",
+      icon: AlertCircle,
+      items: [
+        {
+          title: "Logs",
+          url: "/admin/system/logs",
+        },
+        {
+          title: "Backups",
+          url: "/admin/system/backups",
+        },
+        {
+          title: "Integrations",
+          url: "/admin/system/integrations",
+        },
+      ],
     },
   ],
 }
@@ -165,7 +212,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        <NavProjects projects={data.projects} />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />

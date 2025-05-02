@@ -6,6 +6,7 @@ import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import ProductCard from "../shared/product-card";
 import { Product } from "@/app/types/types";
+import Loading from "@/app/loading";
 
 // Props for the CategoryTabs component
 interface CategoryTabsProps {
@@ -30,6 +31,7 @@ const CategoryTabs: React.FC<CategoryTabsProps> = ({
   className,
 }) => {
   const [active, setActive] = useState(activeCategory || categories[0]); // Active tab/category
+  const [loading, setLoading] = useState(true); // Dropdown visibility state
   const [isOpen, setIsOpen] = useState(false); // Dropdown visibility state
   const [products, setProducts] = useState<Product[]>([]); // Products fetched from the API
 
@@ -45,7 +47,8 @@ const CategoryTabs: React.FC<CategoryTabsProps> = ({
   // Fetch products from the API
   const fetchProducts = async () => {
     try {
-      const res = await fetch(`/api/products`);
+      setLoading(true);
+      const res = await fetch(`/api/products?limit=60`);
       if (!res.ok) {
         console.error("Failed to fetch products");
         return;
@@ -54,6 +57,8 @@ const CategoryTabs: React.FC<CategoryTabsProps> = ({
       setProducts(data.data); // Store fetched products in state
     } catch (error) {
       console.error("Error fetching products:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -61,6 +66,10 @@ const CategoryTabs: React.FC<CategoryTabsProps> = ({
   useEffect(() => {
     fetchProducts();
   }, []);
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <div className={cn("w-full", className)}>

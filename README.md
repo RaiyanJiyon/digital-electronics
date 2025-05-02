@@ -21,11 +21,11 @@ The **Digital Electronics Hub** is a full-stack e-commerce application designed 
 ### 2. Product Management
 **Product Catalog:**
 - Display products with images, prices, descriptions, ratings, and reviews.✅
-- Pagination and infinite scrolling for better UX.❌
+- Pagination and infinite scrolling for better UX.✅
 
 **Search and Filter:**
 - Search by name, category, or brand.
-- Filters for price range, ratings, availability, and brand.❌
+- Filters for price range, ratings, availability, and brand.✅
 
 **Product Details:**
 - View detailed product information.✅
@@ -35,7 +35,7 @@ The **Digital Electronics Hub** is a full-stack e-commerce application designed 
 
 ### 3. Shopping Cart
 **Add to Cart:**
-- Add multiple items to the cart with quantity options.❌
+- Add multiple items to the cart with quantity options.✅
 
 **Edit Cart:**
 - Update quantity or remove items.❌

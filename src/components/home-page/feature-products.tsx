@@ -45,7 +45,7 @@ const FeatureProducts: React.FC<CategoryTabsProps> = ({
   // Fetch products from the API
   const fetchProducts = async () => {
     try {
-      const res = await fetch(`/api/products?page=1&limit=6`); // Fetch products with pagination
+      const res = await fetch(`/api/products?limit=60`); // Fetch products with pagination
       if (!res.ok) {
         console.error("Failed to fetch products");
         return;
