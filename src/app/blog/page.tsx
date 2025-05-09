@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import PageCover from "@/components/shared/page-cover";
 import BlogCard from "@/app/blog/components/blog-card";
 import SearchWidget from "@/app/blog/components/search-widget";

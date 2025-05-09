@@ -47,14 +47,18 @@ export interface Cart {
   userId: string;
 }
 
-
 export interface Blog {
   _id: string;
   title: string;
-  date: string;
+  excerpt: string;
   author: string;
-  description: string;
-  image: string;
+  date: string;
+  category: string;
+  tags: string[];
+  coverImage: string; 
+  content: string; 
+  readTime: string;
+  status: string;
 }
 
 export interface OrderItem {

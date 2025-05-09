@@ -1,3 +1,5 @@
+export const dynamic = "force-static"; // 🧊 Opt into SSG
+
 import ContactForm from "@/app/contact/components/contact-form";
 import GoogleMap from "@/app/contact/components/google-map";
 import Locations from "@/app/contact/components/location";
