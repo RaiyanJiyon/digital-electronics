@@ -20,8 +20,6 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination"
 import PriceRangeFilter from "@/components/shared/products/price-range-filter"
-import RatingFilter from "@/components/shared/products/rating-filter"
-import AvailabilityFilter from "@/components/shared/products/availability-filter"
 import BrandFilter from "@/components/shared/products/brand-filter"
 
 const ShopPage = () => {
@@ -271,28 +269,6 @@ const ShopPage = () => {
                   minPrice={minPrice}
                   maxPrice={maxPrice}
                   onApply={(min, max) => applyFilters({ minPrice: min, maxPrice: max, page: "1" })}
-                />
-              </div>
-
-              <Separator />
-
-              {/* Rating Filter */}
-              <div>
-                <h3 className="font-medium mb-3">Rating</h3>
-                <RatingFilter
-                  selectedRating={rating}
-                  onChange={(value) => applyFilters({ rating: value, page: "1" })}
-                />
-              </div>
-
-              <Separator />
-
-              {/* Availability Filter */}
-              <div>
-                <h3 className="font-medium mb-3">Availability</h3>
-                <AvailabilityFilter
-                  selected={availability}
-                  onChange={(value) => applyFilters({ availability: value, page: "1" })}
                 />
               </div>
 

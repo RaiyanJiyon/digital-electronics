@@ -51,27 +51,27 @@ const data = {
     },
     {
       title: "Orders",
-      url: "/admin/orders",
+      url: "/dashboard/admin/orders",
       icon: Package,
     },
     {
       title: "Content",
-      url: "/admin/content",
+      url: "/dashboard/admin/content",
       icon: FileText,
     },
     {
       title: "Analytics",
-      url: "/admin/analytics",
+      url: "/dashboard/admin/analytics",
       icon: BarChart,
     },
     {
       title: "Reviews & Comments",
-      url: "/admin/reviews",
+      url: "/dashboard/admin/reviews",
       icon: Star,
     },
     {
       title: "System",
-      url: "/admin/system",
+      url: "/dashboard/admin/system",
       icon: AlertCircle,
     },
   ],

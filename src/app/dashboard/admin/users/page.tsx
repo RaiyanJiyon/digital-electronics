@@ -67,7 +67,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
-import { SidebarProvider } from "@/components/ui/sidebar";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "../../components/app-sidebar";
 
 // Sample user data
@@ -266,10 +266,16 @@ export default function UsersPage() {
       <AppSidebar />
       <div className="flex-1 space-y-4 p-4 md:p-8 pt-6">
         <div className="flex items-center justify-between">
-          <h2 className="text-3xl font-bold tracking-tight">User Management</h2>
+          <div className="flex items-center gap-2">
+            <SidebarTrigger className="-ml-1" />
+            <h2 className="text-3xl font-bold tracking-tight">
+              User Management
+            </h2>
+          </div>
           <div className="flex items-center gap-2">
             <Button
               variant="outline"
+              className="hidden sm:flex"
               onClick={() => router.push("/admin/users/export")}
             >
               <Download className="mr-2 h-4 w-4" />
