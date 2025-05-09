@@ -1,9 +1,6 @@
-"use client";
-
 import Link from "next/link";
 import { FaHome } from "react-icons/fa";
 import { usePathname } from "next/navigation";
-import { ModeToggle } from "../../shared/mode-toggle";
 
 const MainNavigation = () => {
   const pathname = usePathname();
@@ -38,7 +35,6 @@ const MainNavigation = () => {
         {/* Mobile Menu Trigger */}
         <div className="flex items-center">
           <div className="flex items-center gap-2 py-4 px-4">
-            <ModeToggle />
             {/* <IoMdMenu className="h-5 w-5 hover:text-red-500" /> */}
             <span className="font-medium">Shop By Categories</span>
           </div>
