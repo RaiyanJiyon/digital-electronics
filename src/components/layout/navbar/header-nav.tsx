@@ -95,10 +95,14 @@ const HeaderNav = () => {
               ) : session?.user ? (
                 <>
                   <Link
-                    href="/profile"
+                    href={`${
+                      session.user.role === "admin"
+                        ? "/dashboard/admin"
+                        : "/profile"
+                    }`}
                     className="text-sm whitespace-nowrap hover:text-red-500 hover:font-medium"
                   >
-                    Dashboard
+                    {session.user.role === "admin" ? "Dashboard" : "Profile"}
                   </Link>
                   <span className="text-sm whitespace-nowrap">/</span>
                   <button
@@ -156,9 +160,7 @@ const HeaderNav = () => {
               </span>
             </div>
             <div className="hidden sm:block">
-              <span className="text-sm whitespace-nowrap">
-                MY CART
-              </span>
+              <span className="text-sm whitespace-nowrap">MY CART</span>
             </div>
           </Link>
         </div>
