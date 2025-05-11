@@ -28,7 +28,7 @@ export default function SortDropdown({ option, setOption }: SortDropdownProps) {
     options.find((opt) => opt.value === option)?.label || "Sort";
 
   return (
-    <div className="relative inline-block text-left">
+    <div className="relative inline-block text-left my-5">
       <button
         onClick={() => setIsOpen((prev) => !prev)}
         className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-md bg-white"

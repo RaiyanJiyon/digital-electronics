@@ -9,8 +9,8 @@ import { Product } from "@/app/types/types";
 
 // Define props for the FeatureProducts component
 interface CategoryTabsProps {
-  title?: string; 
-  categories: string[]; 
+  title?: string;
+  categories: string[];
   activeCategory?: string;
   onCategoryChange?: (category: string) => void;
   className?: string;
@@ -45,7 +45,7 @@ const FeatureProducts: React.FC<CategoryTabsProps> = ({
   // Fetch products from the API
   const fetchProducts = async () => {
     try {
-      const res = await fetch(`/api/products?limit=60`); // Fetch products with pagination
+      const res = await fetch(`/api/features`); // Fetch products with pagination
       if (!res.ok) {
         console.error("Failed to fetch products");
         return;

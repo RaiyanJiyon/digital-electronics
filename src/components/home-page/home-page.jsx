@@ -8,8 +8,9 @@ import LatestBlogs from "./latest-blogs";
 import CategoryTabs from "./category-tabs";
 import PopularCategories from "./popular-categories";
 import FeatureProducts from "./feature-products";
+import TrendingProducts from "./trending-products";
 
-const HomePage = () => {
+export default function HomePage() {
     return (
         <div>
             {/* Main Banner */}
@@ -71,6 +72,9 @@ const HomePage = () => {
                     {/* Popular Categories */}
                     <PopularCategories />
 
+                    {/* Trending Products */}
+                    <TrendingProducts />
+
                     {/* Promotional Images */}
                     <div className="flex flex-col md:flex-row justify-between gap-6">
                         <Image
@@ -98,5 +102,3 @@ const HomePage = () => {
         </div>
     );
 };
-
-export default HomePage;

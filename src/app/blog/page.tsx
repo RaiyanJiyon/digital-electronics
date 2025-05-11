@@ -31,7 +31,7 @@ const BlogPage = async () => {
       <div className="mt-12">
         <PageCover prev="Smart Phones" next="Blogs" />
       </div>
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 w-11/12 max-w-[1902px] mx-auto my-14">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 container px-4 mx-auto my-14">
         {/* Blog Cards Section */}
         <div className="grid col-span-1 lg:col-span-3 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
           {blogs.map((blog) => (

@@ -28,13 +28,13 @@ export default function FeatureProducts({
   });
 
   return (
-    <>
+    <div className="container px-4 mx-auto">
       <SortDropdown option={sortOption} setOption={setSortOption} />
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-10">
         {sorted.map((product) => (
           <ProductCard key={product._id} product={product} />
         ))}
       </div>
-    </>
+    </div>
   );
 }
