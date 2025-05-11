@@ -1,13 +1,16 @@
+
 import PageCover from "@/components/shared/page-cover";
 import { Product } from "../types/types";
 import ProductCard from "@/components/shared/product-card";
+
+export const dynamic = "force-dynamic"
 
 // Fetch Smartphones data from the API
 const fetchSmartphones = async (): Promise<Product[]> => {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/smartphones`,
     {
-      cache: "no-store", // Disable caching for fresh data
+      cache: "no-store",
     }
   );
 
