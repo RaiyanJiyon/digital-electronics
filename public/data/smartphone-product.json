@@ -1,6 +1,5 @@
 [
   {
-    "_id": "681198ae07083ab29f6c42ba",
     "productName": "Samsung Galaxy Z Fold 5",
     "category": "Smartphones",
     "price": 1800,
@@ -14,9 +13,10 @@
     "manufacturer": "Samsung",
     "productTypes": "Smartphone",
     "images": [
-      "https://i.ibb.co.com/1XqWjVnR/Samsung-Galaxy-Z-Fold-5-1.jpg ",
-      "https://i.ibb.co.com/0KQ6zYvF/Samsung-Galaxy-Z-Fold-5-2.jpg ",
-      "https://i.ibb.co.com/LpN2mJQ/Samsung-Galaxy-Z-Fold-5-3.jpg "
+      "https://i.ibb.co.com/npt5nM1/Samsung-Galaxy-Z-Fold-5-1.jpg ",
+      "https://i.ibb.co.com/5hF9RmLN/Samsung-Galaxy-Z-Fold-5-2.jpg ",
+      "https://i.ibb.co.com/ZRxYQNd9/Samsung-Galaxy-Z-Fold-5-3.jpg ",
+      "https://i.ibb.co.com/qYhCgQkP/Samsung-Galaxy-Z-Fold-5-4.jpg "
     ],
     "email": "support@samsungstore.com",
     "phoneNumber": "+8801987654321",
@@ -24,7 +24,6 @@
     "status": "accept"
   },
   {
-    "_id": "681198ae07083ab29f6c42bb",
     "productName": "Apple iPhone 16 Pro Max",
     "category": "Smartphones",
     "price": 1500,
@@ -38,9 +37,9 @@
     "manufacturer": "Apple",
     "productTypes": "Smartphone",
     "images": [
-      "https://i.ibb.co.com/kHtLwGyZ/Apple-iPhone-16-Pro-Max-1.jpg ",
-      "https://i.ibb.co.com/QC8DQvT7/Apple-iPhone-16-Pro-Max-2.jpg ",
-      "https://i.ibb.co.com/7KsP9hS/Apple-iPhone-16-Pro-Max-3.jpg "
+      "https://i.ibb.co.com/XcgBTNg/Apple-i-Phone-16-Pro-Max-1.webp ",
+      "https://i.ibb.co.com/Y7znwXxM/Apple-i-Phone-16-Pro-Max-2.webp ",
+      "https://i.ibb.co.com/jZxD3wmM/Apple-i-Phone-16-Pro-Max-3.webp "
     ],
     "email": "sales@applestore.com",
     "phoneNumber": "+8801239876543",
@@ -48,7 +47,6 @@
     "status": "accept"
   },
   {
-    "_id": "681198ae07083ab29f6c42bc",
     "productName": "Google Pixel 9 Pro Fold",
     "category": "Smartphones",
     "price": 1400,
@@ -62,8 +60,8 @@
     "manufacturer": "Google",
     "productTypes": "Smartphone",
     "images": [
-      "https://i.ibb.co.com/3rBd6gqM/Google-Pixel-9-Pro-Fold-1.jpg ",
-      "https://i.ibb.co.com/2wF5QYV5/Google-Pixel-9-Pro-Fold-2.jpg "
+      "https://i.ibb.co.com/VcVNWrgD/Google-Pixel-9-Pro-Fold-1.jpg ",
+      "https://i.ibb.co.com/pjY6C2bS/Google-Pixel-9-Pro-Fold-2.jpg "
     ],
     "email": "info@googlestore.com",
     "phoneNumber": "+8801765432109",
@@ -71,7 +69,6 @@
     "status": "accept"
   },
   {
-    "_id": "681198ae07083ab29f6c42bd",
     "productName": "OnePlus Ace 3 Pro",
     "category": "Smartphones",
     "price": 850,
@@ -85,8 +82,8 @@
     "manufacturer": "OnePlus",
     "productTypes": "Smartphone",
     "images": [
-      "https://i.ibb.co.com/nzZ5pDqK/OnePlus-Ace-3-Pro-1.jpg ",
-      "https://i.ibb.co.com/YkW6VwQ/OnePlus-Ace-3-Pro-2.jpg "
+      "https://i.ibb.co.com/nNvK7J0p/One-Plus-Ace-3-Pro-1.jpg ",
+      "https://i.ibb.co.com/KnDN8NY/One-Plus-Ace-3-Pro-2.jpg "
     ],
     "email": "contact@oneplusstore.com",
     "phoneNumber": "+8801987891234",
@@ -94,7 +91,6 @@
     "status": "accept"
   },
   {
-    "_id": "681198ae07083ab29f6c42be",
     "productName": "Xiaomi 14 Ultra",
     "category": "Smartphones",
     "price": 1300,
@@ -108,8 +104,9 @@
     "manufacturer": "Xiaomi",
     "productTypes": "Smartphone",
     "images": [
-      "https://i.ibb.co.com/4NqV5tj/Xiaomi-14-Ultra-1.jpg ",
-      "https://i.ibb.co.com/tYwV6Xw/Xiaomi-14-Ultra-2.jpg "
+      "https://i.ibb.co.com/nNbk63Xk/Xiaomi-14-Ultra-1.webp ",
+      "https://i.ibb.co.com/GQ2RgyQP/Xiaomi-14-Ultra-2.webp ",
+      "https://i.ibb.co.com/VYH0NjsL/Xiaomi-14-Ultra-3.webp "
     ],
     "email": "support@xiaomistore.com",
     "phoneNumber": "+8801987654321",
@@ -117,7 +114,6 @@
     "status": "accept"
   },
   {
-    "_id": "681198ae07083ab29f6c42bf",
     "productName": "Sony Xperia 1 VI",
     "category": "Smartphones",
     "price": 1100,
@@ -131,8 +127,9 @@
     "manufacturer": "Sony",
     "productTypes": "Smartphone",
     "images": [
-      "https://i.ibb.co.com/ZBqB9sW/Sony-Xperia-1-VI-1.jpg ",
-      "https://i.ibb.co.com/mXWp5tD/Sony-Xperia-1-VI-2.jpg "
+      "https://i.ibb.co.com/8DTgvjCM/Sony-Xperia-1-VI-1.webp ",
+      "https://i.ibb.co.com/BVfW9D8f/Sony-Xperia-1-VI-2.webp ",
+      "https://i.ibb.co.com/bMFqWMzY/Sony-Xperia-1-VI-3.webp "
     ],
     "email": "sales@sonystore.com",
     "phoneNumber": "+8801239876543",
@@ -140,7 +137,6 @@
     "status": "accept"
   },
   {
-    "_id": "681198ae07083ab29f6c42c0",
     "productName": "Oppo Find X7 Pro",
     "category": "Smartphones",
     "price": 1200,
@@ -154,8 +150,9 @@
     "manufacturer": "Oppo",
     "productTypes": "Smartphone",
     "images": [
-      "https://i.ibb.co.com/62VQYzW/Oppo-Find-X7-Pro-1.jpg ",
-      "https://i.ibb.co.com/r6N2V5w/Oppo-Find-X7-Pro-2.jpg "
+      "https://i.ibb.co.com/gL1PpbPj/Oppo-Find-X7-Pro-1.jpg ",
+      "https://i.ibb.co.com/4nxG897k/Oppo-Find-X7-Pro-2.jpg ",
+      "https://i.ibb.co.com/gLjGKVK5/Oppo-Find-X7-Pro-3.jpg "
     ],
     "email": "info@oppostore.com",
     "phoneNumber": "+8801765432109",
@@ -163,7 +160,6 @@
     "status": "accept"
   },
   {
-    "_id": "681198ae07083ab29f6c42c1",
     "productName": "Vivo X100 Pro+",
     "category": "Smartphones",
     "price": 1050,
@@ -177,8 +173,8 @@
     "manufacturer": "Vivo",
     "productTypes": "Smartphone",
     "images": [
-      "https://i.ibb.co.com/3dWzvRq/Vivo-X100-Pro-1.jpg ",
-      "https://i.ibb.co.com/8gFzXwQ/Vivo-X100-Pro-2.jpg "
+      "https://i.ibb.co.com/KcfrTy19/Vivo-X100-Pro-1.jpg ",
+      "https://i.ibb.co.com/PsVDdyQk/Vivo-X100-Pro-2.jpg "
     ],
     "email": "contact@vivostore.com",
     "phoneNumber": "+8801987891234",
@@ -186,7 +182,6 @@
     "status": "accept"
   },
   {
-    "_id": "681198ae07083ab29f6c42c2",
     "productName": "Realme GT Neo 6 Pro",
     "category": "Smartphones",
     "price": 750,
@@ -200,8 +195,9 @@
     "manufacturer": "Realme",
     "productTypes": "Smartphone",
     "images": [
-      "https://i.ibb.co.com/W3tLQpL/Realme-GT-Neo-6-Pro-1.jpg ",
-      "https://i.ibb.co.com/QD4XQwR/Realme-GT-Neo-6-Pro-2.jpg "
+      "https://i.ibb.co.com/C3g6JcFh/Realme-GT-Neo-6-Pro-1.jpg ",
+      "https://i.ibb.co.com/Dg6BmvM1/Realme-GT-Neo-6-Pro-2.jpg ",
+      "https://i.ibb.co.com/8n01RLCD/Realme-GT-Neo-6-Pro-3.jpg "
     ],
     "email": "info@realmestore.com",
     "phoneNumber": "+8801987654321",
@@ -209,7 +205,6 @@
     "status": "accept"
   },
   {
-    "_id": "681198ae07083ab29f6c42c3",
     "productName": "Honor Magic 6 Pro",
     "category": "Smartphones",
     "price": 950,
@@ -223,8 +218,10 @@
     "manufacturer": "Honor",
     "productTypes": "Smartphone",
     "images": [
-      "https://i.ibb.co.com/2VpFjwG/Honor-Magic-6-Pro-1.jpg ",
-      "https://i.ibb.co.com/RpQ4XvT/Honor-Magic-6-Pro-2.jpg "
+      "https://i.ibb.co.com/HTSmGBHD/Honor-Magic-6-Pro-1.jpg ",
+      "https://i.ibb.co.com/kswf4XLW/Honor-Magic-6-Pro-2.jpg ",
+      "https://i.ibb.co.com/ZR2nxV5c/Honor-Magic-6-Pro-3.jpg ",
+      "https://i.ibb.co.com/gMDxMZ5n/Honor-Magic-6-Pro-4.jpg "
     ],
     "email": "sales@honorstore.com",
     "phoneNumber": "+8801239876543",

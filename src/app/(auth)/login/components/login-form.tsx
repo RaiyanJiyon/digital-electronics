@@ -54,8 +54,6 @@ export default function LoginForm() {
   async function onSubmit(data: LoginFormValues) {
     const { email, password } = data;
 
-    setIsLoading(true);
-
     try {
       setIsLoading(true);
       // Attempt to sign in the user
@@ -108,6 +106,8 @@ export default function LoginForm() {
           boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
         },
       });
+    } finally {
+      setIsLoading(false);
     }
   }
 
