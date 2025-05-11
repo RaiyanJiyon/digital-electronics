@@ -1,3 +1,4 @@
+import PageCover from "@/components/shared/page-cover";
 import FeatureProducts from "./components/feature-product";
 
 export const dynamic = "force-dynamic";
@@ -14,5 +15,11 @@ export default async function FeaturePage() {
 
   const { data: products } = await response.json();
 
-  return <FeatureProducts initialProducts={products} />;
+  return (
+    <>
+    {/* Page Cover */}
+      <PageCover prev="Home" next="Feature" />
+      <FeatureProducts initialProducts={products} />;
+    </>
+  );
 }

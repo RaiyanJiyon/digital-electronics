@@ -14,6 +14,7 @@ import {
 import { useSession } from "next-auth/react";
 import { toast } from "sonner";
 import { IoIosGitCompare } from "react-icons/io";
+import Link from "next/link";
 
 // Hardcoded products
 const products: Product[] = [
@@ -259,13 +260,15 @@ export default function TrendingProducts() {
           className="p-4 flex flex-col items-center border border-gray-200 relative"
         >
           <div className="w-full h-48 flex items-center justify-center mb-4">
-            <Image
-              src={product.images[0].trim() || "/placeholder.svg"}
-              alt={product.productName}
-              width={150}
-              height={150}
-              className="max-h-full object-contain"
-            />
+            <Link href={`/shop/${product._id}`}>
+              <Image
+                src={product.images[0].trim() || "/placeholder.svg"}
+                alt={product.productName}
+                width={150}
+                height={150}
+                className="max-h-full object-contain"
+              />
+            </Link>
           </div>
           <h3 className="text-lg font-medium text-gray-800 mb-2 text-center">
             {product.productName}
