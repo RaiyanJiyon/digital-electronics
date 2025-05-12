@@ -9,6 +9,7 @@ import CategoryTabs from "./category-tabs";
 import PopularCategories from "./popular-categories";
 import FeatureProducts from "./feature-products";
 import TrendingProducts from "./trending-products";
+import ChatButton from "./chat-button";
 
 export default function HomePage() {
     return (
@@ -97,6 +98,8 @@ export default function HomePage() {
                     <div className="mb-16">
                         <FeatureProducts />
                     </div>
+
+                    <ChatButton />
                 </div>
             </div>
         </div>
