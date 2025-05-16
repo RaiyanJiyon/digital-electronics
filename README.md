@@ -1,195 +1,206 @@
-# Digital Electronics Hub
+# **Digital Electronics Hub**
 
-## Project Overview
-The **Digital Electronics Hub** is a full-stack e-commerce application designed to provide a seamless shopping experience for digital electronics enthusiasts. Users can browse products, filter by categories, view detailed product descriptions, add items to a cart, and securely purchase them. It also includes an admin panel for managing the inventory, orders, and user activities.
+![Digital Electronics Hub Banner](https://i.ibb.co/V0BKvdDK/digital-electronics.png)
 
----
-
-## Core Functionalities
-
-### 1. User Management
-**User Registration/Login:**
-- Email and password authentication.✅
-- Google/Facebook third-party authentication.❌
-
-**User Profile:**
-- View and edit user details.❌
-- View order history and wishlist.❌
+**Digital Electronics Hub** is a modern full-stack e-commerce platform tailored for digital electronics enthusiasts. It enables users to explore a wide range of products, manage their shopping cart and wishlist, and securely purchase items. The platform also includes an admin panel for efficient inventory and order management.
 
 ---
 
-### 2. Product Management
-**Product Catalog:**
-- Display products with images, prices, descriptions, ratings, and reviews.✅
-- Pagination and infinite scrolling for better UX.✅
+## 📖 Table of Contents
 
-**Search and Filter:**
-- Search by name, category, or brand.
-- Filters for price range, ratings, availability, and brand.✅
-
-**Product Details:**
-- View detailed product information.✅
-- Add product reviews and ratings.❌
+* [Features](#features)
+* [Technology Stack](#technology-stack)
+* [Installation](#installation)
+* [Configuration (.env)](#configuration-env)
+* [Usage](#usage)
+* [Authentication](#authentication)
+* [Routes](#routes)
+* [Live Demo & Repository](#live-demo--repository)
 
 ---
 
-### 3. Shopping Cart
-**Add to Cart:**
-- Add multiple items to the cart with quantity options.✅
+## ✨ Features<a id="features"></a>
 
-**Edit Cart:**
-- Update quantity or remove items.❌
+### 🛍️ Product Catalog
 
-**Cart Persistence:**
-- Save cart items in the database or local storage for logged-out users.❌
+* **Product Listings**: Display products with images, prices, descriptions, ratings, and reviews.
+* **Pagination & Infinite Scrolling**: Enhance user experience with seamless navigation through products.
 
----
-
-### 4. Wishlist
-- Add/remove items to/from the wishlist.✅
-- Persistent wishlist storage.✅
+![Product Catalog](https://i.ibb.co/pBfVwGYv/products.png)
 
 ---
 
-### 5. Order and Checkout
-**Checkout Process:**
-- Address selection, shipping options, and payment methods.❌
+### 🔍 Search and Filter
 
-**Payment Integration:**
-- Integration with payment gateways like Stripe or PayPal.❌
+* **Search Functionality**: Search products by name, category, or brand.
+* **Advanced Filters**: Filter products based on price range, ratings, availability, and brand.
 
-**Order Tracking:**
-- Real-time order status updates (Pending, Shipped, Delivered, etc.).❌
+![Search and Filter Options](https://i.ibb.co/VHCm6G6/search-filter.png)
 
 ---
 
-### 6. Admin Panel
-**User Management:**
-- View all users and manage their roles.❌
+### 🛒 Shopping Cart
 
-**Product Management:**
-- Add, edit, or delete products.
-- Update product inventory.❌
+* **Add to Cart**: Add multiple items to the cart with quantity options.
 
-**Order Management:**
-- View, manage, and update order statuses.❌
-
-**Reports:**
-- Sales analytics and inventory insights.❌
+![Shopping Cart](https://i.ibb.co/tT06JYqP/cart.png)
 
 ---
 
-### 7. Notifications and Alerts
-- Email notifications for order updates.❌
-- Alerts for promotions and discounts.❌
-- Admin notifications for low inventory.❌
+### ❤️ Wishlist
+
+* **Wishlist Management**: Add or remove items to/from the wishlist with persistent storage.
+
+![Wishlist](https://i.ibb.co/B5jXvt9b/wishlist.png)
 
 ---
 
-### 8. Security
-**Authentication:**
-- JWT-based token authentication for users and admins.❌
+### 🤖 AI Chatbot Support
 
-**Authorization:**
-- Role-based access control (RBAC) for different user levels.❌
+* **AI Product Assistant**: Users can ask questions about product features, specifications, and recommendations through a chatbot powered by **Gemini AI**.
 
-**Data Validation:**
-- Input sanitization and validation at the backend.❌
+![AI Chatbot](https://i.ibb.co/tTZB06KH/Screenshot-178.png)
 
 ---
 
-### 9. Responsive Design
-- Fully responsive design for desktop, tablet, and mobile devices.✅
+### 📱 Responsive Design
+
+* **Mobile-Friendly UI**: Fully responsive design compatible with desktop, tablet, and mobile devices.
+
+**💻 Desktop View**
+
+![Desktop View](https://i.ibb.co/5Xv80sRG/Screenshot-176.png)
+
+**📱 Tablet View**
+
+![Tablet View](https://i.ibb.co/LDF6w9HJ/tab-screen.png)
+
+**📱 Mobile View**
+
+![Mobile View](https://i.ibb.co/XfGqXhD3/phone-screen.png)
 
 ---
 
-### 10. Advanced Features
-**Product Comparison:**
-- Compare features and specifications of selected products.❌
+## 🛠️ Technology Stack<a id="technology-stack"></a>
 
-**Customer Support:**
-- Integrated chat support using Socket.io.❌
-
-**Promotions:**
-- Apply discount codes and seasonal offers.❌
-
----
-
-## Technologies Used
-
-### Frontend (Client-Side)
-- **Next.js:** For building the user interface.
-- **Context API:** For state management.
-- **Tailwind CSS and ShadCn:** For styling and responsive design.
-
-### Backend (Server-Side)
-- **Node.js:** For building the server-side logic.
-- **Express.js:** For handling HTTP requests and creating RESTful APIs.
-
-### Database
-- **MongoDB:** For storing product, user, and order data.
-
-### Authentication
-- **JWT:** For secure token-based authentication.
-- **OAuth 2.0:** For social media login.
-
-### Payment Integration
-- **Stripe/PayPal API:** For processing payments.
-
-### Notifications
-- **Nodemailer:** For email notifications.
-
-### Real-Time Features
-- **Socket.io:** For live chat and notifications.
-
-### Hosting/Deployment
-- **Frontend:** Vercel.
-- **Backend:** Vercel.
-- **Database:** MongoDB Atlas.
+| Category                | Technologies Used                                                             |
+| ----------------------- | ----------------------------------------------------------------------------- |
+| **Frontend**            | Next.js (15.2.2), React (18.0.0-rc.1), Tailwind CSS, ShadCn, Radix UI, Swiper |
+| **Backend**             | Node.js, Express.js                                                           |
+| **Database**            | MongoDB, Mongoose                                                             |
+| **Authentication**      | NextAuth.js (4.24.11), JWT, OAuth 2.0                                         |
+| **Payment Integration** | Stripe                                                                        |
+| **Notifications**       | Nodemailer                                                                    |
+| **AI Integration**      | Gemini API                                                                    |
+| **Hosting/Deployment**  | Vercel (Frontend & Backend), MongoDB Atlas                                    |
 
 ---
 
-## Necessary Functionality Checklist
+## 🛠 Installation<a id="installation"></a>
 
-### User Management
-- Registration and login (with OAuth).✅
-- Profile management and order history.❌
+### Prerequisites
 
-### Product Features
-- Product listing with search and filters.❌
-- Product details with reviews and ratings.✅
+* **Node.js** (>= 18)
+* **MongoDB Atlas** (or local MongoDB instance)
 
-### Cart & Wishlist
-- Add/update/remove items from the cart.❌
-- Wishlist functionality.❌
+### Steps
 
-### Checkout & Payment
-- Address and shipping management.❌
-- Payment gateway integration.❌
+1. **Clone the repository**
 
-### Admin Panel
-- Product and inventory management.❌
-- User and order management.❌
-- Analytics and reporting.❌
+   ```bash
+   git clone https://github.com/RaiyanJiyon/digital-electronics
+   cd digital-electronics
+   ```
 
-### Responsive Design
-- Mobile-first approach for all pages.✅
+2. **Install dependencies**
 
-### Security
-- JWT authentication and RBAC.❌
-- Backend validation and sanitization.❌
+   ```bash
+   npm install
+   ```
 
-### Advanced Features
-- Product comparison.❌
-- Chat support.❌
+3. **Set up environment variables** (see `.env.local` below)
 
-### Testing
-- Unit and integration testing.❌
+4. **Run the development server**
+
+   ```bash
+   npm run dev
+   ```
 
 ---
 
-## Development Tips
-- Use a modular approach: Separate concerns (auth, products, orders, etc.) into different services or components.
-- Follow RESTful API standards for backend development.
-- Use Git for version control and meaningful commit messages (e.g., "Added JWT-based user authentication").
-- Test your app thoroughly for cross-browser compatibility.
+## ⚙️ Configuration (.env)<a id="configuration-env"></a>
+
+Create a `.env.local` file in the root directory and configure the following:
+
+```env
+# MongoDB
+MONGODB_URI=your_mongodb_connection_string
+
+# NextAuth Configuration
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=your_nextauth_secret
+
+# Google OAuth
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
+
+# Apple OAuth
+APPLE_CLIENT_ID=your_apple_client_id
+APPLE_CLIENT_SECRET=your_apple_client_secret
+
+# Stripe
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=your_stripe_public_key
+STRIPE_SECRET_KEY=your_stripe_secret_key
+
+# Gemini AI
+NEXT_PUBLIC_GEMINI_API_KEY=your_gemini_secret_key
+```
+
+---
+
+## 🚀 Usage<a id="usage"></a>
+
+### User Flow
+
+1. **Browse Products**: Users can explore the product catalog with search and filter options.
+2. **View Product Details**: Clicking on a product displays detailed information, including images, descriptions, and reviews.
+3. **Add to Cart/Wishlist**: Users can add products to their cart or wishlist.
+4. **Ask AI Chatbot**: Get assistance on product recommendations or inquiries through the chatbot.
+5. **Checkout**: Proceed to checkout by providing shipping details and selecting a payment method.
+6. **Order Confirmation**: Upon successful payment, users receive an order confirmation.
+
+---
+
+## 🔐 Authentication<a id="authentication"></a>
+
+Digital Electronics Hub utilizes **NextAuth.js** for secure authentication. Users can register and log in using:
+
+* **Email & Password**
+* **Google OAuth**
+
+---
+
+## 📌 Routes<a id="routes"></a>
+
+| Route              | Description                                 |
+| ------------------ | ------------------------------------------- |
+| `/`                | Home page with product listings             |
+| `/shop/[id]`       | Dynamic route to view product details       |
+| `/cart`            | Shopping cart page                          |
+| `/wishlist`        | Wishlist page                               |
+| `/checkout`        | Checkout form for placing orders            |
+| `/login`           | User login page                             |
+| `/register`        | User registration page                      |
+| `/dashboard/admin` | Admin dashboard for managing the platform   |
+| `/chat`            | Product assistant chatbot powered by Gemini |
+
+---
+
+## 🌍 Live Demo & Repository<a id="live-demo--repository"></a>
+
+* **Live Site:** [Digital Electronics Hub](https://digital-electronics.vercel.app/)
+* **GitHub Repository:** [GitHub Link](https://github.com/RaiyanJiyon/digital-electronics)
+
+---
+
+🛒 **Experience seamless shopping with Digital Electronics Hub – now powered by AI!** 🧠💬
