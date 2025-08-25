@@ -90,7 +90,7 @@ const HeaderNav = () => {
   const categories = [
     "All Categories",
     "Smartphones",
-    "Laptops",
+    "Laptop",
     "Accessories",
     "Audio",
     "Cameras",

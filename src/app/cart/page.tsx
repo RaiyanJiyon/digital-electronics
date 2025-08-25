@@ -194,7 +194,7 @@ export default function CartPage() {
                       />
                     </div>
                     <div className="sm:ml-4 flex-1">
-                      <Link href={`/products/${item.productId}`}>
+                      <Link href={`/shop/${item.productId}`}>
                         <h3 className="font-medium hover:text-red-600 transition-colors">
                           {item.productName}
                         </h3>

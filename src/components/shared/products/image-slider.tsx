@@ -224,13 +224,33 @@ const ImageSlider = ({
         <div className="border-b border-gray-300 my-3"></div>
 
         {/* Add to Cart Section */}
-        <div className="flex items-center gap-3">
-          <div className="flex items-center gap-2">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
+          {/* Add to Cart button first on mobile for prominence */}
+          <button
+            onClick={() =>
+              handleAddToCart(
+                product._id,
+                quantity,
+                product.productName,
+                product.images[0],
+                product.price
+              )
+            }
+            className="order-1 sm:order-2 w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-3 text-base bg-red-500 text-white font-semibold rounded-lg shadow-sm hover:bg-red-600 active:scale-[0.99] transition"
+            aria-label="Add to Cart"
+          >
+            <ShoppingCart className="w-5 h-5" />
+            Add to Cart
+          </button>
+
+          {/* Quantity selector */}
+          <div className="order-2 sm:order-1 flex items-center gap-2">
             <span className="font-medium">Qty</span>
-            <div className="flex border border-gray-300 rounded-md">
+            <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden">
               <button
                 onClick={decrementQuantity}
-                className="px-2 py-1 border-r border-gray-300 hover:bg-gray-100"
+                className="grid place-items-center h-10 w-10 border-r border-gray-300 hover:bg-gray-100 active:bg-gray-200"
+                aria-label="Decrease quantity"
               >
                 <Minus className="w-4 h-4" />
               </button>
@@ -238,69 +258,68 @@ const ImageSlider = ({
                 type="number"
                 value={quantity}
                 onChange={handleQuantityChange}
-                className="w-16 py-1 text-center focus:outline-none"
+                className="w-14 h-10 text-center focus:outline-none"
                 min="1"
+                aria-label="Quantity"
               />
               <button
                 onClick={incrementQuantity}
-                className="px-2 py-1 border-l border-gray-300 hover:bg-gray-100"
+                className="grid place-items-center h-10 w-10 border-l border-gray-300 hover:bg-gray-100 active:bg-gray-200"
+                aria-label="Increase quantity"
               >
                 <Plus className="w-4 h-4" />
               </button>
             </div>
           </div>
 
-          <button
-            onClick={() => handleAddToCart(product._id, quantity, product.productName, product.images[0], product.price)}
-            className="flex items-center gap-2 px-6 py-2 bg-red-500 text-white font-medium rounded-md hover:bg-red-600"
-          >
-            <ShoppingCart className="w-5 h-5" />
-            Add to Cart
-          </button>
-
+          {/* Wishlist and Compare */}
           <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <button
-                  onClick={() =>
-                    handleWishlist(
-                      product._id,
-                      product.productName,
-                      product.images[0]
-                    )
-                  }
-                  className={`p-2 border rounded-md transition ${
-                    session?.user
-                      ? "border-gray-300 hover:bg-red-500 hover:text-white"
-                      : "border-gray-200 text-gray-400 cursor-not-allowed"
-                  }`}
-                  disabled={!session?.user}
-                >
-                  <Heart className="w-5 h-5" />
-                </button>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>
-                  {session?.user
-                    ? "Add to wishlist"
-                    : "Login to add to wishlist"}
-                </p>
-              </TooltipContent>
-            </Tooltip>
+            <div className="order-3 flex items-center gap-2 sm:ml-1">
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <button
+                    onClick={() =>
+                      handleWishlist(
+                        product._id,
+                        product.productName,
+                        product.images[0]
+                      )
+                    }
+                    className={`h-10 w-10 grid place-items-center rounded-lg border transition ${
+                      session?.user
+                        ? "border-gray-300 hover:bg-red-500 hover:text-white"
+                        : "border-gray-200 text-gray-400 cursor-not-allowed"
+                    }`}
+                    disabled={!session?.user}
+                    aria-label="Add to wishlist"
+                  >
+                    <Heart className="w-5 h-5" />
+                  </button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>
+                    {session?.user
+                      ? "Add to wishlist"
+                      : "Login to add to wishlist"}
+                  </p>
+                </TooltipContent>
+              </Tooltip>
 
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <button
-                  onClick={() => onAddToCompare?.(product)}
-                  className="p-2 border border-gray-300 rounded-md hover:bg-red-500 hover:text-white transition"
-                >
-                  <IoIosGitCompare className="w-5 h-5" />
-                </button>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>Add to compare</p>
-              </TooltipContent>
-            </Tooltip>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <button
+                    onClick={() => onAddToCompare?.(product)}
+                    className="h-10 w-10 grid place-items-center rounded-lg border border-gray-300 hover:bg-red-500 hover:text-white transition"
+                    aria-label="Add to compare"
+                  >
+                    <IoIosGitCompare className="w-5 h-5" />
+                  </button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Add to compare</p>
+                </TooltipContent>
+              </Tooltip>
+            </div>
           </TooltipProvider>
         </div>
       </div>

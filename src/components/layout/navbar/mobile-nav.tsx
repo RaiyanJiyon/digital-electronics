@@ -42,9 +42,9 @@ const MobileNav = () => {
         </div>
       </Link>
       <div>
-        <button>
+        <Link href="/cart" aria-label="Open cart" className="inline-flex">
           <ShoppingBag className="w-10 h-10 text-white" />
-        </button>
+        </Link>
       </div>
     </div>
   );
