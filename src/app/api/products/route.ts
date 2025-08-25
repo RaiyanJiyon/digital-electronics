@@ -62,6 +62,12 @@ interface ProductQueryFilters {
   };
   availability?: string;
   manufacturer?: string;
+  category?: string;
+  $or?: Array<{
+    productName?: { $regex: string; $options: string };
+    description?: { $regex: string; $options: string };
+    category?: { $regex: string; $options: string };
+  }>;
 }
 
 export async function GET(request: Request) {
@@ -75,6 +81,8 @@ export async function GET(request: Request) {
     const rating = searchParams.get("rating")
     const availability = searchParams.get("availability")
     const manufacturer = searchParams.get("manufacturer")
+    const category = searchParams.get("category")
+    const search = searchParams.get("search")
     const sortBy = searchParams.get("sortBy") || "newest"
 
     // Calculate skip value for pagination
@@ -102,6 +110,18 @@ export async function GET(request: Request) {
 
     if (manufacturer) {
       query.manufacturer = manufacturer
+    }
+
+    if (category && category !== "All Categories") {
+      query.category = category
+    }
+
+    if (search) {
+      query.$or = [
+        { productName: { $regex: search, $options: "i" } },
+        { description: { $regex: search, $options: "i" } },
+        { category: { $regex: search, $options: "i" } }
+      ]
     }
 
     // Determine sort order

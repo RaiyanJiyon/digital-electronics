@@ -44,6 +44,8 @@ const ShopPage = () => {
   const rating = searchParams.get("rating") || ""
   const availability = searchParams.get("availability") || ""
   const brand = searchParams.get("brand") || ""
+  const category = searchParams.get("category") || ""
+  const search = searchParams.get("search") || ""
   const sortBy = searchParams.get("sortBy") || "newest"
   const page = Number(searchParams.get("page") || "1")
 
@@ -77,7 +79,7 @@ const ShopPage = () => {
       const queryString = createQueryString(newFilters)
       router.push(`${pathname}?${queryString}`)
       setIsFilterApplied(
-        !!(filters.minPrice || filters.maxPrice || filters.rating || filters.availability || filters.brand),
+        !!(filters.minPrice || filters.maxPrice || filters.rating || filters.availability || filters.brand || filters.category || filters.search),
       )
     },
     [createQueryString, pathname, router],
@@ -128,6 +130,8 @@ const ShopPage = () => {
         if (rating) url += `&rating=${rating}`
         if (availability) url += `&availability=${availability}`
         if (brand) url += `&manufacturer=${brand}`
+        if (category) url += `&category=${category}`
+        if (search) url += `&search=${search}`
         if (sortBy) url += `&sortBy=${sortBy}`
 
         const response = await fetch(url)
@@ -148,7 +152,7 @@ const ShopPage = () => {
     }
 
     fetchProducts()
-  }, [page, minPrice, maxPrice, rating, availability, brand, sortBy])
+  }, [page, minPrice, maxPrice, rating, availability, brand, category, search, sortBy])
 
   // Handle sort change
   const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {

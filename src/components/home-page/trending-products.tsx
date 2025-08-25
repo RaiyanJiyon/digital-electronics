@@ -182,11 +182,15 @@ export default function TrendingProducts() {
       toast.success("Product added to wishlist");
 
       console.log("Successfully added to wishlist!");
+      // Notify listeners (e.g., header) that wishlist has changed
+      if (typeof window !== "undefined") {
+        window.dispatchEvent(new Event("wishlistUpdated"));
+      }
       // Optional: Show toast notification
     } catch (error) {
       console.error("Wishlist error:", error);
       // Show error message
-      toast.success("Product failed to add in wishlist");
+      toast.error("Failed to add product to wishlist");
     }
   };
 
@@ -226,6 +230,10 @@ export default function TrendingProducts() {
 
       toast.success(`${productName} added to cart`);
       console.log("Cart item:", data);
+      // Notify listeners (e.g., header) that cart has changed
+      if (typeof window !== "undefined") {
+        window.dispatchEvent(new Event("cartUpdated"));
+      }
     } catch (error) {
       console.error("Add to cart error:", error);
       toast.error(

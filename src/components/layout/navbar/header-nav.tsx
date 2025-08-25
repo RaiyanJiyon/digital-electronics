@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ChevronDown } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -20,6 +21,71 @@ import { useSession, signOut } from "next-auth/react";
 const HeaderNav = () => {
   const [selectedCategory, setSelectedCategory] = useState("All Categories");
   const { data: session, status } = useSession();
+  const [cartCount, setCartCount] = useState<number>(0);
+  const [wishlistCount, setWishlistCount] = useState<number>(0);
+  const [searchQuery, setSearchQuery] = useState("");
+  const router = useRouter();
+
+  // Fetch counts for cart and wishlist
+  useEffect(() => {
+    const userId = session?.user?.id;
+    if (!userId) {
+      setCartCount(0);
+      setWishlistCount(0);
+      return;
+    }
+
+    const fetchCounts = async () => {
+      try {
+        // Cart count
+        const cartRes = await fetch(`/api/carts/${userId}`);
+        if (cartRes.ok) {
+          const cart = await cartRes.json();
+          setCartCount(Array.isArray(cart) ? cart.length : 0);
+        } else if (cartRes.status === 404) {
+          setCartCount(0);
+        }
+      } catch {
+        // ignore network errors for badge UI
+      }
+
+      try {
+        // Wishlist count
+        const wishRes = await fetch(`/api/wishlist/${userId}`);
+        if (wishRes.ok) {
+          const wish = await wishRes.json();
+          setWishlistCount(Array.isArray(wish) ? wish.length : 0);
+        } else if (wishRes.status === 404) {
+          setWishlistCount(0);
+        }
+      } catch {
+        // ignore network errors for badge UI
+      }
+    };
+
+    fetchCounts();
+
+    // Listen for updates triggered elsewhere in the app
+    const onCartUpdated = () => fetchCounts();
+    const onWishlistUpdated = () => fetchCounts();
+    window.addEventListener("cartUpdated", onCartUpdated as EventListener);
+    window.addEventListener("wishlistUpdated", onWishlistUpdated as EventListener);
+
+    // Refresh on tab focus as well
+    window.addEventListener("focus", fetchCounts);
+
+    return () => {
+      window.removeEventListener(
+        "cartUpdated",
+        onCartUpdated as EventListener
+      );
+      window.removeEventListener(
+        "wishlistUpdated",
+        onWishlistUpdated as EventListener
+      );
+      window.removeEventListener("focus", fetchCounts);
+    };
+  }, [session?.user?.id]);
 
   const categories = [
     "All Categories",
@@ -29,6 +95,27 @@ const HeaderNav = () => {
     "Audio",
     "Cameras",
   ];
+
+  // Handle search functionality
+  const handleSearch = () => {
+    if (!searchQuery.trim()) return;
+    
+    const searchParams = new URLSearchParams();
+    searchParams.set("search", searchQuery.trim());
+    
+    if (selectedCategory !== "All Categories") {
+      searchParams.set("category", selectedCategory);
+    }
+    
+    router.push(`/shop?${searchParams.toString()}`);
+  };
+
+  // Handle Enter key press in search input
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") {
+      handleSearch();
+    }
+  };
 
   return (
     <header className="bg-[#1a1a1a] py-3 px-4">
@@ -51,6 +138,9 @@ const HeaderNav = () => {
           <Input
             type="text"
             placeholder="Enter keywords to search..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            onKeyPress={handleKeyPress}
             className="rounded-r-none border-r-0 focus-visible:ring-0 focus-visible:ring-offset-0 border-transparent focus:border-none"
           />
           <DropdownMenu>
@@ -73,7 +163,10 @@ const HeaderNav = () => {
               ))}
             </DropdownMenuContent>
           </DropdownMenu>
-          <Button className="bg-red-500 hover:bg-red-600 mr-1">
+          <Button 
+            className="bg-red-500 hover:bg-red-600 mr-1"
+            onClick={handleSearch}
+          >
             <IoSearch className="h-4 w-4" />
             <span className="ml-2 hidden sm:inline">Search</span>
           </Button>
@@ -140,7 +233,7 @@ const HeaderNav = () => {
             <div className="relative mr-1">
               <FaRegHeart className="h-5 w-5" />
               <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                0
+                {wishlistCount}
               </span>
             </div>
             <div className="hidden xl:block">
@@ -156,7 +249,7 @@ const HeaderNav = () => {
             <div className="relative mr-1">
               <FiShoppingCart className="h-5 w-5" />
               <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                0
+                {cartCount}
               </span>
             </div>
             <div className="hidden sm:block">

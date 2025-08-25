@@ -73,6 +73,10 @@ export default function WishlistPage() {
         prev.filter((item) => item._id !== wishlistItemId)
       );
       toast.success("Item removed from wishlist");
+      // Notify header to refresh wishlist count
+      if (typeof window !== "undefined") {
+        window.dispatchEvent(new Event("wishlistUpdated"));
+      }
     } catch (err) {
       console.error("Error removing from wishlist:", err);
       toast.error("Failed to remove item from wishlist");
@@ -90,7 +94,7 @@ export default function WishlistPage() {
     setAddingToCart((prev) => ({ ...prev, [productId]: true }));
 
     try {
-      const response = await fetch("/api/cart", {
+      const response = await fetch("/api/carts", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -107,6 +111,10 @@ export default function WishlistPage() {
       }
 
       toast.success(`${productName} added to cart`);
+      // Notify header to refresh cart count
+      if (typeof window !== "undefined") {
+        window.dispatchEvent(new Event("cartUpdated"));
+      }
     } catch (err) {
       console.error("Error adding to cart:", err);
       toast.error("Failed to add item to cart");
