@@ -17,7 +17,7 @@ const MainNavigation = () => {
   // ]
 
   const navLinks = [
-    { name: "Feature", href: "/feature" },
+    // { name: "Feature", href: "/feature" },
     { name: "Shop", href: "/shop" },
     { name: "Smartphones", href: "/smartphones" },
     { name: "Blog", href: "/blog" },

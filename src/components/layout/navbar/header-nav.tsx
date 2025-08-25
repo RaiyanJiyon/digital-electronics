@@ -93,7 +93,9 @@ const HeaderNav = () => {
     "Laptop",
     "Accessories",
     "Audio",
-    "Cameras",
+    "Digital Cameras",
+    "Computers",
+    "Smart Televisions"
   ];
 
   // Handle search functionality
