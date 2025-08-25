@@ -204,7 +204,7 @@ Your task:
                     <ReactMarkdown>{msg.content}</ReactMarkdown>
                   </div>
                   <div className="text-right mt-1">
-                    <span className="text-xs opacity-75">
+                    <span className="text-xs opacity-75" suppressHydrationWarning>
                       {msg.timestamp.toLocaleTimeString([], {
                         hour: "2-digit",
                         minute: "2-digit",
