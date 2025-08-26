@@ -5,6 +5,8 @@ import Footer from "@/components/layout/footer/footer";
 import { Toaster } from "@/components/ui/sonner";
 import Navbar from "@/components/layout/navbar/navbar";
 import AuthProvider from "@/services/AuthProvider";
+import { CartProvider } from "@/contexts/cart-context";
+import { WishlistProvider } from "@/contexts/wishlist-context";
 // Compare is now a dedicated page; no global modal/provider needed
 
 const geistSans = Geist({
@@ -34,10 +36,14 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
           <AuthProvider>
-            <Navbar />
-            {children}
-            <Footer />
-            <Toaster />
+            <CartProvider>
+              <WishlistProvider>
+                <Navbar />
+                {children}
+                <Footer />
+                <Toaster />
+              </WishlistProvider>
+            </CartProvider>
           </AuthProvider>
       </body>
     </html>
