@@ -3,6 +3,7 @@
 import { Blog } from "@/app/types/types";
 import Image from "next/image";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
 // Mock list of related articles
 const blogPosts: Blog[] = [
@@ -57,23 +58,32 @@ const blogPosts: Blog[] = [
 const BlogDetailsPage = async ({
   params,
 }: {
-  params: Promise<{ id: string }>;
+  params: { id: string };
 }) => {
-  const { id } = await params;
+  const { id } = params;
 
-  // Simulate fetching data from an API
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/blogs/${id}`,
-    {
-      cache: "no-store",
+  // Try internal API first
+  let blog: Blog | null = null;
+  try {
+    const base = process.env.NEXT_PUBLIC_BASE_URL ?? ""; // allow empty for relative
+    const res = await fetch(`${base}/api/blogs/${id}`, { cache: "no-store" });
+    if (res.ok) {
+      blog = await res.json();
     }
-  );
-
-  if (!res.ok) {
-    throw new Error("Failed to load blog post");
+  } catch (e) {
+    console.error(e);
+    // ignore and fallback
   }
 
-  const blog: Blog = await res.json();
+  // Fallback to local mock when API is unavailable or returns 404
+  if (!blog) {
+    const fallback = blogPosts.find((b) => b._id === id) ?? null;
+    if (!fallback) {
+      // Proper 404 page
+      return notFound();
+    }
+    blog = fallback;
+  }
 
   return (
     <div className="w-11/12 max-w-[1920px] mx-auto p-6">

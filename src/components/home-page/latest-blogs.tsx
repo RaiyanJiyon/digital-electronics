@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { Calendar, User } from "lucide-react";
 
 // Define the Blog interface
@@ -70,7 +69,6 @@ const LatestBlogs: React.FC = () => {
           {blogs.map((blog) => (
             <div key={blog._id} className="w-full p-4 flex-shrink-0">
               {/* Blog Image */}
-              <Link href={`/blog/${blog._id}`}>
                 <div className="relative w-full h-48 mb-3 overflow-hidden rounded-md">
                   <Image
                     src={blog.image || "/placeholder.svg?height=192&width=384"} // Fallback image if blog.image is missing
@@ -79,14 +77,11 @@ const LatestBlogs: React.FC = () => {
                     className="object-cover hover:scale-105 transition-transform duration-300"
                   />
                 </div>
-              </Link>
 
               {/* Blog Title */}
-              <Link href={`/blog/${blog._id}`}>
                 <h3 className="font-semibold text-gray-800 hover:text-red-500 transition-colors line-clamp-2 mb-2">
                   {blog.title}
                 </h3>
-              </Link>
 
               {/* Blog Meta */}
               <div className="flex items-center text-sm text-gray-500 mb-2 space-x-4">

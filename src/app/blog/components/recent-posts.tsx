@@ -16,7 +16,7 @@ const RecentPosts = ({ blogs }: BlogsProps) => {
           {blogs.map((blog) => (
             <li key={blog._id} className="list-disc">
               <Link
-                href={`${process.env.BASE_URL}/blog/api/${blog._id}`}
+                href={`/blog/${blog._id}`}
                 className="block py-3 text-sm text-gray-800 hover:text-red-500 transition-colors"
               >
                 {blog.title}

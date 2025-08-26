@@ -1,5 +1,4 @@
 import type React from "react"
-import Link from "next/link"
 
 interface Category {
   name: string
@@ -26,12 +25,11 @@ const CategoriesList: React.FC<CategoriesListProps> = ({
         <ul className="divide-y divide-gray-200 border border-gray-200 px-4">
           {categories.map(category => (
             <li key={category.slug}>
-              <Link
-                href={`/category/${category.slug}`}
+              <div
                 className="block py-3 text-sm text-gray-800 hover:text-red-500 transition-colors"
               >
                 {category.name}
-              </Link>
+              </div>
             </li>
           ))}
         </ul>

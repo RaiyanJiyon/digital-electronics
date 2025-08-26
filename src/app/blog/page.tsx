@@ -1,8 +1,7 @@
 export const dynamic = "force-dynamic";
 
 import PageCover from "@/components/shared/page-cover";
-import BlogCard from "@/app/blog/components/blog-card";
-import SearchWidget from "@/app/blog/components/search-widget";
+import BlogLayoutClient from "@/app/blog/components/blog-layout-client";
 import CategoriesList from "@/app/blog/components/categories-list";
 import ArchiveSection from "@/app/blog/components/archive-section";
 import RecentPosts from "@/app/blog/components/recent-posts";
@@ -31,21 +30,11 @@ const BlogPage = async () => {
       <div className="mt-12">
         <PageCover prev="Smart Phones" next="Blogs" />
       </div>
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 container px-4 mx-auto my-14">
-        {/* Blog Cards Section */}
-        <div className="grid col-span-1 lg:col-span-3 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-          {blogs.map((blog) => (
-            <BlogCard key={blog._id} blog={blog} />
-          ))}
-        </div>
-        {/* Sidebar Section */}
-        <div className="space-y-6">
-          <SearchWidget />
-          <CategoriesList />
-          <RecentPosts blogs={blogs} />
-          <ArchiveSection />
-        </div>
-      </div>
+      <BlogLayoutClient blogs={blogs}>
+        <CategoriesList />
+        <RecentPosts blogs={blogs} />
+        <ArchiveSection />
+      </BlogLayoutClient>
     </div>
   );
 };
