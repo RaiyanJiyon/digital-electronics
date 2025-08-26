@@ -58,9 +58,9 @@ const blogPosts: Blog[] = [
 const BlogDetailsPage = async ({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) => {
-  const { id } = params;
+  const { id } = await params;
 
   // Try internal API first
   let blog: Blog | null = null;

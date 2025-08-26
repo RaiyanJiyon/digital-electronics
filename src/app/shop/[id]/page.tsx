@@ -9,6 +9,7 @@ import { use, useEffect, useState } from "react";
 import { Product } from "@/app/types/types";
 import Loading from "@/app/loading";
 import ProductCard from "@/components/shared/product-card";
+import { useRouter } from "next/navigation";
 
 const relatedProducts: Product[] = [
   {
@@ -109,9 +110,14 @@ const ProductDetailsPage = ({
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const router = useRouter();
 
   const resolvePath = use(params);
   const { id } = resolvePath;
+
+  const handleAddToCompare = (product: Product) => {
+    router.push(`/compare?left=${product._id}`);
+  };
 
   useEffect(() => {
     const fetchProductDetails = async () => {
@@ -207,7 +213,7 @@ const ProductDetailsPage = ({
 
           {/* Product Details Area */}
           <div className="lg:w-3/4">
-            <ImageSlider product={product} />
+            <ImageSlider product={product} onAddToCompare={handleAddToCompare} />
             <TabSection product={product} />
           </div>
         </div>

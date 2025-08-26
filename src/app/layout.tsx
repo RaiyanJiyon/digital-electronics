@@ -5,6 +5,7 @@ import Footer from "@/components/layout/footer/footer";
 import { Toaster } from "@/components/ui/sonner";
 import Navbar from "@/components/layout/navbar/navbar";
 import AuthProvider from "@/services/AuthProvider";
+// Compare is now a dedicated page; no global modal/provider needed
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
