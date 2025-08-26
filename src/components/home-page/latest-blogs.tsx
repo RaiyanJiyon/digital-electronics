@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+
 import Image from "next/image";
 import { Calendar, User } from "lucide-react";
 
@@ -47,14 +48,28 @@ const blogs: Blog[] = [
 
 const LatestBlogs: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
 
   // Function to navigate to a specific slide
   const goToSlide = (index: number) => {
     setActiveIndex(index);
   };
 
+  // Autoplay every 3s, pause on hover
+  useEffect(() => {
+    if (paused) return;
+    const id = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % blogs.length);
+    }, 3000);
+    return () => clearInterval(id);
+  }, [paused]);
+
   return (
-    <div className="border border-gray-200 rounded-lg overflow-hidden shadow-sm">
+    <div
+      className="border border-gray-200 rounded-lg overflow-hidden shadow-sm"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
       {/* Header */}
       <div className="bg-red-500 text-white py-3 px-4 font-bold">LATEST BLOGS</div>
 

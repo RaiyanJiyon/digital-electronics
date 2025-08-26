@@ -1,43 +1,52 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
-import { Navigation } from "swiper/modules";
+import { Navigation, Autoplay } from "swiper/modules";
 import Image from "next/image";
 
 const categories = [
   {
     name: "Laptop",
+    slug: "laptop",
     image: "https://i.ibb.co/1fbwFk2t/laptop-category.png",
   },
   {
     name: "Digital Cameras",
+    slug: "digital-cameras",
     image: "https://i.ibb.co/JN4MKGq/digital-cameras-category.png",
   },
   {
     name: "Smartphones",
+    slug: "smartphones",
     image: "https://i.ibb.co/Zpbbwpmb/smartphones-category.png",
   },
   {
     name: "Smart Televisions",
+    slug: "smart-televisions",
     image: "https://i.ibb.co/v7hmbwY/smart-televisions-category.png",
   },
   {
     name: "Audio Theaters",
+    slug: "audio-theaters",
     image: "https://i.ibb.co/HL1t6WXG/audio-theaters-category.png",
   },
   {
     name: "Smart Watches",
+    slug: "smart-watches",
     image: "https://i.ibb.co/B2f8pys2/smart-watches-category.png",
   },
   {
     name: "All accessories",
+    slug: "all-accessories",
     image: "https://i.ibb.co/k61Hz25m/all-accessories-category.png",
   },
   {
     name: "Men's Watches",
+    slug: "mens-watches",
     image: "https://i.ibb.co/Vc8mjHvG/mens-watches-category.png",
   },
 ];
@@ -51,7 +60,9 @@ const PopularCategories = () => {
       </div>
       <Swiper
         navigation={true}
-        modules={[Navigation]}
+        loop={true}
+        autoplay={{ delay: 2500, disableOnInteraction: false, pauseOnMouseEnter: true }}
+        modules={[Navigation, Autoplay]}
         className="mySwiper"
         breakpoints={{
           // When window width is >= 320px
@@ -83,17 +94,19 @@ const PopularCategories = () => {
       >
         {categories.map((category, index) => (
           <SwiperSlide key={index}>
-            <div className="bg-[#f5f5f5] flex flex-col justify-center items-center p-4 rounded-sm">
-              <Image
-                src={`${category.image}`}
-                alt={`${category.name} image`}
-                width={145}
-                height={135}
-                unoptimized
-              />
-              <h2 className="text-sm mt-2">{category.name}</h2>
-              <p className="text-xs text-gray-500">11 Devices</p>
-            </div>
+            <Link href={`/shop?category=${encodeURIComponent(category.slug)}&page=1`} className="block">
+              <div className="bg-[#f5f5f5] flex flex-col justify-center items-center p-4 rounded-sm hover:shadow-md transition-shadow">
+                <Image
+                  src={`${category.image}`}
+                  alt={`${category.name} image`}
+                  width={145}
+                  height={135}
+                  unoptimized
+                />
+                <h2 className="text-sm mt-2">{category.name}</h2>
+                <p className="text-xs text-gray-500">11 Devices</p>
+              </div>
+            </Link>
           </SwiperSlide>
         ))}
       </Swiper>

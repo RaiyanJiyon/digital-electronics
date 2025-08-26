@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Quote } from "lucide-react"; // Importing the Quote icon from lucide-react
 
@@ -42,16 +42,30 @@ const testimonials: Testimonial[] = [
 
 const TestimonialSlider = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
 
   // Function to change the active testimonial
   const goToSlide = (index: number) => {
     setActiveIndex(index);
   };
 
+  // Autoplay: advance every 3s, pause on hover
+  useEffect(() => {
+    if (paused) return;
+    const id = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % testimonials.length);
+    }, 3000);
+    return () => clearInterval(id);
+  }, [paused]);
+
   const activeTestimonial = testimonials[activeIndex]; // Get the currently active testimonial
 
   return (
-    <div className="border border-gray-200 rounded-lg overflow-hidden shadow-sm">
+    <div
+      className="border border-gray-200 rounded-lg overflow-hidden shadow-sm"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
       {/* Header */}
       <div className="bg-red-500 text-white py-3 px-4 font-bold text-center">
         TESTIMONIALS

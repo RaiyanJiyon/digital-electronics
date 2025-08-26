@@ -113,7 +113,16 @@ export async function GET(request: Request) {
     }
 
     if (category && category !== "All Categories") {
-      query.category = category
+      // Support slug-like values (e.g., "tv-home-entertainment") and case-insensitive matches
+      const decoded = decodeURIComponent(category)
+      const normalized = decoded.replace(/-/g, " ").trim()
+      // Build a loose pattern that allows any non-alphanumeric characters between letters
+      const lettersOnly = normalized.replace(/[^a-zA-Z0-9]/g, "")
+      const charPattern = lettersOnly
+        .split("")
+        .map((ch) => ch.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"))
+        .join("[^a-zA-Z0-9]*")
+      query.category = { $regex: charPattern, $options: "i" } as unknown as string
     }
 
     if (search) {
