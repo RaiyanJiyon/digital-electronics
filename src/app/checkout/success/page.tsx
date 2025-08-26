@@ -36,9 +36,9 @@ export default function CheckoutSuccessPage() {
             </div>
 
             <div className="flex flex-col gap-3 mt-6">
-              <Link href="/orders">
+              <Link href="/">
                 <Button variant="outline" className="w-full">
-                  View My Orders
+                  Back to Home
                 </Button>
               </Link>
               <Link href="/shop">
