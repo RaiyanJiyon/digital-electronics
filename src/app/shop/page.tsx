@@ -67,6 +67,50 @@ const ShopPage = () => {
     [searchParams],
   )
 
+  // Sidebar content reused for mobile drawer and desktop sticky panel
+  const SidebarContent = () => (
+    <>
+      <div className="flex justify-between items-center mb-4">
+        <h2 className="text-lg font-semibold">Filters</h2>
+        {isFilterApplied && (
+          <Button variant="ghost" size="sm" onClick={clearFilters} className="text-red-600 hover:text-red-700 p-0 h-auto">
+            <X className="h-4 w-4 mr-1" /> Clear all
+          </Button>
+        )}
+      </div>
+
+      <div className="space-y-4">
+        {/* Price Range Filter */}
+        <details className="group border border-gray-200 rounded-lg p-3" open>
+          <summary className="flex items-center justify-between cursor-pointer list-none">
+            <span className="font-medium">Price Range</span>
+            <ChevronDown className="h-4 w-4 text-gray-500 transition-transform duration-200 group-open:rotate-180" />
+          </summary>
+          <div className="mt-3">
+            <PriceRangeFilter
+              minPrice={minPrice}
+              maxPrice={maxPrice}
+              onApply={(min, max) => applyFilters({ minPrice: min, maxPrice: max, page: "1" })}
+            />
+          </div>
+        </details>
+
+        <Separator />
+
+        {/* Brand Filter */}
+        <details className="group border border-gray-200 rounded-lg p-3" open>
+          <summary className="flex items-center justify-between cursor-pointer list-none">
+            <span className="font-medium">Brand</span>
+            <ChevronDown className="h-4 w-4 text-gray-500 transition-transform duration-200 group-open:rotate-180" />
+          </summary>
+          <div className="mt-3">
+            <BrandFilter brands={availableBrands} selectedBrand={brand} onChange={(value) => applyFilters({ brand: value, page: "1" })} />
+          </div>
+        </details>
+      </div>
+    </>
+  )
+
   // Apply filters
   const applyFilters = useCallback(
     (filters: Record<string, string>) => {
@@ -248,46 +292,26 @@ const ShopPage = () => {
           </div>
         </div>
 
+        {/* Mobile Filters Drawer */}
+        {showFilters && (
+          <div className="lg:hidden fixed inset-0 z-40">
+            <div className="absolute inset-0 bg-black/40" onClick={() => setShowFilters(false)} />
+            <div className="absolute left-0 top-0 h-full w-11/12 max-w-sm bg-white p-4 border-r shadow-xl overflow-auto">
+              <div className="flex items-center justify-between mb-2">
+                <h3 className="text-base font-semibold">Filters</h3>
+                <Button variant="ghost" size="icon" aria-label="Close filters" onClick={() => setShowFilters(false)}>
+                  <X className="h-5 w-5" />
+                </Button>
+              </div>
+              <SidebarContent />
+            </div>
+          </div>
+        )}
+
         <div className="grid sm:grid-cols-4 gap-6 my-10">
           {/* Left Sidebar */}
-          <div className={`${showFilters ? "block" : "hidden"} lg:block bg-white p-4 rounded-lg border shadow-sm`}>
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-lg font-semibold">Filters</h2>
-              {isFilterApplied && (
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={clearFilters}
-                  className="text-red-600 hover:text-red-700 p-0 h-auto"
-                >
-                  <X className="h-4 w-4 mr-1" /> Clear all
-                </Button>
-              )}
-            </div>
-
-            <div className="space-y-6">
-              {/* Price Range Filter */}
-              <div>
-                <h3 className="font-medium mb-3">Price Range</h3>
-                <PriceRangeFilter
-                  minPrice={minPrice}
-                  maxPrice={maxPrice}
-                  onApply={(min, max) => applyFilters({ minPrice: min, maxPrice: max, page: "1" })}
-                />
-              </div>
-
-              <Separator />
-
-              {/* Brand Filter */}
-              <div>
-                <h3 className="font-medium mb-3">Brand</h3>
-                <BrandFilter
-                  brands={availableBrands}
-                  selectedBrand={brand}
-                  onChange={(value) => applyFilters({ brand: value, page: "1" })}
-                />
-              </div>
-            </div>
+          <div className="hidden lg:block bg-white/80 backdrop-blur supports-[-webkit-backdrop-filter]:bg-white/80 p-4 rounded-xl border shadow-sm lg:sticky lg:top-28 self-start max-h-[80vh] overflow-auto">
+            <SidebarContent />
           </div>
 
           {/* Products Grid */}
