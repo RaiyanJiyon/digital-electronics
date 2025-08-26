@@ -68,27 +68,27 @@ const Footer = () => {
       <div className="py-4">
         <div className="w-11/12 mx-auto px-4">
           <div className="flex flex-wrap justify-center gap-4 text-sm mb-6">
-            <Link href="#" className="text-gray-400 hover:text-white">
+            <Link href="/about" className="text-gray-400 hover:text-white">
               ABOUT US
             </Link>
             <span className="text-gray-600">|</span>
-            <Link href="#" className="text-gray-400 hover:text-white">
+            <Link href="/services" className="text-gray-400 hover:text-white">
               CUSTOMER SERVICE
             </Link>
             <span className="text-gray-600">|</span>
-            <Link href="#" className="text-gray-400 hover:text-white">
+            <Link href="/policy" className="text-gray-400 hover:text-white">
               PRIVACY POLICY
             </Link>
             <span className="text-gray-600">|</span>
-            <Link href="#" className="text-gray-400 hover:text-white">
+            <Link href="/sitemap" className="text-gray-400 hover:text-white">
               SITE MAP
             </Link>
             <span className="text-gray-600">|</span>
-            <Link href="#" className="text-gray-400 hover:text-white">
+            <Link href="/orders" className="text-gray-400 hover:text-white">
               ORDERS AND RETURNS
             </Link>
             <span className="text-gray-600">|</span>
-            <Link href="#" className="text-gray-400 hover:text-white">
+            <Link href="/contact" className="text-gray-400 hover:text-white">
               CONTACT US
             </Link>
           </div>
