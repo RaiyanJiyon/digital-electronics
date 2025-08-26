@@ -21,6 +21,7 @@ const MainNavigation = () => {
     // { name: "Feature", href: "/feature" },
     { name: "Shop", href: "/shop" },
     { name: "Smartphones", href: "/smartphones" },
+    { name: "Compare Products", href: "/compare" },
     { name: "Blog", href: "/blog" },
     { name: "About Us", href: "/about" },
     { name: "Contact Us", href: "/contact" },

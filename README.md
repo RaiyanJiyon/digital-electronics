@@ -35,9 +35,36 @@
 * **Search Functionality**: Search products by name, category, or brand.
 * **Advanced Filters**: Filter products based on price range, ratings, availability, and brand.
 
-![Search and Filter Options](https://i.ibb.co/VHCm6G6/search-filter.png)
+![Search](https://i.ibb.co.com/7tjjNdTs/search.png)
+
+
+
+![Filter Options](https://i.ibb.co.com/twKPscsL/filter.png)
 
 ---
+
+
+### 🔁 Product Comparison
+
+* **Compare Products**: Users can select a product from any product detail page and click the **"Compare"** button to start comparing it with another product.
+* **Side-by-Side View**: The comparison page displays two products side by side with their images, prices, and key specifications.
+* **Detailed Specifications Table**: A comprehensive table compares attributes such as brand, category, availability, color, size, rating, stock quantity, type, and price.
+* **Dynamic Selection**: Users can search and select a second product to compare, with options to remove either product or clear the entire comparison.
+
+![Product Comparison - Specifications Table](https://i.ibb.co.com/rGMQYZmL/compare-1.png)
+
+![Product Comparison - Specifications Table](https://i.ibb.co.com/JwbPL9RY/compare-2.png)
+
+![Product Comparison - Specifications Table](https://i.ibb.co.com/WvjQsbBy/compare-3.png)
+
+---
+
+> 💡 **User Flow**:  
+> 1. On a product detail page → Click **"Compare"**  
+> 2. Redirected to the **Compare** page with the first product pre-selected  
+> 3. Search and select a second product to compare  
+> 4. View side-by-side visuals and detailed specs in a clean, readable format  
+
 
 ### 🛒 Shopping Cart
 
