@@ -15,6 +15,7 @@ import { useSession } from "next-auth/react";
 import { toast } from "sonner";
 import { IoIosGitCompare } from "react-icons/io";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 // Hardcoded products
 const products: Product[] = [
@@ -156,6 +157,7 @@ export default function TrendingProducts() {
   const { data: session } = useSession();
   const userId = session?.user.id;
   const quantity = 1;
+  const router = useRouter();
 
   const handleWishlist = async (
     productId: string,
@@ -192,6 +194,10 @@ export default function TrendingProducts() {
       // Show error message
       toast.error("Failed to add product to wishlist");
     }
+  };
+
+  const handleCompare = (product: Product) => {
+    router.push(`/compare?left=${encodeURIComponent(product._id)}`);
   };
 
   const handleAddToCart = async (
@@ -335,8 +341,9 @@ export default function TrendingProducts() {
               <Tooltip>
                 <TooltipTrigger asChild>
                   <button
-                    // onClick={() => onAddToCompare?.(product)}
+                    onClick={() => handleCompare(product)}
                     className="p-2 border border-gray-300 rounded-md hover:bg-red-500 hover:text-white transition"
+                    aria-label="Add to compare and open compare page"
                   >
                     <IoIosGitCompare className="w-5 h-5" />
                   </button>
