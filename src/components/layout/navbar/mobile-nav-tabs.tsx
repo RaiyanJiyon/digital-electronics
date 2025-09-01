@@ -23,13 +23,12 @@ const MobileNavTabs: React.FC<MobileNavTabsProps> = ({ onClose }) => {
   };
 
   const menuItems = [
-    { name: "HOME", href: "/" },
-    { name: "FEATURES", href: "/features" },
-    { name: "SHOP", href: "/shop" },
-    { name: "SMARTPHONES", href: "/smartphones" },
-    { name: "BLOG", href: "/blog" },
-    { name: "ABOUT US", href: "/about" },
-    { name: "CONTACT US", href: "/contact" },
+    { name: "Shop", href: "/shop" },
+    { name: "Smartphones", href: "/smartphones" },
+    { name: "Compare Products", href: "/compare" },
+    { name: "Blog", href: "/blog" },
+    { name: "About Us", href: "/about" },
+    { name: "Contact Us", href: "/contact" },
   ];
 
   const accountItems = [
