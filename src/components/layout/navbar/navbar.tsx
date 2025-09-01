@@ -4,10 +4,18 @@ import HeaderNav from "./header-nav";
 import SearchBar from "./search-bar";
 import MainNav from "./main-nav";
 import MobileNav from "./mobile-nav";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 const Navbar = () => {
   const pathname = usePathname();
+  const router = useRouter();
+
+  const handleMobileSearch = (query: string) => {
+    const q = query?.trim();
+    if (!q) return;
+    const params = new URLSearchParams({ search: q });
+    router.push(`/shop?${params.toString()}`);
+  };
 
     // Hide Navbar for dashboard pages
     if (pathname.startsWith("/dashboard") || pathname.startsWith("/admin") || pathname.startsWith("/buyer")) {
@@ -23,7 +31,7 @@ const Navbar = () => {
       </div>
       <div>
         <div className="lg:hidden">
-          <SearchBar />
+          <SearchBar onSearch={handleMobileSearch} />
         </div>
         <div className="hidden lg:block">
           <HeaderNav />

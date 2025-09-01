@@ -158,11 +158,11 @@ export default function AdminDashboard() {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
             <SidebarTrigger className="-ml-1" />
-            <h2 className="text-3xl font-bold tracking-tight">Dashboard</h2>
+            <h2 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-[#7a1f73] to-[#9c27b0] bg-clip-text text-transparent">Dashboard</h2>
             </div>
             <div className="hidden sm:flex items-center gap-2">
-              <Button variant="outline">Download Reports</Button>
-              <Button>
+              <Button variant="outline" className="border-purple-600 text-purple-600 hover:bg-purple-50">Download Reports</Button>
+              <Button className="bg-gradient-to-r from-[#e53935] to-[#ff0000] hover:from-[#d32f2f] hover:to-[#e53935]">
                 <Plus className="mr-2 h-4 w-4" /> Create New
               </Button>
             </div>
@@ -174,11 +174,11 @@ export default function AdminDashboard() {
             onValueChange={setActiveTab}
             className="space-y-4"
           >
-            <TabsList>
-              <TabsTrigger value="overview">Overview</TabsTrigger>
-              <TabsTrigger value="analytics">Analytics</TabsTrigger>
-              <TabsTrigger value="reports">Reports</TabsTrigger>
-              <TabsTrigger value="notifications">Notifications</TabsTrigger>
+            <TabsList className="bg-gradient-to-r from-[#7a1f73] to-[#9c27b0] text-white">
+              <TabsTrigger value="overview" className="text-white data-[state=active]:bg-red-500 data-[state=active]:text-white">Overview</TabsTrigger>
+              <TabsTrigger value="analytics" className="text-white data-[state=active]:bg-red-500 data-[state=active]:text-white">Analytics</TabsTrigger>
+              <TabsTrigger value="reports" className="text-white data-[state=active]:bg-red-500 data-[state=active]:text-white">Reports</TabsTrigger>
+              <TabsTrigger value="notifications" className="text-white data-[state=active]:bg-red-500 data-[state=active]:text-white">Notifications</TabsTrigger>
             </TabsList>
 
             <TabsContent value="overview" className="space-y-4">
@@ -266,16 +266,29 @@ export default function AdminDashboard() {
                   <CardContent className="pl-2">
                     <ResponsiveContainer width="100%" height={350}>
                       <AreaChart data={revenueData}>
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="name" />
-                        <YAxis />
-                        <Tooltip />
+                        <defs>
+                          <linearGradient id="purpleGradient" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="5%" stopColor="#9c27b0" stopOpacity={0.8}/>
+                            <stop offset="95%" stopColor="#7a1f73" stopOpacity={0.1}/>
+                          </linearGradient>
+                        </defs>
+                        <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
+                        <XAxis dataKey="name" stroke="#666" />
+                        <YAxis stroke="#666" />
+                        <Tooltip 
+                          contentStyle={{
+                            backgroundColor: '#7a1f73',
+                            border: '1px solid #9c27b0',
+                            borderRadius: '8px',
+                            color: 'white'
+                          }}
+                        />
                         <Area
                           type="monotone"
                           dataKey="total"
-                          stroke="#8884d8"
-                          fill="#8884d8"
-                          fillOpacity={0.2}
+                          stroke="#9c27b0"
+                          fill="url(#purpleGradient)"
+                          strokeWidth={3}
                         />
                       </AreaChart>
                     </ResponsiveContainer>
@@ -293,7 +306,7 @@ export default function AdminDashboard() {
                         <XAxis dataKey="name" />
                         <YAxis />
                         <Tooltip />
-                        <Bar dataKey="value" fill="#8884d8" />
+                        <Bar dataKey="value" fill="#e53935" />
                       </BarChart>
                     </ResponsiveContainer>
                   </CardContent>

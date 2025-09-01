@@ -45,7 +45,7 @@ import {
   PieChartIcon,
   LineChartIcon,
 } from "lucide-react";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "../../components/app-sidebar";
 
 // Mock data for the dashboard
@@ -93,7 +93,7 @@ const orderStatusData = [
   { name: "Refunded", value: 10 },
 ];
 
-const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#8884d8"];
+const COLORS = ["#9c27b0", "#e53935", "#ff9800", "#607d8b", "#7a1f73"];
 
 export default function AnalyticsDashboard() {
   const [timeframe, setTimeframe] = useState("monthly");
@@ -113,12 +113,13 @@ export default function AnalyticsDashboard() {
   return (
     <SidebarProvider>
       <AppSidebar />
-      <div className="p-6 space-y-6">
+      <SidebarInset>
+        <div className="flex-1 space-y-4 p-4 md:p-8 pt-6">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
           <div>
             <div className="flex items-center gap-2">
               <SidebarTrigger className="-ml-1" />
-              <h1 className="text-3xl font-bold tracking-tight">
+              <h1 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-[#7a1f73] to-[#9c27b0] bg-clip-text text-transparent">
                 Analytics Dashboard
               </h1>
             </div>
@@ -260,20 +261,20 @@ export default function AnalyticsDashboard() {
 
         {/* Main Dashboard Content */}
         <Tabs defaultValue="overview" className="space-y-4">
-          <TabsList>
-            <TabsTrigger value="overview" className="flex items-center">
+          <TabsList className="bg-gradient-to-r from-[#7a1f73] to-[#9c27b0] text-white">
+            <TabsTrigger value="overview" className="flex items-center text-white data-[state=active]:bg-red-500 data-[state=active]:text-white">
               <TrendingUp className="h-4 w-4 mr-2" />
               Overview
             </TabsTrigger>
-            <TabsTrigger value="sales" className="flex items-center">
+            <TabsTrigger value="sales" className="flex items-center text-white data-[state=active]:bg-red-500 data-[state=active]:text-white">
               <LineChartIcon className="h-4 w-4 mr-2" />
               Sales
             </TabsTrigger>
-            <TabsTrigger value="products" className="flex items-center">
+            <TabsTrigger value="products" className="flex items-center text-white data-[state=active]:bg-red-500 data-[state=active]:text-white">
               <BarChart3 className="h-4 w-4 mr-2" />
               Products
             </TabsTrigger>
-            <TabsTrigger value="customers" className="flex items-center">
+            <TabsTrigger value="customers" className="flex items-center text-white data-[state=active]:bg-red-500 data-[state=active]:text-white">
               <PieChartIcon className="h-4 w-4 mr-2" />
               Customers
             </TabsTrigger>
@@ -300,13 +301,14 @@ export default function AnalyticsDashboard() {
                       <Line
                         type="monotone"
                         dataKey="revenue"
-                        stroke="#8884d8"
+                        stroke="#9c27b0"
                         name="Revenue"
+                        strokeWidth={3}
                       />
                       <Line
                         type="monotone"
                         dataKey="target"
-                        stroke="#82ca9d"
+                        stroke="#e53935"
                         name="Target"
                         strokeDasharray="5 5"
                       />
@@ -331,7 +333,7 @@ export default function AnalyticsDashboard() {
                         cy="50%"
                         labelLine={false}
                         outerRadius={80}
-                        fill="#8884d8"
+                        fill="#9c27b0"
                         dataKey="value"
                         label={({ name, percent }) =>
                           `${name}: ${(percent * 100).toFixed(0)}%`
@@ -369,7 +371,7 @@ export default function AnalyticsDashboard() {
                         cy="50%"
                         labelLine={false}
                         outerRadius={80}
-                        fill="#8884d8"
+                        fill="#9c27b0"
                         dataKey="value"
                         label={({ name, percent }) =>
                           `${name}: ${(percent * 100).toFixed(0)}%`
@@ -406,7 +408,7 @@ export default function AnalyticsDashboard() {
                       <Legend />
                       <Bar
                         dataKey="revenue"
-                        fill="#8884d8"
+                        fill="#e53935"
                         name="Revenue ($)"
                       />
                     </BarChart>
@@ -430,11 +432,11 @@ export default function AnalyticsDashboard() {
                   <LineChart data={salesData}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="month" />
-                    <YAxis yAxisId="left" orientation="left" stroke="#8884d8" />
+                    <YAxis yAxisId="left" orientation="left" stroke="#9c27b0" />
                     <YAxis
                       yAxisId="right"
                       orientation="right"
-                      stroke="#82ca9d"
+                      stroke="#e53935"
                     />
                     <Tooltip />
                     <Legend />
@@ -442,14 +444,15 @@ export default function AnalyticsDashboard() {
                       yAxisId="left"
                       type="monotone"
                       dataKey="revenue"
-                      stroke="#8884d8"
+                      stroke="#9c27b0"
                       name="Revenue ($)"
+                      strokeWidth={3}
                     />
                     <Line
                       yAxisId="right"
                       type="monotone"
                       dataKey="orders"
-                      stroke="#82ca9d"
+                      stroke="#e53935"
                       name="Orders"
                     />
                   </LineChart>
@@ -472,7 +475,7 @@ export default function AnalyticsDashboard() {
                   <BarChart data={productPerformance}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="name" />
-                    <YAxis yAxisId="left" orientation="left" stroke="#8884d8" />
+                    <YAxis yAxisId="left" orientation="left" stroke="#9c27b0" />
                     <YAxis
                       yAxisId="right"
                       orientation="right"
@@ -483,13 +486,13 @@ export default function AnalyticsDashboard() {
                     <Bar
                       yAxisId="left"
                       dataKey="sales"
-                      fill="#8884d8"
+                      fill="#9c27b0"
                       name="Units Sold"
                     />
                     <Bar
                       yAxisId="right"
                       dataKey="revenue"
-                      fill="#82ca9d"
+                      fill="#e53935"
                       name="Revenue ($)"
                     />
                   </BarChart>
@@ -515,7 +518,7 @@ export default function AnalyticsDashboard() {
                         cy="50%"
                         labelLine={false}
                         outerRadius={80}
-                        fill="#8884d8"
+                        fill="#9c27b0"
                         dataKey="value"
                         label={({ name, percent }) =>
                           `${name}: ${(percent * 100).toFixed(0)}%`
@@ -567,8 +570,8 @@ export default function AnalyticsDashboard() {
                       <Area
                         type="monotone"
                         dataKey="customers"
-                        stroke="#8884d8"
-                        fill="#8884d8"
+                        stroke="#9c27b0"
+                        fill="#9c27b0"
                       />
                     </AreaChart>
                   </ResponsiveContainer>
@@ -577,7 +580,8 @@ export default function AnalyticsDashboard() {
             </div>
           </TabsContent>
         </Tabs>
-      </div>
+        </div>
+      </SidebarInset>
     </SidebarProvider>
   );
 }
