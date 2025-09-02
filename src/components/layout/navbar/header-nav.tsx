@@ -17,6 +17,7 @@ import { FaRegHeart, FaRegUser } from "react-icons/fa";
 import { FiShoppingCart } from "react-icons/fi";
 import { IoSearch } from "react-icons/io5";
 import { useSession, signOut } from "next-auth/react";
+import { getLocalCartCount, getLocalWishlistCount } from "@/lib/localStorage";
 
 const HeaderNav = () => {
   const [selectedCategory, setSelectedCategory] = useState("All Categories");
@@ -29,13 +30,12 @@ const HeaderNav = () => {
   // Fetch counts for cart and wishlist
   useEffect(() => {
     const userId = session?.user?.id;
-    if (!userId) {
-      setCartCount(0);
-      setWishlistCount(0);
-      return;
-    }
-
     const fetchCounts = async () => {
+      if (!userId) {
+        setCartCount(getLocalCartCount());
+        setWishlistCount(getLocalWishlistCount());
+        return;
+      }
       try {
         // Cart count
         const cartRes = await fetch(`/api/carts/${userId}`);

@@ -2,6 +2,7 @@
 
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
+import { getLocalWishlistCount } from "@/lib/localStorage";
 
 interface WishlistContextType {
   wishlistCount: number;
@@ -17,12 +18,12 @@ export const WishlistProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [wishlistCount, setWishlistCount] = useState<number>(0);
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
 
   const refreshWishlistCount = async () => {
     const userId = session?.user?.id;
     if (!userId) {
-      setWishlistCount(0);
+      setWishlistCount(getLocalWishlistCount());
       return;
     }
 
@@ -49,8 +50,23 @@ export const WishlistProvider: React.FC<{ children: React.ReactNode }> = ({
 
   // Initial load and session changes
   useEffect(() => {
+    if (status === "loading") return;
     refreshWishlistCount();
-  }, [session?.user?.id]);
+  }, [status, session?.user?.id]);
+
+  useEffect(() => {
+    const onWishlistUpdated = () => refreshWishlistCount();
+    if (typeof window !== "undefined") {
+      window.addEventListener("wishlistUpdated", onWishlistUpdated as EventListener);
+      window.addEventListener("focus", onWishlistUpdated as EventListener);
+    }
+    return () => {
+      if (typeof window !== "undefined") {
+        window.removeEventListener("wishlistUpdated", onWishlistUpdated as EventListener);
+        window.removeEventListener("focus", onWishlistUpdated as EventListener);
+      }
+    };
+  }, [status, session?.user?.id]);
 
   return (
     <WishlistContext.Provider

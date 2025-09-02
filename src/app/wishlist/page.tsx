@@ -11,6 +11,11 @@ import { toast } from "sonner";
 import { Wishlist } from "../types/types";
 import { useSession } from "next-auth/react";
 import Loading from "../loading";
+import {
+  getLocalWishlist,
+  removeFromLocalWishlist,
+  addToLocalCart,
+} from "@/lib/localStorage";
 
 export default function WishlistPage() {
   const router = useRouter();
@@ -25,12 +30,24 @@ export default function WishlistPage() {
   useEffect(() => {
     const fetchWishlistItems = async () => {
       if (status === "loading") return; // Wait until session is loaded
+      setIsLoading(true);
+
       if (!session?.user?.id) {
+        // Guest: read from localStorage and map to Wishlist shape
+        const local = getLocalWishlist();
+        const mapped: Wishlist[] = local.map((i) => ({
+          _id: i.productId,
+          productId: i.productId,
+          productName: i.productName,
+          productImage: i.productImage,
+          userId: "guest",
+          createdAt: i.addedAt,
+          updatedAt: i.addedAt,
+        }));
+        setWishlistItems(mapped);
         setIsLoading(false);
         return;
       }
-
-      setIsLoading(true);
 
       try {
         const response = await fetch(`/api/wishlist/${session.user.id}`);
@@ -53,14 +70,38 @@ export default function WishlistPage() {
     };
 
     fetchWishlistItems();
+
+    const onWishlistUpdated = () => fetchWishlistItems();
+    const onCartUpdated = () => fetchWishlistItems();
+    if (typeof window !== "undefined") {
+      window.addEventListener("wishlistUpdated", onWishlistUpdated as EventListener);
+      window.addEventListener("cartUpdated", onCartUpdated as EventListener);
+      window.addEventListener("focus", onWishlistUpdated as EventListener);
+    }
+    return () => {
+      if (typeof window !== "undefined") {
+        window.removeEventListener("wishlistUpdated", onWishlistUpdated as EventListener);
+        window.removeEventListener("cartUpdated", onCartUpdated as EventListener);
+        window.removeEventListener("focus", onWishlistUpdated as EventListener);
+      }
+    };
   }, [session, status]);
 
   const removeFromWishlist = async (wishlistItemId: string) => {
-    if (!session?.user?.id) return;
-
     setRemovingItems((prev) => ({ ...prev, [wishlistItemId]: true }));
 
     try {
+      if (!session?.user?.id) {
+        // Guest: remove from localStorage by productId
+        removeFromLocalWishlist(wishlistItemId);
+        setWishlistItems((prev) => prev.filter((item) => item._id !== wishlistItemId));
+        toast.success("Item removed from wishlist");
+        if (typeof window !== "undefined") {
+          window.dispatchEvent(new Event("wishlistUpdated"));
+        }
+        return;
+      }
+
       const response = await fetch(`/api/wishlist/${wishlistItemId}`, {
         method: "DELETE",
       });
@@ -86,14 +127,27 @@ export default function WishlistPage() {
   };
 
   const addToCart = async (productId: string, productName: string) => {
-    if (!session?.user?.id) {
-      toast.error("Please login to add items to cart");
-      return;
-    }
-
     setAddingToCart((prev) => ({ ...prev, [productId]: true }));
 
     try {
+      if (!session?.user?.id) {
+        // Guest: get product details from local wishlist and add to local cart
+        const local = getLocalWishlist();
+        const found = local.find((i) => i.productId === productId);
+        addToLocalCart({
+          productId,
+          quantity: 1,
+          productName: found?.productName || productName,
+          productImage: found?.productImage || "",
+          productPrice: found?.productPrice || 0,
+        });
+        toast.success(`${productName} added to cart`);
+        if (typeof window !== "undefined") {
+          window.dispatchEvent(new Event("cartUpdated"));
+        }
+        return;
+      }
+
       const response = await fetch("/api/carts", {
         method: "POST",
         headers: {

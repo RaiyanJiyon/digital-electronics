@@ -14,6 +14,10 @@ import { toast } from "sonner";
 import { useSession } from "next-auth/react";
 import Loading from "../loading";
 import { Cart } from "../types/types";
+import {
+  getLocalCart,
+  removeFromLocalCart,
+} from "@/lib/localStorage";
 
 // Initialize Stripe
 const stripePromise = loadStripe(
@@ -34,12 +38,28 @@ export default function CartPage() {
 
   useEffect(() => {
     const fetchCartItems = async () => {
+      if (status === "loading") return;
       setIsLoading(true);
 
-      if (status === "loading") return;
+      if (!session?.user?.id) {
+        // Guest: read from localStorage
+        const local = getLocalCart();
+        const mapped: Cart[] = local.map((i) => ({
+          _id: i.productId, // use productId as stable key
+          productId: i.productId,
+          productName: i.productName,
+          productImage: i.productImage,
+          productPrice: i.productPrice,
+          quantity: i.quantity,
+          userId: "guest",
+        }));
+        setCartItems(mapped);
+        setIsLoading(false);
+        return;
+      }
 
       try {
-        const response = await fetch(`/api/carts/${userId}`);
+        const response = await fetch(`/api/carts/${session.user.id}`);
 
         if (!response.ok) {
           throw new Error("Failed to fetch cart items");
@@ -54,12 +74,37 @@ export default function CartPage() {
       }
     };
     fetchCartItems();
-  }, [status, userId]);
+
+    const onCartUpdated = () => fetchCartItems();
+    if (typeof window !== "undefined") {
+      window.addEventListener("cartUpdated", onCartUpdated as EventListener);
+      window.addEventListener("focus", onCartUpdated as EventListener);
+    }
+    return () => {
+      if (typeof window !== "undefined") {
+        window.removeEventListener("cartUpdated", onCartUpdated as EventListener);
+        window.removeEventListener("focus", onCartUpdated as EventListener);
+      }
+    };
+  }, [status, session?.user?.id]);
 
   const removeFromCart = async (cartItemId: string) => {
     setRemovingItems((prev) => ({ ...prev, [cartItemId]: true }));
 
     try {
+      if (!session?.user?.id) {
+        // Guest removal by productId
+        removeFromLocalCart(cartItemId);
+        setCartItems((prev) => prev.filter((item) => item._id !== cartItemId));
+        toast("Item removed", {
+          description: "The item has been removed from your cart.",
+        });
+        if (typeof window !== "undefined") {
+          window.dispatchEvent(new Event("cartUpdated"));
+        }
+        return;
+      }
+
       const response = await fetch(`/api/carts/${cartItemId}`, {
         method: "DELETE",
       });
@@ -72,6 +117,9 @@ export default function CartPage() {
       toast("Item removed", {
         description: "The item has been removed from your cart.",
       });
+      if (typeof window !== "undefined") {
+        window.dispatchEvent(new Event("cartUpdated"));
+      }
     } catch (err) {
       console.error("Error removing from cart:", err);
       toast("Error", {

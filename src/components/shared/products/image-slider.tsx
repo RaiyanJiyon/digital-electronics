@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/tooltip";
 import { useSession } from "next-auth/react";
 import { toast } from "sonner";
+import { addToLocalCart, addToLocalWishlist } from "@/lib/localStorage";
 
 interface ImageSliderProps {
   product: Product;
@@ -87,7 +88,27 @@ const ImageSlider = ({
     productName: string,
     productImage: string
   ) => {
-    if (!session?.user) return;
+    if (!session?.user) {
+      // Add to localStorage for guest users
+      const success = addToLocalWishlist({
+        productId,
+        productName,
+        productImage,
+        productPrice: product.price,
+      });
+      
+      if (success) {
+        toast.success("Product added to wishlist");
+        // Notify listeners that wishlist has changed
+        if (typeof window !== "undefined") {
+          window.dispatchEvent(new Event("wishlistUpdated"));
+        }
+      } else {
+        toast.error("Product already in wishlist");
+      }
+      return;
+    }
+
     console.log(productId);
 
     try {
@@ -107,11 +128,14 @@ const ImageSlider = ({
       toast.success("Product added to wishlist");
 
       console.log("Successfully added to wishlist!");
-      // Optional: Show toast notification
+      // Notify listeners that wishlist has changed
+      if (typeof window !== "undefined") {
+        window.dispatchEvent(new Event("wishlistUpdated"));
+      }
     } catch (error) {
       console.error("Wishlist error:", error);
       // Show error message
-      toast.success("Product failed to add in wishlist");
+      toast.error("Failed to add product to wishlist");
     }
   };
 
@@ -123,7 +147,20 @@ const ImageSlider = ({
     price: number
   ) => {
     if (!session?.user) {
-      toast.error("Please login to add items to cart");
+      // Add to localStorage for guest users
+      addToLocalCart({
+        productId,
+        quantity,
+        productName,
+        productImage,
+        productPrice: price,
+      });
+      
+      toast.success(`${productName} added to cart`);
+      // Notify listeners that cart has changed
+      if (typeof window !== "undefined") {
+        window.dispatchEvent(new Event("cartUpdated"));
+      }
       return;
     }
   
@@ -151,6 +188,10 @@ const ImageSlider = ({
   
       toast.success(`${productName} added to cart`);
       console.log("Cart item:", data);
+      // Notify listeners that cart has changed
+      if (typeof window !== "undefined") {
+        window.dispatchEvent(new Event("cartUpdated"));
+      }
     } catch (error) {
       console.error("Add to cart error:", error);
       toast.error(
@@ -285,23 +326,14 @@ const ImageSlider = ({
                         product.images[0]
                       )
                     }
-                    className={`h-10 w-10 grid place-items-center rounded-lg border transition ${
-                      session?.user
-                        ? "border-gray-300 hover:bg-red-500 hover:text-white"
-                        : "border-gray-200 text-gray-400 cursor-not-allowed"
-                    }`}
-                    disabled={!session?.user}
+                    className="h-10 w-10 grid place-items-center rounded-lg border border-gray-300 hover:bg-red-500 hover:text-white transition"
                     aria-label="Add to wishlist"
                   >
                     <Heart className="w-5 h-5" />
                   </button>
                 </TooltipTrigger>
                 <TooltipContent>
-                  <p>
-                    {session?.user
-                      ? "Add to wishlist"
-                      : "Login to add to wishlist"}
-                  </p>
+                  <p>Add to wishlist</p>
                 </TooltipContent>
               </Tooltip>
 

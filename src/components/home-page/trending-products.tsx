@@ -13,6 +13,7 @@ import {
 } from "../ui/tooltip";
 import { useSession } from "next-auth/react";
 import { toast } from "sonner";
+import { addToLocalCart, addToLocalWishlist } from "@/lib/localStorage";
 import { IoIosGitCompare } from "react-icons/io";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -164,7 +165,28 @@ export default function TrendingProducts() {
     productName: string,
     productImage: string
   ) => {
-    if (!session?.user) return;
+    if (!session?.user) {
+      // Add to localStorage for guest users
+      const product = products.find(p => p._id === productId);
+      const success = addToLocalWishlist({
+        productId,
+        productName,
+        productImage,
+        productPrice: product?.price || 0,
+      });
+      
+      if (success) {
+        toast.success("Product added to wishlist");
+        // Notify listeners that wishlist has changed
+        if (typeof window !== "undefined") {
+          window.dispatchEvent(new Event("wishlistUpdated"));
+        }
+      } else {
+        toast.error("Product already in wishlist");
+      }
+      return;
+    }
+
     console.log(productId);
 
     try {
@@ -188,7 +210,6 @@ export default function TrendingProducts() {
       if (typeof window !== "undefined") {
         window.dispatchEvent(new Event("wishlistUpdated"));
       }
-      // Optional: Show toast notification
     } catch (error) {
       console.error("Wishlist error:", error);
       // Show error message
@@ -207,8 +228,19 @@ export default function TrendingProducts() {
     productImage: string,
     price: number
   ) => {
-    if (!session?.user) {
-      toast.error("Please login to add items to cart");
+    if (!session?.user?.id) {
+      // Guest: add to localStorage
+      addToLocalCart({
+        productId,
+        quantity,
+        productName,
+        productImage,
+        productPrice: price,
+      });
+      toast.success(`${productName} added to cart`);
+      if (typeof window !== "undefined") {
+        window.dispatchEvent(new Event("cartUpdated"));
+      }
       return;
     }
 
@@ -319,22 +351,16 @@ export default function TrendingProducts() {
                         product.images[0]
                       )
                     }
-                    className={`p-2 border rounded-md transition ${
-                      session?.user
-                        ? "border-gray-300 hover:bg-red-500 hover:text-white"
-                        : "border-gray-200 text-gray-400 cursor-not-allowed"
-                    }`}
-                    disabled={!session?.user}
+                    className={
+                      "p-2 border rounded-md transition border-gray-300 hover:bg-red-500 hover:text-white"
+                    }
+                    aria-label="Add to wishlist"
                   >
                     <Heart className="w-5 h-5" />
                   </button>
                 </TooltipTrigger>
                 <TooltipContent>
-                  <p>
-                    {session?.user
-                      ? "Add to wishlist"
-                      : "Login to add to wishlist"}
-                  </p>
+                  <p>Add to wishlist</p>
                 </TooltipContent>
               </Tooltip>
 

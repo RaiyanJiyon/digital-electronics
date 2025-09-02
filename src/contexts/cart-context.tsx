@@ -2,6 +2,7 @@
 
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
+import { getLocalCartCount } from "@/lib/localStorage";
 
 interface CartContextType {
   cartCount: number;
@@ -17,12 +18,13 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [cartCount, setCartCount] = useState<number>(0);
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
 
   const refreshCartCount = async () => {
     const userId = session?.user?.id;
     if (!userId) {
-      setCartCount(0);
+      // Guest: count from localStorage
+      setCartCount(getLocalCartCount());
       return;
     }
 
@@ -49,8 +51,24 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
 
   // Initial load and session changes
   useEffect(() => {
+    if (status === "loading") return;
     refreshCartCount();
-  }, [session?.user?.id, refreshCartCount]);
+  }, [status, session?.user?.id]);
+
+  // Listen for cart updates across app (guest mode)
+  useEffect(() => {
+    const onCartUpdated = () => refreshCartCount();
+    if (typeof window !== "undefined") {
+      window.addEventListener("cartUpdated", onCartUpdated as EventListener);
+      window.addEventListener("focus", onCartUpdated as EventListener);
+    }
+    return () => {
+      if (typeof window !== "undefined") {
+        window.removeEventListener("cartUpdated", onCartUpdated as EventListener);
+        window.removeEventListener("focus", onCartUpdated as EventListener);
+      }
+    };
+  }, [status, session?.user?.id]);
 
   return (
     <CartContext.Provider
